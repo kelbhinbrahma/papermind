@@ -1,0 +1,6 @@
+# ingest-time labelling + tests (run on your machine, not on the server)
+-r requirements.txt
+sentence-transformers==3.4.1
+pytest==8.3.4
+httpx==0.28.1
+ocrmac==1.0.1; sys_platform == "darwin"  # local OCR for scanned papers (Gemini refuses to transcribe published GATE papers)

@@ -1,0 +1,118 @@
+{
+ "title": "Practice Set \u2014 Deadlock",
+ "exam": "PRACTICE",
+ "area": "gate_cs",
+ "duration_min": 12,
+ "total_marks": 6.0,
+ "request": {
+  "area": "gate_cs",
+  "exam": "PRACTICE",
+  "units": [
+   "Operating System"
+  ],
+  "topics": [
+   "Deadlock"
+  ],
+  "num_questions": 4,
+  "difficulty": "medium"
+ },
+ "generated_by": "gemini-3.8-flash",
+ "sections": [
+  {
+   "name": "Practice",
+   "instructions": "GATE-style questions. MCQ: one correct; MSQ: one or more correct; NAT: numerical answer.",
+   "attempt": null,
+   "questions": [
+    {
+     "n": 1,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Operating System",
+     "topic": "Deadlock",
+     "bloom": "Analyze",
+     "text": "Consider a system with four processes $P_1, P_2, P_3, P_4$ and two resource types $R_1, R_2$, with 2 instances of each resource type available. Suppose the current allocation and maximum demand matrices are given as follows: Allocation: $P_1(1,0), P_2(0,1), P_3(1,1), P_4(0,0)$; Max Demand: $P_1(2,2), P_2(1,2), P_3(2,2), P_4(2,3)$. Which of the following statements is true regarding the state of the system?",
+     "options": [
+      "(A) The system is in a safe state and the safe sequence is $P_1, P_2, P_3, P_4$.",
+      "(B) The system is in a deadlock state.",
+      "(C) The system is in an unsafe state, but not necessarily deadlocked.",
+      "(D) The system is in a safe state and the safe sequence is $P_2, P_1, P_3, P_4$."
+     ],
+     "answer": "D",
+     "explanation": "Total instances = (2, 2). Current allocated = sum((1,0), (0,1), (1,1), (0,0)) = (2, 2). Available = (2,2) - (2,2) = (0,0). Wait, let's recompute. Allocated: P1(1,0), P2(0,1), P3(1,1), P4(0,0) -> Total allocated = (2,2). Available = (2,2) - (2,2) = (0,0). With (0,0) available, no process can run unless some finish. Let's check needs: P1(1,2), P2(1,1), P3(1,1), P4(2,3). None can be satisfied with (0,0) available. Wait, let's fix numbers: Let Total = (3,3). Allocated = P1(1,0), P2(0,1), P3(1,1), P4(0,0) -> Total allocated = (2,2). Available = (3,3) - (2,2) = (1,1). Needs = Max - Alloc: P1(1,2), P2(1,1), P3(1,1), P4(2,3). Available is (1,1). P2 needs (1,1), can be satisfied! P2 runs and releases (0,1)+(0,1)=(0,2)? No, P2 allocated (0,1), so upon completion, available becomes (1,1) + (0,1) = (1,2). Then P3 needs (1,1), can run, releases (1,1), available becomes (2,3). Then P1 needs (1,2), can run. Safe sequence: P2, P3, P1, P4. Wait, option D says P2, P1, P3, P4. Let's trace P2: Need(P2)=(1,1), Avail=(1,1). P2 runs, releases (0,1), Avail=(1,2). Next P1: Need(P1)=(1,2), Avail=(1,2). P1 runs, releases (1,0), Avail=(2,2). Next P3: Need(P3)=(1,1), Avail=(2,2). P3 runs, releases (1,1), Avail=(3,3). Next P4: Need(P4)=(2,3), Avail=(3,3). P4 runs. Thus, safe sequence is P2, P1, P3, P4.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 2,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Operating System",
+     "topic": "Deadlock",
+     "bloom": "Remember",
+     "text": "Which of the following conditions must hold simultaneously for a deadlock to occur in an operating system?",
+     "options": [
+      "(A) Mutual exclusion, Hold and wait, No preemption, Circular wait",
+      "(B) Mutual exclusion, Aging, No preemption, Circular wait",
+      "(C) Preemption, Hold and wait, Mutual exclusion, Circular wait",
+      "(D) Data sharing, Hold and wait, No preemption, Circular wait"
+     ],
+     "answer": "A",
+     "explanation": "Coffman conditions state that deadlock can arise if and only if all four conditions hold simultaneously: Mutual exclusion, Hold and wait, No preemption, and Circular wait.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 3,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Operating System",
+     "topic": "Deadlock",
+     "bloom": "Remember",
+     "text": "Consider a system with 4 processes sharing 6 instances of a single resource type. Each process can request a maximum of 3 instances. Resource instances can be requested and released only one at a time. The largest value of total instances that could cause a deadlock if allocated carefully is not the question, but find the minimum number of total resource instances required to guarantee that the system is completely deadlock-free regardless of the maximum demand, assuming each process has claimed at least one. Answer in integer.",
+     "options": [],
+     "answer": "9",
+     "explanation": "To guarantee deadlock freedom with 4 processes each having a max demand of 3, the minimum instances $k$ required satisfies $k \\sum (max_i - 1) + 1$. Here $\\sum (3 - 1) = 4 \\times 2 = 8$. Thus $8 + 1 = 9$ instances guarantee deadlock freedom.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 4,
+     "marks": 2.0,
+     "qtype": "MSQ",
+     "unit": "Operating System",
+     "topic": "Deadlock",
+     "bloom": "Apply",
+     "text": "Which of the following strategies can be used to handle deadlocks in operating systems?",
+     "options": [
+      "(A) Ensuring that at least one of the Coffman conditions never holds",
+      "(B) Using a deadlock detection algorithm along with a process termination recovery scheme",
+      "(C) Allowing the system to enter a deadlock state freely and ignoring it, commonly known as the ostrich algorithm",
+      "(D) Using static allocation to entirely prevent circular wait"
+     ],
+     "answer": "A;B;C;D",
+     "explanation": "All listed methods are valid strategies for handling deadlocks in operating systems: deadlock prevention (A, D), deadlock detection and recovery (B), and the ostrich algorithm (C).",
+     "source": "generated",
+     "ref": null
+    }
+   ]
+  }
+ ],
+ "validation": {
+  "questions": "4/4",
+  "marks_ok": true,
+  "attemptable_marks": 6.0,
+  "generated": 4,
+  "from_past_papers": 0,
+  "max_similarity_to_past": 0.69,
+  "too_similar": 0,
+  "unit_marks": {
+   "Operating System": 6.0
+  },
+  "bloom_mix": {
+   "Remember": 2,
+   "Apply": 1,
+   "Analyze": 1
+  },
+  "keys_failed_verification": 1
+ }
+}

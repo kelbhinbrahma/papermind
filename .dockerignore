@@ -1,0 +1,9 @@
+.venv
+.env
+legacy_v1_backup.tar.gz
+data/gate
+data/samples
+data/*.log
+tests
+.pytest_cache
+**/__pycache__

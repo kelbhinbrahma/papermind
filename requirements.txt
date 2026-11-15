@@ -1,0 +1,11 @@
+# runtime (what the deployed server needs)
+fastapi==0.115.6
+uvicorn==0.34.0
+python-multipart==0.0.20
+PyMuPDF==1.25.3
+google-genai==3.3.0
+scikit-learn==1.6.1
+numpy==2.2.3
+joblib==1.6.0
+pydantic==2.14.3
+python-dotenv==1.0.1

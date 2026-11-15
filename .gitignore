@@ -1,0 +1,10 @@
+.venv/
+.env
+__pycache__/
+legacy_v1_backup.tar.gz
+data/gate/raw/
+data/gate/originals/
+data/gate/samples/
+data/*.log
+.pytest_cache/
+.DS_Store

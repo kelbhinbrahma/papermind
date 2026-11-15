@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PaperMind</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f6f6f4; --surface: #fcfcfb; --surface-2: #efeeea; --line: #e2e1dc;
+  --text: #0b0b0b; --text-2: #52514e; --muted: #8a8984;
+  --accent: #2a78d6; --accent-ink: #fff; --series-1: #2a78d6;
+  --good: #1f7a3a; --bad: #b42318;
+  --radius: 10px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121211; --surface: #1a1a19; --surface-2: #242422; --line: #33332f;
+    --text: #f0efec; --text-2: #c3c2b7; --muted: #8f8e86;
+    --accent: #3987e5; --series-1: #3987e5; --good: #5fbf7a; --bad: #f07a6e;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211; --surface: #1a1a19; --surface-2: #242422; --line: #33332f;
+  --text: #f0efec; --text-2: #c3c2b7; --muted: #8f8e86;
+  --accent: #3987e5; --series-1: #3987e5; --good: #5fbf7a; --bad: #f07a6e;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+header { display: flex; align-items: center; gap: 16px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 5; flex-wrap: wrap; }
+header h1 { font-size: 18px; margin: 0; letter-spacing: -0.01em; }
+header h1 span { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 6px; }
+nav { display: flex; gap: 4px; flex-wrap: wrap; }
+nav button { background: none; border: 0; padding: 8px 12px; border-radius: 8px; color: var(--text-2); font: inherit; cursor: pointer; }
+nav button[aria-selected="true"] { background: var(--surface-2); color: var(--text); font-weight: 600; }
+#llm { margin-left: auto; font-size: 12px; color: var(--muted); }
+main { max-width: 980px; margin: 0 auto; padding: 20px 16px 60px; }
+section[hidden] { display: none; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+input, select, textarea { font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; min-width: 0; }
+input[type=text], textarea { flex: 1 1 260px; }
+button.primary { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 8px; padding: 9px 16px; font: inherit; font-weight: 600; cursor: pointer; }
+button.ghost { background: none; border: 1px solid var(--line); color: var(--text); border-radius: 8px; padding: 7px 12px; font: inherit; cursor: pointer; }
+button:disabled { opacity: .55; cursor: progress; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.chip { font-size: 13px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text-2); border-radius: 999px; padding: 4px 10px; cursor: pointer; }
+.muted { color: var(--muted); font-size: 13px; }
+.status { font-size: 14px; color: var(--text-2); margin: 10px 0; min-height: 1.5em; }
+.err { color: var(--bad); }
+h2 { font-size: 16px; margin: 0 0 12px; }
+/* paper */
+.paper-head { text-align: center; border-bottom: 2px solid var(--text); padding-bottom: 10px; margin-bottom: 14px; }
+.paper-head h3 { margin: 0 0 4px; font-size: 20px; }
+.sec-title { font-weight: 700; margin: 18px 0 4px; font-size: 15px; }
+.q { display: grid; grid-template-columns: 44px 1fr; gap: 4px 8px; padding: 12px 0; border-top: 1px solid var(--line); break-inside: avoid; }
+.q .n { font-weight: 700; }
+.q .meta { grid-column: 2; font-size: 12px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+.q .opts { grid-column: 2; margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+.q .ans { grid-column: 2; background: var(--surface-2); border-radius: 8px; padding: 8px 10px; font-size: 14px; margin-top: 6px; }
+.badge { font-size: 11px; border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+.hide-ans .ans { display: none; }
+.md p { margin: 0 0 6px; } .md pre { overflow-x: auto; background: var(--surface-2); padding: 8px; border-radius: 6px; }
+.md table { border-collapse: collapse; } .md td, .md th { border: 1px solid var(--line); padding: 2px 6px; }
+.kv { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.kv div { background: var(--surface-2); border-radius: 8px; padding: 6px 10px; font-size: 13px; }
+.kv b { display: block; font-size: 16px; }
+/* charts */
+.bars { display: grid; gap: 8px; }
+.bar-row { display: grid; grid-template-columns: minmax(120px, 34%) 1fr; gap: 10px; align-items: center; font-size: 13px; }
+.bar-row .label { color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track { position: relative; height: 18px; display: flex; align-items: center; gap: 8px; }
+.bar { height: 18px; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
+.bar-val { color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar-row:hover .bar { filter: brightness(1.12); }
+#tip { position: fixed; pointer-events: none; background: var(--text); color: var(--bg); font-size: 12px; padding: 6px 8px; border-radius: 6px; opacity: 0; transition: opacity .1s; z-index: 20; max-width: 260px; }
+table.data { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.data th { text-align: left; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--line); padding: 6px 4px; }
+table.data td { border-bottom: 1px solid var(--line); padding: 6px 4px; vertical-align: top; }
+.table-wrap { overflow-x: auto; }
+/* chat */
+.chat-grid { display: grid; grid-template-columns: 1fr 280px; gap: 16px; }
+#log { height: 58vh; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 4px; }
+.msg { max-width: 88%; padding: 10px 12px; border-radius: 12px; font-size: 14px; }
+.msg.user { align-self: flex-end; background: var(--accent); color: var(--accent-ink); }
+.msg.model { align-self: flex-start; background: var(--surface-2); }
+@media (max-width: 760px) { .chat-grid { grid-template-columns: 1fr; } .bar-row { grid-template-columns: 1fr; gap: 2px; } }
+@media print {
+  header, .no-print, nav { display: none !important; }
+  body { background: #fff; color: #000; }
+  main { padding: 0; max-width: none; }
+  .card { border: 0; padding: 0; }
+  section:not(#tab-generate) { display: none !important; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>PaperMind <span>past papers → practice papers</span></h1>
+  <nav role="tablist">
+    <button role="tab" data-tab="generate" aria-selected="true">Generate</button>
+    <button role="tab" data-tab="insights">Insights</button>
+    <button role="tab" data-tab="assistant">Assistant</button>
+    <button role="tab" data-tab="papers">Papers</button>
+  </nav>
+  <span id="llm"></span>
+</header>
+<div id="tip" role="tooltip"></div>
+<main>
+  <section id="tab-generate">
+    <div class="card no-print">
+      <h2>What paper do you want?</h2>
+      <form id="gen-form" class="row">
+        <input type="text" id="gen-q" placeholder="e.g. Give me a mid-sem paper for Operating Systems" required>
+        <button class="primary" id="gen-btn">Generate</button>
+      </form>
+      <div class="chips">
+        <span class="chip">GATE CS full mock test</span>
+        <span class="chip">GATE DA mock focusing on machine learning</span>
+        <span class="chip">10 questions on deadlock and paging</span>
+        <span class="chip">Mid-sem paper for DBMS</span>
+        <span class="chip">End-sem paper for Mathematics-II</span>
+      </div>
+      <div class="status" id="gen-status" aria-live="polite"></div>
+    </div>
+    <div id="paper-wrap" hidden>
+      <div class="row no-print" style="margin-bottom:10px">
+        <button class="ghost" id="toggle-ans">Show answers</button>
+        <button class="ghost" onclick="window.print()">Print / save PDF</button>
+        <span class="muted" id="paper-by"></span>
+      </div>
+      <div class="card hide-ans" id="paper"></div>
+      <div class="card no-print"><h2>Validation</h2><div class="kv" id="valid"></div></div>
+    </div>
+  </section>
+
+  <section id="tab-insights" hidden>
+    <div class="card">
+      <div class="row"><h2 style="margin:0">Past-paper analysis</h2>
+        <select id="ins-area" aria-label="Exam area" style="margin-left:auto"></select></div>
+      <div class="kv" id="ins-kv"></div>
+    </div>
+    <div class="card"><h2>Average marks per paper by subject</h2><div class="bars" id="ins-bars"></div></div>
+    <div class="card"><h2>Hot topics <span class="muted">(recency-weighted marks, 100 = hottest)</span></h2>
+      <div class="table-wrap"><table class="data" id="ins-topics"></table></div></div>
+    <div class="card"><h2>Concepts that repeat across years</h2>
+      <div class="table-wrap"><table class="data" id="ins-repeat"></table></div></div>
+  </section>
+
+  <section id="tab-assistant" hidden>
+    <div class="chat-grid">
+      <div class="card">
+        <div class="row" style="margin-bottom:8px">
+          <label class="muted" for="student">Your name</label>
+          <input id="student" style="flex:0 1 160px">
+          <button class="ghost" id="reset-chat" style="margin-left:auto">New chat</button>
+        </div>
+        <div id="log" aria-live="polite"></div>
+        <form id="chat-form" class="row" style="margin-top:10px">
+          <input type="text" id="chat-q" placeholder="Ask about topics, request a quiz, or a study plan…" required>
+          <button class="primary" id="chat-btn">Send</button>
+        </form>
+        <div class="chips">
+          <span class="chip">Which GATE CS subjects carry the most marks?</span>
+          <span class="chip">Quiz me on deadlock</span>
+          <span class="chip">Make me a 4-week GATE DA plan</span>
+        </div>
+      </div>
+      <div class="card"><h2>Your progress</h2><div id="progress" class="muted">No attempts yet.</div></div>
+    </div>
+  </section>
+
+  <section id="tab-papers" hidden>
+    <div class="card">
+      <h2>Add a paper</h2>
+      <p class="muted" style="margin-top:0">A digital or scanned PDF, or photos of the pages in order. New question formats are detected automatically.</p>
+      <form id="up-form" class="row">
+        <input type="file" id="up-files" accept=".pdf,image/*" multiple required>
+        <select id="up-area" aria-label="Area"></select>
+        <select id="up-exam" aria-label="Exam"><option>GATE</option><option>MIDSEM</option><option selected>ENDSEM</option><option>OTHER</option></select>
+        <input type="number" id="up-year" placeholder="Year" style="width:100px">
+        <button class="primary" id="up-btn">Upload</button>
+      </form>
+      <div class="status" id="up-status" aria-live="polite"></div>
+    </div>
+    <div class="card"><h2>Corpus</h2><div class="table-wrap"><table class="data" id="papers"></table></div></div>
+  </section>
+</main>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const AREA = { gate_cs: "GATE CS", gate_da: "GATE DA", mathematics_ii: "Mathematics-II" };
+const areaName = (a) => AREA[a] || a;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const store = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
+
+async function api(path, opts = {}) {
+  const r = await fetch(path, opts);
+  const body = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(body.detail || r.statusText);
+  return body;
+}
+
+// Markdown + LaTeX, sanitised: model output and uploaded-paper text are untrusted.
+function md(text) {
+  const math = [];
+  const guarded = String(text ?? "").replace(/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g, (m) => `@@M${math.push(m) - 1}@@`);
+  const html = DOMPurify.sanitize(marked.parse(guarded));
+  return html.replace(/@@M(\d+)@@/g, (_, i) => esc(math[i]));
+}
+function typeset(el) {
+  if (window.renderMathInElement) renderMathInElement(el, { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false }], throwOnError: false });
+}
+
+// tabs
+document.querySelectorAll("nav button").forEach((b) => b.onclick = () => {
+  document.querySelectorAll("nav button").forEach((x) => x.setAttribute("aria-selected", x === b));
+  document.querySelectorAll("main > section").forEach((s) => s.hidden = s.id !== "tab-" + b.dataset.tab);
+  if (b.dataset.tab === "insights") loadInsights();
+  if (b.dataset.tab === "papers") loadPapers();
+  if (b.dataset.tab === "assistant") loadChat();
+  store.set("tab", b.dataset.tab);
+});
+document.querySelectorAll(".chip").forEach((c) => c.onclick = () => {
+  const input = c.closest("section").querySelector("input[type=text]");
+  input.value = c.textContent; input.form.requestSubmit();
+});
+
+// tooltip for chart marks
+const tip = $("#tip");
+document.addEventListener("mousemove", (e) => {
+  const t = e.target.closest("[data-tip]");
+  if (!t) { tip.style.opacity = 0; return; }
+  tip.textContent = t.dataset.tip; tip.style.opacity = 1;
+  tip.style.left = Math.min(e.clientX + 12, innerWidth - 270) + "px"; tip.style.top = e.clientY + 14 + "px";
+});
+
+// ---------- generate ----------
+let timer;
+$("#gen-form").onsubmit = async (e) => {
+  e.preventDefault();
+  const btn = $("#gen-btn"), status = $("#gen-status"), t0 = Date.now();
+  btn.disabled = true; status.className = "status";
+  timer = setInterval(() => status.textContent = `Planning topics from past papers and writing questions… ${Math.round((Date.now() - t0) / 1000)}s (a full mock takes ~3 min)`, 500);
+  try {
+    const p = await api("/api/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ request: $("#gen-q").value }) });
+    renderPaper(p); status.textContent = "";
+  } catch (err) { status.textContent = "Failed: " + err.message; status.className = "status err"; }
+  clearInterval(timer); btn.disabled = false;
+};
+$("#toggle-ans").onclick = () => {
+  const hidden = $("#paper").classList.toggle("hide-ans");
+  $("#toggle-ans").textContent = hidden ? "Show answers" : "Hide answers";
+};
+function renderPaper(p) {
+  const mins = p.duration_min;
+  let h = `<div class="paper-head"><h3>${esc(p.title)}</h3>
+    <div class="muted">Time: ${mins >= 60 ? (mins / 60) + " hours" : mins + " minutes"} · Maximum marks: ${p.total_marks}</div></div>`;
+  for (const s of p.sections) {
+    h += `<div class="sec-title">${esc(s.name)}</div><div class="muted">${esc(s.instructions)}</div>`;
+    for (const q of s.questions) {
+      const src = q.source === "pyq" ? `past paper · ${esc(q.ref || "")}` : "generated";
+      h += `<div class="q"><div class="n">Q.${q.n}</div><div class="md">${md(q.text)}</div>
+        ${q.options?.length ? `<ul class="opts">${q.options.map((o) => `<li class="md">${md(o)}</li>`).join("")}</ul>` : ""}
+        <div class="meta"><span>${q.marks} mark${q.marks > 1 ? "s" : ""}</span><span>${esc(q.qtype)}</span><span>${esc(q.unit)} — ${esc(q.topic)}</span><span class="badge">${src}</span></div>
+        <div class="ans md"><b>Answer:</b> ${md(q.answer || "—")}${q.explanation ? md(q.explanation) : ""}</div></div>`;
+    }
+  }
+  $("#paper").innerHTML = h; typeset($("#paper"));
+  $("#paper-by").textContent = "Written by " + p.generated_by;
+  const v = p.validation;
+  const items = [["Questions", v.questions], ["Marks check", v.marks_ok ? "✓ " + v.attemptable_marks : "✗ " + v.attemptable_marks],
+    ["Generated", v.generated], ["From past papers", v.from_past_papers], ["Keys fixed by re-solve", v.keys_failed_verification ?? 0],
+    ["Max similarity to a past question", v.max_similarity_to_past ?? "—"]];
+  $("#valid").innerHTML = items.map(([k, x]) => `<div>${esc(k)}<b>${esc(x)}</b></div>`).join("");
+  $("#paper-wrap").hidden = false;
+}
+
+// ---------- insights ----------
+async function loadInsights() {
+  const area = $("#ins-area").value;
+  if (!area) return;
+  $("#ins-bars").innerHTML = '<span class="muted">Loading…</span>';
+  const a = await api("/api/analysis/" + area);
+  if (!a.papers) { $("#ins-bars").innerHTML = '<span class="muted">No papers for this area yet.</span>'; $("#ins-kv").innerHTML = ""; $("#ins-topics").innerHTML = ""; $("#ins-repeat").innerHTML = ""; return; }
+  const types = Object.entries(a.question_types).map(([k, v]) => `${k} ${v}`).join(" · ");
+  $("#ins-kv").innerHTML = [["Papers", a.papers], ["Years", `${a.years[0]}–${a.years.at(-1)}`], ["Questions", a.questions],
+    ["Per paper", types], ["Questions with figures", a.figure_questions_pct + "%"]].map(([k, v]) => `<div>${esc(k)}<b>${esc(v)}</b></div>`).join("");
+  const max = Math.max(...a.units.map((u) => u.avg_marks_per_paper));
+  const arrow = { rising: "↑ rising", falling: "↓ falling", stable: "→ stable" };
+  $("#ins-bars").innerHTML = a.units.map((u) => {
+    const yrs = Object.entries(u.marks_by_year).map(([y, m]) => `${y}: ${m}`).join(", ");
+    return `<div class="bar-row" data-tip="${esc(u.unit)} — ${u.avg_marks_per_paper} marks/paper (${u.share_pct}%), ${u.trend}. By year: ${esc(yrs)}">
+      <div class="label">${esc(u.unit)}</div>
+      <div class="bar-track"><div class="bar" style="width:${(78 * u.avg_marks_per_paper / max).toFixed(1)}%"></div>
+      <span class="bar-val">${u.avg_marks_per_paper} · ${arrow[u.trend]}</span></div></div>`;
+  }).join("");
+  $("#ins-topics").innerHTML = `<tr><th>Topic</th><th>Subject</th><th>Hot</th><th>Marks/paper</th><th>Seen in</th><th>Last</th></tr>` +
+    a.topics.slice(0, 15).map((t) => `<tr><td>${esc(t.topic)}</td><td>${esc(t.unit)}</td><td>${t.hot_score}</td><td>${t.avg_marks_per_paper}</td><td>${t.years_seen}/${t.of_years} yrs</td><td>${t.last_seen}</td></tr>`).join("");
+  $("#ins-repeat").innerHTML = `<tr><th>Similarity</th><th>Asked in</th><th>Topic</th><th>Question</th></tr>` +
+    (a.repeated_concepts.map((r) => `<tr><td>${r.similarity}</td><td>${esc(r.a)}<br>${esc(r.b)}</td><td>${esc(r.topic)}</td><td>${esc(r.text)}…</td></tr>`).join("") || `<tr><td colspan="4" class="muted">None found.</td></tr>`);
+}
+$("#ins-area").onchange = loadInsights;
+
+// ---------- assistant ----------
+const student = () => $("#student").value.trim() || "me";
+$("#student").value = store.get("student") || "";
+$("#student").onchange = () => { store.set("student", $("#student").value); loadChat(); };
+function addMsg(role, text) {
+  const d = document.createElement("div");
+  d.className = "msg " + role + (role === "model" ? " md" : "");
+  if (role === "model") { d.innerHTML = md(text); typeset(d); } else d.textContent = text;
+  $("#log").append(d); $("#log").scrollTop = 1e9;
+  return d;
+}
+async function loadChat() {
+  $("#log").innerHTML = "";
+  try {
+    const h = await api("/api/chat?student=" + encodeURIComponent(student()));
+    h.forEach((m) => addMsg(m.role, m.text));
+    if (!h.length) addMsg("model", "Hi! I know 16 years of GATE CS papers and GATE DA. Ask me what to study, or say **quiz me on a topic**.");
+  } catch {}
+  loadProgress();
+}
+async function loadProgress() {
+  const p = await api("/api/progress?student=" + encodeURIComponent(student())).catch(() => null);
+  if (!p || !p.attempts) { $("#progress").innerHTML = "No attempts yet. Ask for a quiz!"; return; }
+  $("#progress").innerHTML = `<div class="kv" style="margin-top:0"><div>Attempts<b>${p.attempts}</b></div><div>Accuracy<b>${Math.round(p.accuracy * 100)}%</b></div></div>
+    <p class="muted">Study next (weak × exam weight):</p><table class="data">` +
+    p.topics.slice(0, 8).map((t) => `<tr><td>${esc(t.topic)}<div class="muted">${t.correct}/${t.attempts} correct</div></td></tr>`).join("") + "</table>";
+}
+$("#chat-form").onsubmit = async (e) => {
+  e.preventDefault();
+  const q = $("#chat-q").value.trim(); if (!q) return;
+  $("#chat-q").value = ""; addMsg("user", q);
+  const wait = addMsg("model", "_thinking…_"); $("#chat-btn").disabled = true;
+  try {
+    const r = await api("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ student: student(), message: q }) });
+    wait.remove(); addMsg("model", r.reply);
+  } catch (err) { wait.remove(); addMsg("model", "⚠️ " + err.message); }
+  $("#chat-btn").disabled = false; loadProgress();
+};
+$("#reset-chat").onclick = async () => { await api("/api/chat?student=" + encodeURIComponent(student()), { method: "DELETE" }); loadChat(); };
+
+// ---------- papers ----------
+async function loadPapers() {
+  const ps = await api("/api/papers");
+  $("#papers").innerHTML = `<tr><th>Paper</th><th>Area</th><th>Exam</th><th>Year</th><th>Questions</th></tr>` +
+    ps.map((p) => `<tr><td>${esc(p.title)}</td><td>${esc(areaName(p.area))}</td><td>${esc(p.exam)}</td><td>${p.year ?? ""}</td><td>${p.questions}</td></tr>`).join("");
+}
+$("#up-form").onsubmit = async (e) => {
+  e.preventDefault();
+  const fd = new FormData();
+  for (const f of $("#up-files").files) fd.append("files", f);
+  fd.append("area", $("#up-area").value); fd.append("exam", $("#up-exam").value);
+  if ($("#up-year").value) fd.append("year", $("#up-year").value);
+  $("#up-btn").disabled = true; $("#up-status").className = "status"; $("#up-status").textContent = "Reading and labelling the paper…";
+  try {
+    const r = await api("/api/papers", { method: "POST", body: fd });
+    $("#up-status").textContent = `Added ${r.questions} questions (read via ${r.method}).`; loadPapers();
+  } catch (err) { $("#up-status").textContent = "Failed: " + err.message; $("#up-status").className = "status err"; }
+  $("#up-btn").disabled = false;
+};
+
+// ---------- boot ----------
+window.addEventListener("load", async () => {
+  const h = await api("/api/health").catch(() => ({ areas: [], llm: false }));
+  $("#llm").textContent = h.llm ? "Gemini connected" : "Offline mode: papers built from past questions";
+  const opts = h.areas.map((a) => `<option value="${a}">${esc(areaName(a))}</option>`).join("");
+  $("#ins-area").innerHTML = opts; $("#up-area").innerHTML = opts;
+  const t = store.get("tab");
+  if (t) document.querySelector(`nav button[data-tab="${t}"]`)?.click();
+});
+</script>
+</body>
+</html>

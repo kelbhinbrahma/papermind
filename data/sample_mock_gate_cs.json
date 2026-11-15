@@ -1,0 +1,1186 @@
+{
+ "title": "GATE Mock Test \u2014 Computer Science and Information Technology",
+ "exam": "GATE",
+ "area": "gate_cs",
+ "duration_min": 180,
+ "total_marks": 100,
+ "request": {
+  "area": "gate_cs",
+  "exam": "GATE",
+  "units": [],
+  "num_questions": null,
+  "difficulty": "medium"
+ },
+ "generated_by": "gemini-3.8-flash",
+ "sections": [
+  {
+   "name": "General Aptitude",
+   "instructions": "Q.1\u2013Q.5 carry one mark each; Q.6\u2013Q.10 carry two marks each.",
+   "attempt": null,
+   "questions": [
+    {
+     "n": 1,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Analytical Aptitude: logic, deduction, relationships, seating arrangements, counting",
+     "bloom": "Remember",
+     "text": "Consider the following relations in a family:\n\u2022 $M$ is the father of $N$.\n\u2022 $P$ is the mother of $Q$.\n\u2022 $N$ is the sister of $Q$.\n\nWhich one of the following statements is DEFINITELY true?",
+     "options": [
+      "(A) $M$ is the husband of $P$.",
+      "(B) $P$ is the daughter of $M$.",
+      "(C) $Q$ is the son of $M$.",
+      "(D) $N$ is the son of $P$."
+     ],
+     "answer": "A",
+     "explanation": "Since $N$ is the sister of $Q$, $N$ and $Q$ are siblings. $M$ is the father of $N$ (and hence also the father of $Q$). $P$ is the mother of $Q$ (and hence also the mother of $N$). Therefore, $M$ and $P$ are the parents of $N$ and $Q$, which means $M$ is the husband of $P$. $Q$'s gender is not specified, so (C) is not definitely true. $N$ is female, making (D) false.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 2,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Spatial Aptitude: shapes, rotation, mirror images, paper folding, patterns",
+     "bloom": "Apply",
+     "text": "The hour hand of a standard circular clock face initially points to 2 o'clock. The clock face is first rotated $90^\\circ$ clockwise about its center, and then reflected across the vertical axis passing through its center. After both transformations, which position on the clock face does the hour hand point to?",
+     "options": [
+      "(A) 4 o'clock",
+      "(B) 5 o'clock",
+      "(C) 7 o'clock",
+      "(D) 8 o'clock"
+     ],
+     "answer": "C",
+     "explanation": "1. 2 o'clock corresponds to an angle of $+60^\\circ$ clockwise from 12 o'clock.\n2. Rotating $90^\\circ$ clockwise shifts the position to $+60^\\circ + 90^\\circ = +150^\\circ$ clockwise from 12 o'clock, which corresponds to 5 o'clock.\n3. Reflecting across the vertical axis (the 12\u20136 line) mirrors $+150^\\circ$ clockwise to $-150^\\circ$ (or $210^\\circ$ clockwise), which corresponds to 7 o'clock.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 3,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Verbal Aptitude: grammar, vocabulary, reading comprehension, analogies",
+     "bloom": "Analyze",
+     "text": "Read the following statements:\n\u2022 All employees who work on Project X also work on Project Y.\n\u2022 No employee who works on Project Y works on Project Z.\n\nWhich one of the following options can be logically deduced?",
+     "options": [
+      "(A) Some employees who work on Project Z also work on Project X.",
+      "(B) No employee who works on Project X works on Project Z.",
+      "(C) All employees who work on Project Y work on Project X.",
+      "(D) Every employee in the firm works on at least one of the three projects."
+     ],
+     "answer": "B",
+     "explanation": "Let $X, Y, Z$ be the sets of employees working on Projects X, Y, and Z respectively. We are given $X \\subseteq Y$ and $Y \\cap Z = \\emptyset$. Since all members of $X$ belong to $Y$, and no member of $Y$ belongs to $Z$, it follows directly that no member of $X$ can belong to $Z$ ($X \\cap Z = \\emptyset$). Hence, statement (B) is logically true.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 4,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Verbal Aptitude: grammar, vocabulary, reading comprehension, analogies",
+     "bloom": "Understand",
+     "text": "Choose the grammatically correct option to fill in the blank:\n\nNeither the manager nor the team members ________ prepared for the sudden change in the project schedule.",
+     "options": [
+      "(A) was",
+      "(B) were",
+      "(C) has",
+      "(D) is being"
+     ],
+     "answer": "B",
+     "explanation": "When using 'neither ... nor ...', the verb agrees in number with the subject closest to it. Here, 'team members' is plural, so the plural past-tense verb 'were' is grammatically correct.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 5,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Verbal Aptitude: grammar, vocabulary, reading comprehension, analogies",
+     "bloom": "Remember",
+     "text": "Select the word that is OPPOSITE in meaning (antonym) to **EPHEMERAL**.",
+     "options": [
+      "(A) Transient",
+      "(B) Perpetual",
+      "(C) Evanescent",
+      "(D) Fleeting"
+     ],
+     "answer": "B",
+     "explanation": "'Ephemeral' means lasting for a very short time. 'Transient', 'evanescent', and 'fleeting' are synonyms of ephemeral. 'Perpetual' means lasting forever or never ending, making it the antonym.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 6,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Quantitative Aptitude: arithmetic, percentages, ratios, data interpretation, mensuration",
+     "bloom": "Understand",
+     "text": "A trader marks up the cost price of an article by $40\\%$. He then offers a discount of $20\\%$ on the marked price. If he makes a net profit of \u20b9 $84$, what was the cost price of the article (in \u20b9)?",
+     "options": [
+      "(A) 600",
+      "(B) 700",
+      "(C) 750",
+      "(D) 800"
+     ],
+     "answer": "B",
+     "explanation": "Let the cost price be $C$.\nMarked price $M = 1.40 \\times C$.\nSelling price $S = M \\times (1 - 0.20) = 1.40C \\times 0.80 = 1.12C$.\nProfit $= S - C = 1.12C - C = 0.12C$.\nGiven $0.12C = 84$, we get $C = \\frac{84}{0.12} = 700$.\nThus, the cost price is \u20b9 700.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 7,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Spatial Aptitude: shapes, rotation, mirror images, paper folding, patterns",
+     "bloom": "Understand",
+     "text": "A square sheet of paper is folded twice: first, the top half is folded down over the bottom half; second, the left half is folded over to the right half. In the resulting folded square (which corresponds to the bottom-right quadrant of the original sheet):\n1. A small circular hole is punched near the top-left corner (the exact center of the original sheet).\n2. A straight slit is cut along the diagonal connecting the bottom-left corner to the top-right corner.\n\nWhen the paper is completely unfolded, the resulting sheet contains:",
+     "options": [
+      "(A) 4 circular holes and 1 closed diamond-shaped slit",
+      "(B) 4 circular holes and 2 perpendicular intersecting straight slits",
+      "(C) 2 circular holes and 1 closed diamond-shaped slit",
+      "(D) 2 circular holes and 2 perpendicular intersecting straight slits"
+     ],
+     "answer": "A",
+     "explanation": "Let the original square sheet be defined on $[-1,1] \\times [-1,1]$.\n1. Folding top half down over bottom half folds $y \\in [0,1]$ onto $y \\in [-1,0]$.\n2. Folding left half to right half folds $x \\in [-1,0]$ onto $x \\in [0,1]$.\nThe folded square occupies $[0,1] \\times [-1,0]$ with vertices $(0,0)$ [center], $(1,0)$ [mid-right], $(0,-1)$ [mid-bottom], and $(1,-1)$ [bottom-right].\n\n- Hole near $(0,0)$: Since $(0,0)$ lies at the intersection of both fold lines, unfolding across $x=0$ and $y=0$ reflects the hole into all four quadrants, producing 4 distinct circular holes around the center.\n- Slit from $(0,-1)$ to $(1,0)$: Unfolding left-to-right reflects this segment across $x=0$ to a segment from $(0,-1)$ to $(-1,0)$. Unfolding top-to-bottom reflects both segments across $y=0$ to segments from $(0,1)$ to $(1,0)$ and $(0,1)$ to $(-1,0)$. Together, these four line segments meet at their endpoints $(1,0)$, $(0,1)$, $(-1,0)$, and $(0,-1)$ to form a single continuous, closed diamond-shaped (rhombic) slit.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 8,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Quantitative Aptitude: arithmetic, percentages, ratios, data interpretation, mensuration",
+     "bloom": "Understand",
+     "text": "In a company with three divisions X, Y, and Z, the ratio of the number of employees is $2 : 3 : 5$, and the ratio of their initial average salaries is $4 : 3 : 2$, respectively.\n\nDuring a salary revision:\n- The average salary of division X increases by $15\\%$.\n- The average salary of division Y increases by $10\\%$.\n\nIf the overall average salary of all employees across the three divisions increases by $8\\%$, what is the percentage change in the average salary of division Z?",
+     "options": [
+      "(A) 0.6% increase",
+      "(B) 1.2% increase",
+      "(C) 2.4% increase",
+      "(D) 3.0% increase"
+     ],
+     "answer": "A",
+     "explanation": "Let the number of employees in X, Y, Z be $2k, 3k, 5k$ (Total = $10k$).\nLet the initial average salaries be $4s, 3s, 2s$.\n\nInitial total salary payout $T_{\\text{initial}}$:\n$T_{\\text{initial}} = (2k)(4s) + (3k)(3s) + (5k)(2s) = 8ks + 9ks + 10ks = 27ks$.\n\nAn overall $8\\%$ increase in average salary means the total payout increases by $8\\%$:\n$\\Delta T_{\\text{total}} = 0.08 \\times 27ks = 2.16ks$.\n\nIncrease in payout for Division X:\n$\\Delta T_X = 2k \\times (0.15 \\times 4s) = 1.2ks$.\n\nIncrease in payout for Division Y:\n$\\Delta T_Y = 3k \\times (0.10 \\times 3s) = 0.9ks$.\n\nIncrease in payout for Division Z:\n$\\Delta T_Z = \\Delta T_{\\text{total}} - (\\Delta T_X + \\Delta T_Y) = 2.16ks - (1.2ks + 0.9ks) = 0.06ks$.\n\nPercentage change in average salary of Division Z:\n$\\text{Percentage Change} = \\frac{\\Delta T_Z / 5k}{2s} \\times 100\\% = \\frac{0.06ks / 5k}{2s} \\times 100\\% = \\frac{0.012s}{2s} \\times 100\\% = 0.6\\%$ increase.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 9,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Spatial Aptitude: shapes, rotation, mirror images, paper folding, patterns",
+     "bloom": "Understand",
+     "text": "A standard six-sided die has numbers 1 through 6 printed on its faces such that opposite faces sum to 7 (1 opposite 6, 2 opposite 5, 3 opposite 4). Initially, the die rests on a table with the top face showing 1, the front face showing 2, and the right face showing 3.\n\nThe die is rolled three times sequentially by $90^\\circ$ on the table without slipping:\n1. First roll: forward (towards the front).\n2. Second roll: to the right.\n3. Third roll: forward (towards the front).\n\nAfter these three rolls, which number appears on the top face of the die?",
+     "options": [
+      "(A) 2",
+      "(B) 4",
+      "(C) 5",
+      "(D) 6"
+     ],
+     "answer": "D",
+     "explanation": "Initial orientation: Top=1, Bottom=6, Front=2, Back=5, Right=3, Left=4.\n\n1. Roll 1 (Forward): Rotates forward around the Left-Right axis.\n   - Top goes to Front $\\implies$ Front = 1\n   - Front goes to Bottom $\\implies$ Bottom = 2\n   - Bottom goes to Back $\\implies$ Back = 6\n   - Back goes to Top $\\implies$ Top = 5\n   - Right (3) and Left (4) remain unchanged.\n   State: Top=5, Bottom=2, Front=1, Back=6, Right=3, Left=4.\n\n2. Roll 2 (Right): Rotates right around the Front-Back axis.\n   - Top goes to Right $\\implies$ Right = 5\n   - Right goes to Bottom $\\implies$ Bottom = 3\n   - Bottom goes to Left $\\implies$ Left = 2\n   - Left goes to Top $\\implies$ Top = 4\n   - Front (1) and Back (6) remain unchanged.\n   State: Top=4, Bottom=3, Front=1, Back=6, Right=5, Left=2.\n\n3. Roll 3 (Forward): Rotates forward around the Left-Right axis.\n   - Top goes to Front $\\implies$ Front = 4\n   - Front goes to Bottom $\\implies$ Bottom = 1\n   - Bottom goes to Back $\\implies$ Back = 3\n   - Back goes to Top $\\implies$ Top = 6\n   - Right (5) and Left (2) remain unchanged.\n\nFinal Top face is 6.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 10,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "General Aptitude",
+     "topic": "Verbal Aptitude: grammar, vocabulary, reading comprehension, analogies",
+     "bloom": "Remember",
+     "text": "Select the pair of words that best expresses a relationship similar to that expressed in the given pair:\n\nEPHEMERAL : PERMANENCE",
+     "options": [
+      "(A) TACITURN : LOQUACITY",
+      "(B) AUDACIOUS : BOLDNESS",
+      "(C) METICULOUS : THOROUGHNESS",
+      "(D) GREGARIOUS : SOCIABILITY"
+     ],
+     "answer": "A",
+     "explanation": "The word EPHEMERAL (adjective) means short-lived or transitory, which describes a state of lacking PERMANENCE (noun). Thus, the relationship is [Adjective : Noun of the opposite quality / quality that is completely absent].\n\nSimilarly, TACITURN (adjective) means reserved or uncommunicative, describing someone who lacks LOQUACITY (noun, meaning talkativeness).\n\nIn options (B), (C), and (D), the adjective describes a person or thing that possesses the noun quality (Audacious has Boldness, Meticulous has Thoroughness, Gregarious has Sociability).",
+     "source": "generated",
+     "ref": null
+    }
+   ]
+  },
+  {
+   "name": "Computer Science and Information Technology",
+   "instructions": "Q.11\u2013Q.35 carry one mark each; Q.36\u2013Q.65 carry two marks each. MCQ: \u22121/3 (1-mark) or \u22122/3 (2-mark) for a wrong answer. No negative marking for MSQ and NAT.",
+   "attempt": null,
+   "questions": [
+    {
+     "n": 11,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Theory of Computation",
+     "topic": "Regular and context-free languages, pumping lemma",
+     "bloom": "Apply",
+     "text": "Consider the following two languages over the alphabet $\\Sigma = \\{a, b, c\\}$:\n$L_1 = \\{ a^i b^j c^k \\mid i, j, k \\ge 0 \\text{ and } (i = j \\text{ or } j = k) \\}$\n$L_2 = \\{ a^i b^j c^k \\mid i, j, k \\ge 0 \\text{ and } (i = j \\text{ and } j = k) \\}$\nWhich ONE of the following statements is CORRECT?",
+     "options": [
+      "(A) Both $L_1$ and $L_2$ are context-free languages.",
+      "(B) $L_1$ is a context-free language, but $L_2$ is not a context-free language.",
+      "(C) $L_1$ is not a context-free language, but $L_2$ is a context-free language.",
+      "(D) Neither $L_1$ nor $L_2$ is a context-free language."
+     ],
+     "answer": "B",
+     "explanation": "$L_1$ is the union of two context-free languages: $L_{1a} = \\{a^i b^i c^k \\mid i, k \\ge 0\\}$ and $L_{1b} = \\{a^i b^j c^j \\mid i, j \\ge 0\\}$. Since context-free languages are closed under union, $L_1$ is context-free. $L_2 = \\{a^n b^n c^n \\mid n \\ge 0\\}$, which is a classic non-context-free language (provable using the Pumping Lemma for CFLs). Thus, $L_1$ is context-free but $L_2$ is not.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 12,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Discrete Mathematics",
+     "topic": "Graphs: connectivity, matching, colouring",
+     "bloom": "Apply",
+     "text": "What is the maximum possible vertex connectivity of a simple connected undirected graph with $7$ vertices and $15$ edges?",
+     "options": [
+      "(A) 3",
+      "(B) 4",
+      "(C) 5",
+      "(D) 6"
+     ],
+     "answer": "B",
+     "explanation": "For any simple graph $G = (V, E)$, the vertex connectivity $\\kappa(G)$, edge connectivity \\(\\lambda(G)\\), and minimum degree \\(\\delta(G)\\) satisfy \\(\\kappa(G) \\le \\lambda(G) \\le \\delta(G)\\). The sum of degrees in $G$ with $|V| = 7$ and $|E| = 15$ is $2 \\times 15 = 30$. By the Pigeonhole Principle, at least one vertex must have degree at most $\\lfloor 30 / 7 \\rfloor = 4$. Thus, $\\delta(G) \\le 4$, which implies $\\kappa(G) \\le 4$. A 4-connected graph with 7 vertices and 15 edges exists (e.g., Harary graph $H_{4,7}$ with an extra edge). Hence, the maximum possible vertex connectivity is 4.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 13,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Discrete Mathematics",
+     "topic": "Graphs: connectivity, matching, colouring",
+     "bloom": "Understand",
+     "text": "Consider the following three statements about graph coloring of a simple undirected graph $G$:\n\nStatement I: If $G$ has maximum degree $\\Delta$, then the chromatic number $\\chi(G) \\le \\Delta + 1$.\nStatement II: If $G$ is triangle-free (contains no $K_3$), then $\\chi(G) \\le 2$.\nStatement III: If $\\chi(G) = k$, then $G$ must contain $K_k$ as a subgraph.\n\nWhich of the above statements is/are ALWAYS TRUE?",
+     "options": [
+      "(A) Statement I only",
+      "(B) Statements I and II only",
+      "(C) Statements I and III only",
+      "(D) All Statements I, II, and III"
+     ],
+     "answer": "A",
+     "explanation": "Statement I is always true because greedy vertex coloring uses at most $\\Delta + 1$ colors. Statement II is false; for example, the 5-cycle $C_5$ is triangle-free but has chromatic number $\\chi(C_5) = 3$. Statement III is false for the same counterexample: $C_5$ has $\\chi(C_5) = 3$ but does not contain $K_3$ as a subgraph. Thus, only Statement I is always true.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 14,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Algorithms",
+     "topic": "Graph traversals, minimum spanning trees and shortest paths",
+     "bloom": "Understand",
+     "text": "Let $G = (V, E)$ be a connected, undirected graph with distinct positive edge weights. Let $e = (u, v)$ be the unique edge with the maximum weight on a simple cycle $C$ in $G$. Which ONE of the following statements is ALWAYS TRUE?",
+     "options": [
+      "(A) The edge $e$ cannot belong to any minimum spanning tree of $G$.",
+      "(B) The edge $e$ cannot belong to any shortest path between any pair of vertices in $G$.",
+      "(C) Removing $e$ from $G$ strictly increases the weight of the minimum spanning tree of $G$.",
+      "(D) The shortest path distance between $u$ and $v$ in $G$ is strictly less than the weight of $e$."
+     ],
+     "answer": "A",
+     "explanation": "By the Cycle Property of Minimum Spanning Trees (MST), for any simple cycle in a graph with distinct edge weights, the unique maximum weight edge on that cycle cannot belong to any MST. Thus, (A) is always true. Option (B) is false because a heavy edge can still be part of a shortest path if alternative paths have more total weight. Option (C) is false because removing an edge not in the MST leaves the MST unchanged. Option (D) is false because the path along the cycle minus $e$ could have a total weight greater than the weight of $e$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 15,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Programming and Data Structures",
+     "topic": "Arrays, stacks and queues",
+     "bloom": "Apply",
+     "text": "A circular queue of capacity 6 is implemented using an array `A[0..5]`. Variables `front` and `rear` are initialized to $-1$. The enqueue operation increments `rear` modulo 6 and stores the element at index `rear` (when inserting the first element, `front` is set to 0). The dequeue operation removes the element at `front` and increments `front` modulo 6. Starting with an empty queue, the following operations are performed in order:\\n1. Enqueue 10, 20, 30, 40\\n2. Dequeue two elements\\n3. Enqueue 50, 60, 70\\n\\nWhat are the values of `front` and `rear` after these operations?",
+     "options": [
+      "(A) front = 2, rear = 0",
+      "(B) front = 2, rear = 6",
+      "(C) front = 1, rear = 0",
+      "(D) front = 0, rear = 2"
+     ],
+     "answer": "A",
+     "explanation": "Initial state: front = -1, rear = -1.\n1. Enqueue 10: front = 0, rear = 0, A[0] = 10\n   Enqueue 20: front = 0, rear = 1, A[1] = 20\n   Enqueue 30: front = 0, rear = 2, A[2] = 30\n   Enqueue 40: front = 0, rear = 3, A[3] = 40\n2. Dequeue 1st element (10): front = (0+1)%6 = 1\n   Dequeue 2nd element (20): front = (1+1)%6 = 2\n3. Enqueue 50: rear = (3+1)%6 = 4, A[4] = 50\n   Enqueue 60: rear = (4+1)%6 = 5, A[5] = 60\n   Enqueue 70: rear = (5+1)%6 = 0, A[0] = 70\nThus, front = 2 and rear = 0.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 16,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Theory of Computation",
+     "topic": "Regular expressions and finite automata",
+     "bloom": "Apply",
+     "text": "Consider a Deterministic Finite Automaton (DFA) with state set $Q = \\{q_0, q_1, q_2\\}$, start state $q_0$, final state set $F = \\{q_2\\}$, and alphabet $\\Sigma = \\{0, 1\\}$. The transition function $\\delta$ is defined as follows:\n$\\delta(q_0, 0) = q_0, \\quad \\delta(q_0, 1) = q_1$\n$\\delta(q_1, 0) = q_2, \\quad \\delta(q_1, 1) = q_1$\n$\\delta(q_2, 0) = q_2, \\quad \\delta(q_2, 1) = q_1$\nWhich ONE of the following regular expressions correctly represents the language accepted by this DFA?",
+     "options": [
+      "(A) $0^* 1^+ 0 (0 + 1^+ 0)^*$",
+      "(B) $0^* 1 0 (0 + 1)^*$",
+      "(C) $0^* 1^+ (0 + 1)^*$",
+      "(D) $0^* 1^* 0 (1^* 0)^*$"
+     ],
+     "answer": "A",
+     "explanation": "To reach the accept state $q_2$ from start state $q_0$ for the first time, the automaton must process any number of 0s, followed by one or more 1s (moving to $q_1$), followed by a single 0. This gives $0^* 1^+ 0$.\nOnce at state $q_2$, any loop back to $q_2$ consists either of a 0 (staying in $q_2$) or a 1 (moving to $q_1$) followed by one or more 1s and a 0 back to $q_2$. This loop path is $(0 + 1 1^* 0)^* = (0 + 1^+ 0)^*$.\nConcatenating these gives the full regular expression: $0^* 1^+ 0 (0 + 1^+ 0)^*$",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 17,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Compiler Design",
+     "topic": "Runtime environments",
+     "bloom": "Understand",
+     "text": "In runtime environments of programming languages supporting nested procedures and dynamic/static scoping, which one of the following statements is CORRECT?",
+     "options": [
+      "(A) In static scoping, non-local variables are resolved by traversing the chain of control links (dynamic links).",
+      "(B) The access link (static link) in an activation record points to the activation record of the procedure that statically encloses the current procedure.",
+      "(C) The control link (dynamic link) in an activation record points to the activation record of the procedure that statically encloses the current procedure.",
+      "(D) Dynamic memory allocation on a heap is strictly required to handle local variables of non-recursive procedure calls."
+     ],
+     "answer": "B",
+     "explanation": "In a runtime environment:\n- The access link (static link) points to the activation record of the statically enclosing (defining) procedure, which is used to resolve non-local variables under static scoping.\n- The control link (dynamic link) points to the activation record of the caller procedure.\nTherefore, statement (B) is correct, while (A) and (C) are incorrect. Statement (D) is incorrect because stack allocation (or even static allocation for non-recursive calls) suffices for local variables.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 18,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Theory of Computation",
+     "topic": "Regular expressions and finite automata",
+     "bloom": "Understand",
+     "text": "Let $R$ and $S$ be arbitrary regular expressions over an alphabet $\\Sigma$. Which ONE of the following assertions is ALWAYS true?",
+     "options": [
+      "(A) $(R^* S^*)^* = (R + S)^*$",
+      "(B) $(R S)^* = R^* S^*$",
+      "(C) $(R^* S)^* = R^* S^*$",
+      "(D) $(R + S)^* = R^* S$"
+     ],
+     "answer": "A",
+     "explanation": "Since $R \\subseteq R^* S^*$ and $S \\subseteq R^* S^*$, any string formed by concatenating elements from $R$ and $S$ in any order is in $(R^* S^*)^*$, so $(R + S)^* \\subseteq (R^* S^*)^*$. Conversely, since $R^* S^* \\subseteq (R + S)^*$, taking the Kleene star on both sides gives $(R^* S^*)^* \\subseteq ((R + S)^*)^* = (R + S)^*$. Therefore, $(R^* S^*)^* = (R + S)^*$ always holds.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 19,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Linear Algebra",
+     "topic": "Eigenvalues and eigenvectors",
+     "bloom": "Apply",
+     "text": "Let $A$ be a $3 \\times 3$ real matrix with non-zero eigenvectors $v_1, v_2, v_3$ corresponding to eigenvalues $\\lambda_1 = 3$, $\\lambda_2 = -1$, and $\\lambda_3 = 0$, respectively. The eigenvalues of the matrix $M = A^3 + 2A - I$ (where $I$ is the $3 \\times 3$ identity matrix) are",
+     "options": [
+      "(A) 32, -4, -1",
+      "(B) 27, -2, -1",
+      "(C) 32, -1, 1",
+      "(D) 27, -4, 0"
+     ],
+     "answer": "A",
+     "explanation": "If $\\lambda$ is an eigenvalue of $A$, then $f(\\lambda) = \\lambda^3 + 2\\lambda - 1$ is an eigenvalue of the matrix polynomial $M = A^3 + 2A - I$.\nFor $\\lambda_1 = 3$: $f(3) = 3^3 + 2(3) - 1 = 27 + 6 - 1 = 32$.\nFor $\\lambda_2 = -1$: $f(-1) = (-1)^3 + 2(-1) - 1 = -1 - 2 - 1 = -4$.\nFor $\\lambda_3 = 0$: $f(0) = 0^3 + 2(0) - 1 = -1$.\nTherefore, the eigenvalues of $M$ are $32, -4, -1$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 20,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Algorithms",
+     "topic": "Graph traversals, minimum spanning trees and shortest paths",
+     "bloom": "Apply",
+     "text": "Consider a weighted undirected graph $G$ with vertices $A, B, C, D, E$ and the following edge weights:\n$(A, B): 2$, $(A, C): 5$, $(B, C): 1$, $(B, D): 4$, $(C, D): 2$, $(C, E): 6$, $(D, E): 3$.\nPrim's algorithm is executed on $G$ starting from vertex $A$. If there are ties in edge weights, they are broken lexicographically by the destination vertex name. In what order are the edges added to the Minimum Spanning Tree?",
+     "options": [
+      "(A) $(A, B), (B, C), (C, D), (D, E)$",
+      "(B) $(A, B), (A, C), (C, D), (D, E)$",
+      "(C) $(A, B), (B, C), (B, D), (D, E)$",
+      "(D) $(A, B), (C, D), (B, C), (D, E)$"
+     ],
+     "answer": "A",
+     "explanation": "Tracing Prim's algorithm starting from $A$:\n1. Start at $A$. Available edges: $(A,B)=2$, $(A,C)=5$. Minimum is $(A,B)$ with weight 2. Add $(A,B)$. Visited: {A, B}.\n2. Available edges: $(A,C)=5$, $(B,C)=1$, $(B,D)=4$. Minimum is $(B,C)$ with weight 1. Add $(B,C)$. Visited: {A, B, C}.\n3. Available edges: $(A,C)=5$, $(B,D)=4$, $(C,D)=2$, $(C,E)=6$. Minimum is $(C,D)$ with weight 2. Add $(C,D)$. Visited: {A, B, C, D}.\n4. Available edges: $(C,E)=6$, $(D,E)=3$. Minimum is $(D,E)$ with weight 3. Add $(D,E)$. Visited: {A, B, C, D, E}.\n\nOrder of edges added: $(A, B), (B, C), (C, D), (D, E)$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 21,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Algorithms",
+     "topic": "Searching and sorting",
+     "bloom": "Apply",
+     "text": "Consider an array $A = [4, 1, 3, 2, 8, 7, 6, 5]$ indexed from $1$ to $8$. The standard linear-time `Build-Min-Heap` algorithm (bottom-up heapify) is executed on $A$. What is the total number of element comparisons performed during the execution of `Build-Min-Heap`?",
+     "options": [
+      "(A) 7",
+      "(B) 8",
+      "(C) 10",
+      "(D) 12"
+     ],
+     "answer": "C",
+     "explanation": "`Build-Min-Heap` calls `Min-Heapify` for indices $i = \\lfloor 8/2 \\rfloor = 4$ down to $1$:\n- $i = 4$ (val 2): 1 child at index 8 (val 5). Compare 2 and 5 (1 comp). No swap. [1 comp]\n- $i = 3$ (val 3): children at index 6 (val 6) and 7 (val 5). Compare children 6 vs 5 (1 comp), then 3 vs 5 (1 comp). No swap. [2 comps]\n- $i = 2$ (val 1): children at index 4 (val 2) and 5 (val 8). Compare children 2 vs 8 (1 comp), then 1 vs 2 (1 comp). No swap. [2 comps]\n- $i = 1$ (val 4): children at index 2 (val 1) and 3 (val 3). Compare children 1 vs 3 (1 comp), compare 4 vs 1 (1 comp) -> swap 4 and 1. Heapify at index 2 (val 4): compare children 2 vs 8 (1 comp), compare 4 vs 2 (1 comp) -> swap 4 and 2. Heapify at index 4 (val 4): compare 4 vs 5 (1 comp) -> no swap. [5 comps]\nTotal comparisons = 1 + 2 + 2 + 5 = 10.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 22,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Operating System",
+     "topic": "Memory management and virtual memory: paging, page replacement",
+     "bloom": "Apply",
+     "text": "Consider a system with a 32-bit virtual address space using a 2-level paging scheme. The page size is $4\\text{ KB}$ ($2^{12}$ bytes) and each page table entry (PTE) size is $4\\text{ bytes}$. If the outer page table is constrained to fit within a single page frame, what is the number of bits used for the inner page table index?",
+     "options": [
+      "(A) 8",
+      "(B) 10",
+      "(C) 12",
+      "(D) 14"
+     ],
+     "answer": "B",
+     "explanation": "Virtual address size = 32 bits.\nPage size = $4\\text{ KB} = 2^{12}$ bytes, so Page Offset = 12 bits.\nTotal Virtual Page Number bits = $32 - 12 = 20$ bits.\nOuter page table size = 1 page = $4\\text{ KB} = 4096$ bytes.\nEach PTE = 4 bytes.\nNumber of entries in outer page table = $4096 / 4 = 1024 = 2^{10}$.\nThus, Outer Page Table Index = 10 bits.\nInner Page Table Index = Total Page Number bits - Outer Page Table Index = $20 - 10 = 10$ bits.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 23,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Computer Networks",
+     "topic": "Data link layer: framing, error detection, MAC, Ethernet bridging",
+     "bloom": "Understand",
+     "text": "Consider three LAN segments $\\text{LAN}_1$, $\\text{LAN}_2$, and $\\text{LAN}_3$ connected in a line topology by two transparent learning bridges $B_1$ and $B_2$ as shown below:\n$$\\text{LAN}_1 \\text{ --- } B_1 \\text{ --- } \\text{LAN}_2 \\text{ --- } B_2 \\text{ --- } \\text{LAN}_3$$\nHost $X$ is on $\\text{LAN}_1$, Host $Y$ is on $\\text{LAN}_2$, and Host $Z$ is on $\\text{LAN}_3$. Initially, the MAC forwarding tables of both bridges are completely empty. The following sequence of data frames is transmitted:\n1. $X$ sends a frame to $Z$.\n2. $Z$ sends a frame to $Y$.\n3. $Y$ sends a frame to $X$.\n\nWhich one of the following statements is CORRECT after the completion of step 3?",
+     "options": [
+      "(A) Bridge $B_2$ forwards the frame sent in step 3 onto $\\text{LAN}_3$.",
+      "(B) Bridge $B_2$ has host $Y$'s MAC address mapped to its $\\text{LAN}_2$ port, and filters (drops) the frame sent in step 3.",
+      "(C) Bridge $B_1$ has host $Z$'s MAC address mapped to its $\\text{LAN}_1$ port.",
+      "(D) Bridge $B_1$ floods the frame sent in step 3 to $\\text{LAN}_1$ because host $X$'s location is unknown."
+     ],
+     "answer": "B",
+     "explanation": "Let us trace the learning bridge forwarding tables at each step:\n\nStep 1: Host X sends to Host Z\n- $B_1$ receives frame on port connected to $\\text{LAN}_1$. Learns $X \\to \\text{LAN}_1$. $Z$ is unknown, so $B_1$ floods to $\\text{LAN}_2$.\n- $B_2$ receives frame on port connected to $\\text{LAN}_2$. Learns $X \\to \\text{LAN}_2$. $Z$ is unknown, so $B_2$ floods to $\\text{LAN}_3$.\n\nStep 2: Host Z sends to Host Y\n- $B_2$ receives frame on port connected to $\\text{LAN}_3$. Learns $Z \\to \\text{LAN}_3$. $Y$ is unknown, so $B_2$ floods to $\\text{LAN}_2$.\n- $B_1$ receives flooded frame from $\\text{LAN}_2$. Learns $Z \\to \\text{LAN}_2$. $Y$ is unknown, so $B_1$ floods to $\\text{LAN}_1$.\n\nStep 3: Host Y sends to Host X\n- $Y$ transmits frame on $\\text{LAN}_2$.\n- $B_1$ receives frame on its $\\text{LAN}_2$ port. Learns $Y \\to \\text{LAN}_2$. It looks up $X$, finds $X \\to \\text{LAN}_1$. Since input port $\\neq$ destination port, $B_1$ forwards it to $\\text{LAN}_1$.\n- $B_2$ receives frame on its $\\text{LAN}_2$ port. Learns $Y \\to \\text{LAN}_2$. It looks up $X$, finds $X \\to \\text{LAN}_2$. Since input port $=$ destination port, $B_2$ filters (drops) the frame and does NOT forward it to $\\text{LAN}_3$.\n\nHence, statement (B) is correct.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 24,
+     "marks": 1.0,
+     "qtype": "MCQ",
+     "unit": "Digital Logic",
+     "topic": "Combinational circuits: multiplexers, decoders, adders",
+     "bloom": "Understand",
+     "text": "Consider a 4-to-1 multiplexer with select lines $S_1$ and $S_0$ connected to Boolean variables $A$ and $B$, respectively ($S_1$ is the most significant select bit). The data inputs of the multiplexer are set as follows: $I_0 = C$, $I_1 = \\bar{C}$, $I_2 = 0$, and $I_3 = 1$. Which one of the following canonical sum-of-minterms represents the output Boolean function $f(A, B, C)$?",
+     "options": [
+      "(A) $\\sum m(1, 2, 6, 7)$",
+      "(B) $\\sum m(0, 3, 6, 7)$",
+      "(C) $\\sum m(1, 2, 4, 5)$",
+      "(D) $\\sum m(0, 2, 6, 7)$"
+     ],
+     "answer": "A",
+     "explanation": "The output of a 4-to-1 multiplexer with select inputs $S_1=A$ and $S_0=B$ is given by:\n$f(A,B,C) = \\bar{A}\\bar{B}I_0 + \\bar{A}B I_1 + A\\bar{B}I_2 + AB I_3$\n\nSubstituting the input expressions:\n- For $S_1 S_0 = 00$ (i.e., $\\bar{A}\\bar{B}$): $I_0 = C \\implies \\bar{A}\\bar{B}C = m_1$\n- For $S_1 S_0 = 01$ (i.e., $\\bar{A}B$): $I_1 = \\bar{C} \\implies \\bar{A}B\\bar{C} = m_2$\n- For $S_1 S_0 = 10$ (i.e., $A\\bar{B}$): $I_2 = 0 \\implies 0$\n- For $S_1 S_0 = 11$ (i.e., $AB$): $I_3 = 1 \\implies AB(C + \\bar{C}) = m_6 + m_7$\n\nSumming the active minterms gives $f(A,B,C) = \\sum m(1, 2, 6, 7)$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 25,
+     "marks": 1.0,
+     "qtype": "MSQ",
+     "unit": "Operating System",
+     "topic": "Memory management and virtual memory: paging, page replacement",
+     "bloom": "Understand",
+     "text": "Which of the following page replacement policies is/are stack algorithms and therefore CANNOT exhibit Belady's anomaly?",
+     "options": [
+      "(A) Least Recently Used (LRU)",
+      "(B) Optimal Page Replacement (OPT)",
+      "(C) First-In First-Out (FIFO)",
+      "(D) Second-Chance (Clock) Page Replacement"
+     ],
+     "answer": "A;B",
+     "explanation": "A stack algorithm is a page replacement policy for which it can be proved that the set of pages in memory for $N$ frames is always a subset of the set of pages in memory for $N+1$ frames. Stack algorithms can never exhibit Belady's anomaly. Both LRU and OPT are stack algorithms. FIFO and Second-Chance page replacement policies are not stack algorithms and can suffer from Belady's anomaly.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 26,
+     "marks": 1.0,
+     "qtype": "MSQ",
+     "unit": "Computer Organization and Architecture",
+     "topic": "Machine instructions and addressing modes",
+     "bloom": "Apply",
+     "text": "Which of the following statements regarding machine instructions and addressing modes in processor architectures is/are CORRECT?",
+     "options": [
+      "(A) PC-relative addressing mode facilitates the generation of position-independent code.",
+      "(B) Memory Indirect addressing mode requires two memory data accesses to fetch the operand after the instruction itself is fetched.",
+      "(C) Auto-increment addressing mode automatically modifies the content of the specified address register during or after instruction execution.",
+      "(D) Immediate addressing mode requires an additional memory data read operation after instruction fetch to retrieve the operand."
+     ],
+     "answer": "A;B;C",
+     "explanation": "(A) True: PC-relative addressing calculates target addresses relative to the program counter, allowing code to run at any memory offset without modification.\n(B) True: Indirect addressing reads the pointer address from memory first, then reads the data from that pointer address, requiring two memory data accesses.\n(C) True: Auto-increment mode automatically updates the register containing the address after/during accessing memory.\n(D) False: In immediate addressing, the operand is stored directly within the instruction, so no additional memory read is needed after instruction fetch.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 27,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Computer Organization and Architecture",
+     "topic": "Memory hierarchy: cache, main memory and secondary storage",
+     "bloom": "Apply",
+     "text": "Consider a byte-addressable computer system with a 24-bit physical address space. The system uses a 2-way set-associative cache with a total data capacity of 16 KB and a block size of 16 bytes. The number of bits in the tag field of each cache line is ________.",
+     "options": [],
+     "answer": "11",
+     "explanation": "Total Cache Capacity = 16 KB = $2^{14}$ bytes.\nBlock Size = 16 bytes = $2^4$ bytes $\\implies$ Block Offset = 4 bits.\nTotal Number of Blocks = $\\frac{2^{14}}{2^4} = 2^{10} = 1024$ blocks.\nSince it is 2-way set-associative, Number of Sets = $\\frac{1024}{2} = 512 = 2^9$ sets $\\implies$ Set Index = 9 bits.\nTag field bits = Physical Address bits - (Set Index bits + Block Offset bits)\nTag field bits = 24 - (9 + 4) = 11 bits.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 28,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Theory of Computation",
+     "topic": "Regular and context-free languages, pumping lemma",
+     "bloom": "Understand",
+     "text": "Consider the language $L$ represented by the regular expression $b^* a^* c^*$ over the alphabet $\\Sigma = \\{a, b, c\\}$. The number of distinct strings of length 3 belonging to $L$ is ________.",
+     "options": [],
+     "answer": "10",
+     "explanation": "Strings in $L$ of length 3 must be of the form $b^i a^j c^k$ where $i, j, k \\ge 0$ and $i + j + k = 3$.\nThe number of non-negative integer solutions to $i + j + k = 3$ is $\\binom{3 + 3 - 1}{3 - 1} = \\binom{5}{2} = 10$.\nListing them explicitly:\n- $i=3$: $bbb$\n- $i=2$: $bba, bbc$\n- $i=1$: $baa, bac, bcc$\n- $i=0$: $aaa, aac, acc, ccc$\nTotal distinct strings = 10.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 29,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Algorithms",
+     "topic": "Asymptotic worst case time and space complexity",
+     "bloom": "Understand",
+     "text": "Consider the recurrence relation $T(n) = 4 T(n/2) + n^2 \\sqrt{n}$ for $n > 1$, with $T(1) = 1$. If $T(n) = \\Theta(n^\\alpha)$, then the value of $\\alpha$ (rounded to 1 decimal place) is ________.",
+     "options": [],
+     "answer": "2.5",
+     "explanation": "We use the Master Theorem for $T(n) = a T(n/b) + f(n)$:\nHere, $a = 4$, $b = 2$, and $f(n) = n^{2.5}$.\nCalculate $n^{\\log_b a} = n^{\\log_2 4} = n^2$.\n\nSince $f(n) = n^{2.5} = \\Omega(n^{2 + \\epsilon})$ for $\\epsilon = 0.5 > 0$, we check the regularity condition:\n$a f(n/b) = 4 (n/2)^{2.5} = \\frac{4}{2^{2.5}} n^{2.5} = \\frac{1}{\\sqrt{2}} n^{2.5} \\le c f(n)$ for $c = \\frac{1}{\\sqrt{2}} < 1$.\n\nThus, Case 3 of the Master Theorem applies, giving $T(n) = \\Theta(f(n)) = \\Theta(n^{2.5})$.\nTherefore, $\\alpha = 2.5$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 30,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Computer Organization and Architecture",
+     "topic": "Instruction pipelining and pipeline hazards",
+     "bloom": "Remember",
+     "text": "Consider a 5-stage instruction pipeline with stage delays of 1.4 ns, 1.8 ns, 1.2 ns, 1.6 ns, and 1.0 ns, respectively. The delay introduced by each inter-stage register (latch) is 0.2 ns. Assuming ideal conditions with no pipeline hazards or stalls, the maximum clock frequency of the processor in megahertz (MHz) is ________.",
+     "options": [],
+     "answer": "500",
+     "explanation": "The pipeline clock cycle time ($T_{clk}$) is determined by the maximum stage delay plus the inter-stage register delay:\n$T_{clk} = \\max(1.4, 1.8, 1.2, 1.6, 1.0) + 0.2\\text{ ns} = 1.8 + 0.2 = 2.0\\text{ ns} = 2.0 \\times 10^{-9}\\text{ seconds}$.\nMaximum clock frequency $f = \\frac{1}{T_{clk}} = \\frac{1}{2.0 \\times 10^{-9}\\text{ s}} = 0.5 \\times 10^9\\text{ Hz} = 500\\text{ MHz}$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 31,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Programming and Data Structures",
+     "topic": "Arrays, stacks and queues",
+     "bloom": "Remember",
+     "text": "Consider an initially empty stack $S$ and an empty queue $Q$. The following sequence of operations is performed:\\n1. Push elements 15, 25, 35, 45 into $S$ in that order.\\n2. Pop two elements from $S$ and Enqueue them into $Q$ in the order they are popped.\\n3. Push elements 55, 65 into $S$ in that order.\\n4. Dequeue one element from $Q$ and Push it into $S$.\\n5. Pop an element from $S$ and store it in variable $x$.\\n6. Dequeue an element from $Q$ and store it in variable $y$.\\n\\nWhat is the value of $x + y$?",
+     "options": [],
+     "answer": "80",
+     "explanation": "1. Push 15, 25, 35, 45 onto S: S = [15, 25, 35, 45] (top is 45).\n2. Pop 45 and enqueue to Q: Q = [45], S = [15, 25, 35].\n   Pop 35 and enqueue to Q: Q = [45, 35] (head is 45), S = [15, 25].\n3. Push 55, 65 onto S: S = [15, 25, 55, 65] (top is 65).\n4. Dequeue from Q (returns 45): Q = [35]. Push 45 onto S: S = [15, 25, 55, 65, 45].\n5. Pop from S: x = 45. S = [15, 25, 55, 65].\n6. Dequeue from Q: y = 35. Q = [].\n\nValue of x + y = 45 + 35 = 80.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 32,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Linear Algebra",
+     "topic": "Matrices, determinants and rank",
+     "bloom": "Apply",
+     "text": "Consider the matrix $A = \\begin{bmatrix} 1 & 2 & 0 & 1 \\\\ 2 & 4 & 1 & 3 \\\\ 3 & 6 & 2 & 5 \\\\ 1 & 2 & 1 & 2 \\end{bmatrix}$. The rank of matrix $A$ is ____________.",
+     "options": [],
+     "answer": "2",
+     "explanation": "Performing elementary row operations to reduce $A$ to row echelon form:\n$R_2 \\to R_2 - 2R_1 = [0, 0, 1, 1]$\n$R_3 \\to R_3 - 3R_1 = [0, 0, 2, 2]$\n$R_4 \\to R_4 - R_1 = [0, 0, 1, 1]$\nNext:\n$R_3 \\to R_3 - 2R_2 = [0, 0, 0, 0]$\n$R_4 \\to R_4 - R_2 = [0, 0, 0, 0]$\nThe row echelon form has 2 non-zero rows. Hence, $\\text{rank}(A) = 2$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 33,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Operating System",
+     "topic": "File systems",
+     "bloom": "Analyze",
+     "text": "Consider a UNIX-like file system where the disk block size is $2\\text{ KB}$ ($2^{11}$ bytes) and each block pointer is 4 bytes long. An inode contains 8 direct block pointers and 1 singly indirect block pointer. The maximum file size that can be accessed using ONLY these pointers (direct and singly indirect) is _________ KB.",
+     "options": [],
+     "answer": "1040",
+     "explanation": "Block size = $2\\text{ KB} = 2048$ bytes.\nPointer size = 4 bytes.\nNumber of pointers per block = $2048 / 4 = 512$.\nDirect pointers access = 8 data blocks.\nSingly indirect pointer accesses = 512 data blocks.\nTotal data blocks accessible = $8 + 512 = 520$ blocks.\nMaximum file size = $520 \\times 2\\text{ KB} = 1040\\text{ KB}$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 34,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Computer Organization and Architecture",
+     "topic": "Memory hierarchy: cache, main memory and secondary storage",
+     "bloom": "Understand",
+     "text": "Consider a computing system with a single-level cache and main memory. The cache access time is 2 ns, and the main memory access time is 50 ns. Main memory is accessed only after a cache lookup results in a miss (hierarchical access mode). If the cache hit ratio is 0.95, the average memory access time in nanoseconds is ________.",
+     "options": [],
+     "answer": "4.5",
+     "explanation": "For hierarchical memory access:\nAverage Memory Access Time (AMAT) = $T_{cache} + (1 - H) \\times T_{main}$\nGiven $T_{cache} = 2\\text{ ns}$, $T_{main} = 50\\text{ ns}$, and $H = 0.95$.\nAMAT = $2 + (1 - 0.95) \\times 50 = 2 + 0.05 \\times 50 = 2 + 2.5 = 4.5\\text{ ns}$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 35,
+     "marks": 1.0,
+     "qtype": "NAT",
+     "unit": "Algorithms",
+     "topic": "Searching and sorting",
+     "bloom": "Analyze",
+     "text": "Consider the standard Insertion Sort algorithm applied to sort the array $A = [15, 8, 12, 20, 5, 18, 9, 3]$ in ascending order. The total number of element comparisons performed during the execution of the algorithm is ________.",
+     "options": [],
+     "answer": "22",
+     "explanation": "Trace insertion of each element into the sorted prefix:\n- $i=1$ (key 8): compare with 15 (1 comp). Array: [8, 15, ...]\n- $i=2$ (key 12): compare with 15, compare with 8 (2 comps). Array: [8, 12, 15, ...]\n- $i=3$ (key 20): compare with 15 (1 comp). Array: [8, 12, 15, 20, ...]\n- $i=4$ (key 5): compare with 20, 15, 12, 8 (4 comps). Array: [5, 8, 12, 15, 20, ...]\n- $i=5$ (key 18): compare with 20, compare with 15 (2 comps). Array: [5, 8, 12, 15, 18, 20, ...]\n- $i=6$ (key 9): compare with 20, 18, 15, 12, 8 (5 comps). Array: [5, 8, 9, 12, 15, 18, 20, ...]\n- $i=7$ (key 3): compare with 20, 18, 15, 12, 9, 8, 5 (7 comps). Array: [3, 5, 8, 9, 12, 15, 18, 20]\n\nTotal element comparisons = 1 + 2 + 1 + 4 + 2 + 5 + 7 = 22.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 36,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Discrete Mathematics",
+     "topic": "Combinatorics: counting, recurrence relations, generating functions",
+     "bloom": "Understand",
+     "text": "Let $a_n$ denote the number of compositions (ordered partitions) of a positive integer $n$ into positive odd parts. For example, for $n=4$, the valid compositions are $(3,1), (1,3)$, and $(1,1,1,1)$, so $a_4 = 3$. Which one of the following expressions represents the ordinary generating function $A(x) = \\sum_{n=1}^{\\infty} a_n x^n$?",
+     "options": [
+      "(A) $\\frac{x}{1 - x - x^2}$",
+      "(B) $\\frac{x}{1 - x + x^2}$",
+      "(C) $\\frac{x}{1 - 2x}$",
+      "(D) $\\frac{x^2}{1 - x - x^2}$"
+     ],
+     "answer": "A",
+     "explanation": "The generating function for a single positive odd part is $P(x) = x + x^3 + x^5 + \\dots = \\frac{x}{1 - x^2}$. A composition into odd parts is a sequence of one or more such parts. Thus, the generating function for compositions into odd parts is $A(x) = \\sum_{k=1}^{\\infty} (P(x))^k = \\frac{P(x)}{1 - P(x)} = \\frac{\\frac{x}{1-x^2}}{1 - \\frac{x}{1-x^2}} = \\frac{x}{1 - x - x^2}$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 37,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Digital Logic",
+     "topic": "Sequential circuits: flip-flops, counters, registers",
+     "bloom": "Apply",
+     "text": "Consider a 3-bit linear feedback shift register (LFSR) composed of three D flip-flops $(Q_2, Q_1, Q_0)$, where $Q_2$ is the most significant bit. The D inputs of the flip-flops are connected as follows:\n$$D_2 = Q_1, \\quad D_1 = Q_0, \\quad D_0 = Q_2 \\oplus Q_0$$\nIf the initial state of the register at clock cycle $0$ is $(Q_2 Q_1 Q_0) = 100$, what will be the state $(Q_2 Q_1 Q_0)$ after $2025$ clock cycles?",
+     "options": [
+      "(A) 001",
+      "(B) 011",
+      "(C) 111",
+      "(D) 101"
+     ],
+     "answer": "B",
+     "explanation": "Tracing the state transitions $(Q_2 Q_1 Q_0)_t \\to (Q_2 Q_1 Q_0)_{t+1}$:\n- Cycle 0: 100\n- Cycle 1: $D_2 = 0, D_1 = 0, D_0 = 1 \\oplus 0 = 1 \\implies 001$\n- Cycle 2: $D_2 = 0, D_1 = 1, D_0 = 0 \\oplus 1 = 1 \\implies 011$\n- Cycle 3: $D_2 = 1, D_1 = 1, D_0 = 0 \\oplus 1 = 1 \\implies 111$\n- Cycle 4: $D_2 = 1, D_1 = 1, D_0 = 1 \\oplus 1 = 0 \\implies 110$\n- Cycle 5: $D_2 = 1, D_1 = 0, D_0 = 1 \\oplus 0 = 1 \\implies 101$\n- Cycle 6: $D_2 = 0, D_1 = 1, D_0 = 1 \\oplus 1 = 0 \\implies 010$\n- Cycle 7: $D_2 = 1, D_1 = 0, D_0 = 0 \\oplus 0 = 0 \\implies 100$\n\nThe counter has a periodic cycle length of 7.\nTo find the state after 2025 cycles:\n$2025 \\pmod 7 = 2$\nTherefore, the state after 2025 clock cycles is identical to the state at cycle 2, which is 011.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 38,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Discrete Mathematics",
+     "topic": "Combinatorics: counting, recurrence relations, generating functions",
+     "bloom": "Analyze",
+     "text": "Let $a_n$ denote the number of ternary strings of length $n$ (formed using digits $\\{0, 1, 2\\}$) that do not contain two consecutive zeros (i.e., '00' is not a substring). Which one of the following recurrence relations with initial conditions correctly characterizes $a_n$ for $n \\ge 3$?",
+     "options": [
+      "(A) $a_n = 2a_{n-1} + 2a_{n-2}$ for $n \\ge 3$, with $a_1 = 3, a_2 = 8$",
+      "(B) $a_n = 2a_{n-1} + a_{n-2}$ for $n \\ge 3$, with $a_1 = 3, a_2 = 8$",
+      "(C) $a_n = 3a_{n-1} - a_{n-2}$ for $n \\ge 3$, with $a_1 = 3, a_2 = 8$",
+      "(D) $a_n = 2a_{n-1} + 3a_{n-2}$ for $n \\ge 3$, with $a_1 = 3, a_2 = 9$"
+     ],
+     "answer": "A",
+     "explanation": "For a valid string of length $n$:\n- If the last digit is '1' or '2' (2 choices), the prefix of length $n-1$ can be any valid string of length $n-1$. This gives $2 a_{n-1}$ valid strings.\n- If the last digit is '0', the digit at position $n-1$ must be '1' or '2' (2 choices) to avoid '00'. The remaining prefix of length $n-2$ can be any valid string. This gives $2 a_{n-2}$ valid strings.\nSumming both cases yields $a_n = 2a_{n-1} + 2a_{n-2}$. Initial conditions: $a_1 = 3$ (strings '0', '1', '2') and $a_2 = 3^2 - 1 = 8$ (all length-2 ternary strings except '00').",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 39,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Computer Organization and Architecture",
+     "topic": "ALU, data-path and control unit",
+     "bloom": "Apply",
+     "text": "A microprogrammed control unit uses a control memory (ROM) of size $1024 \\times 32$ bits. The processor supports 8 status conditions and 128 distinct microinstructions. Each microinstruction contains a micro-operations field, a condition selector field, and a next-address field. Assuming horizontal microprogramming with no decoding of micro-operations, the maximum number of control signals that can be independently supported by this control unit is:",
+     "options": [
+      "(A) 19",
+      "(B) 21",
+      "(C) 16",
+      "(D) 23"
+     ],
+     "answer": "A",
+     "explanation": "Control memory size = $1024 \\times 32$ bits.\n1. Total control memory words = 1024 = $2^{10} \\implies$ Next-address field requires $\\log_2(1024) = 10$ bits.\n2. Status conditions = 8 $\\implies$ Condition selector field requires $\\log_2(8) = 3$ bits.\n3. Total word length = 32 bits.\nLength of micro-operations field = $32 - (10 + 3) = 19$ bits.\nSince horizontal microprogramming without decoding is used, each bit in the micro-operations field directly corresponds to one control signal. Thus, the maximum number of control signals supported is 19.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 40,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Compiler Design",
+     "topic": "Local optimisation, data flow analysis: constant propagation, liveness, common subexpression elimination",
+     "bloom": "Apply",
+     "text": "Consider the following basic blocks in a Control Flow Graph (CFG):\n\n**Block B1:**\n$a = 5$\n$b = c + d$\n$e = a * b$\nif ($e > 10$) goto **B2** else goto **B3**\n\n**Block B2:**\n$f = b + c$\n$g = f + d$\ngoto **B4**\n\n**Block B3:**\n$f = d * 2$\n$g = f + c$\ngoto **B4**\n\n**Block B4:**\n$h = g + e$\nreturn $h$\n\nWhich one of the following options correctly gives the set of live variables at the **ENTRY** of basic blocks **B2**, **B3**, and **B4**?",
+     "options": [
+      "(A) B2: $\\{b, c, d, e\\}$, B3: $\\{c, d, e\\}$, B4: $\\{e, g\\}$",
+      "(B) B2: $\\{b, c, d\\}$, B3: $\\{c, d\\}$, B4: $\\{e, g\\}$",
+      "(C) B2: $\\{b, c, d, e\\}$, B3: $\\{c, d, e\\}$, B4: $\\{g\\}$",
+      "(D) B2: $\\{b, c, d\\}$, B3: $\\{d\\}$, B4: $\\{e, g\\}$"
+     ],
+     "answer": "A",
+     "explanation": "We perform backward liveness analysis starting from B4:\n1. **Entry of B4 ($In[B4]$):**\n   $h = g + e$ uses variables $g$ and $e$. Thus, $In[B4] = \\{e, g\\}$.\n\n2. **Entry of B2 ($In[B2]$):**\n   $Out[B2] = In[B4] = \\{e, g\\}$.\n   - $g = f + d$ uses $f, d$ and defines $g$. Live before this: $\\{d, e, f\\}$.\n   - $f = b + c$ uses $b, c$ and defines $f$. Live before this: $\\{b, c, d, e\\}$.\n   Thus, $In[B2] = \\{b, c, d, e\\}$.\n\n3. **Entry of B3 ($In[B3]$):**\n   $Out[B3] = In[B4] = \\{e, g\\}$.\n   - $g = f + c$ uses $f, c$ and defines $g$. Live before this: $\\{c, e, f\\}$.\n   - $f = d * 2$ uses $d$ and defines $f$. Live before this: $\\{c, d, e\\}$.\n   Thus, $In[B3] = \\{c, d, e\\}$.\n\nHence, Option (A) is the correct answer.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 41,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Operating System",
+     "topic": "Inter-process communication, concurrency and synchronization: semaphores, locks",
+     "bloom": "Remember",
+     "text": "Consider two processes $P_1$ and $P_2$ executing concurrently and sharing two binary semaphores $S_1$ and $S_2$, both initialized to 1:\n\nProcess $P_1$:\n`while(true) { wait(S1); wait(S2); /* Critical Section */ signal(S2); signal(S1); }`\n\nProcess $P_2$:\n`while(true) { wait(S2); wait(S1); /* Critical Section */ signal(S1); signal(S2); }`\n\nWhich one of the following statements is TRUE?",
+     "options": [
+      "(A) The system guarantees mutual exclusion and is deadlock-free.",
+      "(B) The system violates mutual exclusion but is deadlock-free.",
+      "(C) The system guarantees mutual exclusion but can result in a deadlock.",
+      "(D) The system violates mutual exclusion and can result in a deadlock."
+     ],
+     "answer": "C",
+     "explanation": "1. Mutual Exclusion: Both processes require both binary semaphores $S_1$ and $S_2$ to enter their critical sections. Since both semaphores are initialized to 1, at most one process can hold both semaphores simultaneously, guaranteeing mutual exclusion.\n2. Deadlock: If process $P_1$ executes `wait(S1)` (acquires $S_1$) and a context switch occurs to process $P_2$, which then executes `wait(S2)` (acquires $S_2$), $P_1$ will block on `wait(S2)` and $P_2$ will block on `wait(S1)`. This circular wait condition results in a deadlock.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 42,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Computer Organization and Architecture",
+     "topic": "I/O interface: interrupt and DMA mode",
+     "bloom": "Remember",
+     "text": "A DMA controller transfers data from an I/O device to main memory using cycle stealing mode. The device transfers data at a rate of $2 \\times 10^6$ bytes per second ($2\\text{ MB/s}$), transferring one byte per stolen cycle. If the main memory cycle time is $100\\text{ ns}$, what percentage of memory cycles is stolen by the DMA controller?",
+     "options": [
+      "(A) $10\\%$",
+      "(B) $20\\%$",
+      "(C) $25\\%$",
+      "(D) $50\\%$"
+     ],
+     "answer": "B",
+     "explanation": "Memory cycle time = $100\\text{ ns} = 100 \\times 10^{-9}\\text{ s} = 10^{-7}\\text{ s}$.\nTotal memory cycles available per second = $\\frac{1}{10^{-7}} = 10^7$ cycles/sec.\nDMA transfers $2 \\times 10^6$ bytes/sec, stealing 1 cycle per byte transferred.\nNumber of cycles stolen per second = $2 \\times 10^6$ cycles/sec.\nPercentage of memory cycles stolen = $\\frac{2 \\times 10^6}{10^7} \\times 100\\% = 20\\%$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 43,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Programming and Data Structures",
+     "topic": "Programming in C and recursion",
+     "bloom": "Apply",
+     "text": "Consider the following C function:\\n\\n```c\\nint fun(int n) {\\n    if (n <= 1)\\n        return 1;\\n    if (n % 2 == 0)\\n        return fun(n / 2) + n;\\n    else\\n        return fun(n - 1) * 2;\\n}\\n```\\n\\nWhat is the return value of `fun(7)`?",
+     "options": [
+      "(A) 24",
+      "(B) 28",
+      "(C) 14",
+      "(D) 32"
+     ],
+     "answer": "A",
+     "explanation": "We trace the function call fun(7):\n- fun(7): 7 is odd, returns fun(6) * 2\n- fun(6): 6 is even, returns fun(3) + 6\n- fun(3): 3 is odd, returns fun(2) * 2\n- fun(2): 2 is even, returns fun(1) + 2\n- fun(1): returns 1\n\nEvaluating bottom-up:\n- fun(1) = 1\n- fun(2) = 1 + 2 = 3\n- fun(3) = 3 * 2 = 6\n- fun(6) = 6 + 6 = 12\n- fun(7) = 12 * 2 = 24.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 44,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Algorithms",
+     "topic": "Divide and conquer",
+     "bloom": "Understand",
+     "text": "Consider the following recurrence relation for the running time $T(n)$ of an algorithm:\n$$T(n) = 2 T(\\sqrt{n}) + \\log_2 n \\quad \\text{for } n > 2, \\quad \\text{with } T(2) = 1$$\nWhich ONE of the following options correctly expresses the asymptotic bound for $T(n)$?",
+     "options": [
+      "(A) $\\Theta(\\log n \\cdot \\log \\log n)$",
+      "(B) $\\Theta(\\log^2 n)$",
+      "(C) $\\Theta(\\sqrt{n})$",
+      "(D) $\\Theta(\\log n)$"
+     ],
+     "answer": "A",
+     "explanation": "Let $n = 2^m$, so $m = \\log_2 n$ and $\\sqrt{n} = 2^{m/2}$.\nLet $S(m) = T(2^m)$. Substituting into the recurrence gives:\n$S(m) = 2 S(m/2) + m$, with $S(1) = T(2) = 1$.\n\nApplying the Master Theorem to $S(m) = 2 S(m/2) + m$:\nHere $a=2, b=2$, so $m^{\\log_2 2} = m^1$.\nSince $f(m) = m = \\Theta(m^1)$, Case 2 applies:\n$S(m) = \\Theta(m \\log_2 m)$.\n\nSubstituting $m = \\log_2 n$ back:\n$T(n) = S(\\log_2 n) = \\Theta(\\log n \\cdot \\log \\log n)$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 45,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Digital Logic",
+     "topic": "Number representations and computer arithmetic: fixed and floating point",
+     "bloom": "Analyze",
+     "text": "Consider two real numbers $X$ and $Y$ represented using the IEEE 754 single-precision floating-point format. Their 32-bit binary representations in hexadecimal notation are:\n$$X = \\text{0x41A00000}, \\quad Y = \\text{0x40B00000}$$\nLet $Z = X - Y$. Which one of the following is the hexadecimal representation of $Z$ in IEEE 754 single-precision format?",
+     "options": [
+      "(A) 0x40900000",
+      "(B) 0x40A00000",
+      "(C) 0x41100000",
+      "(D) 0x40D00000"
+     ],
+     "answer": "A",
+     "explanation": "1. Decode $X = \\text{0x41A00000}$:\n   - Binary: 0 10000010 01000000000000000000000\n   - Sign bit = 0 (+)\n   - Biased Exponent = $10000010_2 = 130 \\implies$ Unbiased exponent = $130 - 127 = 3$\n   - Mantissa = $1.01_2 = 1.25$\n   - Value $X = +1.25 \\times 2^3 = 10.0$\n\n2. Decode $Y = \\text{0x40B00000}$:\n   - Binary: 0 10000001 01100000000000000000000\n   - Sign bit = 0 (+)\n   - Biased Exponent = $10000001_2 = 129 \\implies$ Unbiased exponent = $129 - 127 = 2$\n   - Mantissa = $1.011_2 = 1.375$\n   - Value $Y = +1.375 \\times 2^2 = 5.5$\n\n3. Calculate $Z = X - Y = 10.0 - 5.5 = 4.5$.\n\n4. Encode $Z = 4.5$ into IEEE 754 format:\n   - $4.5 = 100.1_2 = 1.001_2 \\times 2^2$\n   - Sign bit = 0\n   - Biased Exponent = $2 + 127 = 129 = 10000001_2$\n   - Fraction = $.001000000..._2$\n   - 32-bit binary: 0 10000001 00100000000000000000000\n   - In Hexadecimal: 0100 0000 1001 0000 0000 0000 0000 0000 = 0x40900000.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 46,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Programming and Data Structures",
+     "topic": "Trees, binary search trees and binary heaps",
+     "bloom": "Remember",
+     "text": "Let $T$ be a binary search tree containing $n$ distinct keys. Consider the following three statements:\\n\\nI. The minimum key in $T$ is always located at a leaf node.\\nII. An inorder traversal of $T$ processes the keys in strictly increasing order.\\nIII. In any complete binary tree with $n$ nodes, the number of leaf nodes is $\\lceil n/2 \\rceil$.\\n\\nWhich of the above statements is/are ALWAYS TRUE?",
+     "options": [
+      "(A) II only",
+      "(B) II and III only",
+      "(C) I and II only",
+      "(D) I, II and III"
+     ],
+     "answer": "B",
+     "explanation": "Statement I is FALSE: The minimum node is the leftmost node in the BST. However, this node might have a right child, making it an internal node rather than a leaf.\n\nStatement II is TRUE: By definition of a Binary Search Tree, an inorder traversal visits keys in strictly sorted ascending order.\n\nStatement III is TRUE: In any complete binary tree of n nodes, internal nodes reside at 1-based indices 1 through \\lfloor n/2 \\rfloor, while leaf nodes reside at indices \\lfloor n/2 \\rfloor + 1 through n. Thus, the number of leaves is n - \\lfloor n/2 \\rfloor = \\lceil n/2 \\rceil.\n\nTherefore, statements II and III only are always true.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 47,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Algorithms",
+     "topic": "Graph traversals, minimum spanning trees and shortest paths",
+     "bloom": "Understand",
+     "text": "Let $G = (V, E)$ be a connected, undirected graph with distinct positive edge weights. Let $T$ be the minimum spanning tree of $G$. For any two distinct vertices $s, t \\in V$, let $P_T$ denote the unique path between $s$ and $t$ in $T$, and let $P_G$ denote a shortest path (with respect to total edge weight) between $s$ and $t$ in $G$.\n\nWhich one of the following statements is ALWAYS true?",
+     "options": [
+      "(A) The maximum edge weight in $P_T$ is less than or equal to the maximum edge weight in $P_G$.",
+      "(B) The total weight of $P_T$ is less than or equal to the total weight of $P_G$.",
+      "(C) $P_T$ and $P_G$ must consist of the exact same set of edges.",
+      "(D) The number of edges in $P_T$ is less than or equal to the number of edges in $P_G$."
+     ],
+     "answer": "A",
+     "explanation": "1. **Bottleneck Property of MST**: In an undirected graph with distinct edge weights, the unique path $P_T$ between any pair of vertices $s$ and $t$ in the Minimum Spanning Tree $T$ minimizes the maximum edge weight among **all** possible paths between $s$ and $t$ in $G$. Since $P_G$ is a path between $s$ and $t$ in $G$, the maximum edge weight in $P_T$ cannot exceed the maximum edge weight in $P_G$. Thus, statement (A) is ALWAYS true.\n\n2. **Counterexample for (B), (C), and (D)**: Consider a graph $G$ with vertices $s, x, t$ and edges $(s, x)$ of weight $10$, $(x, t)$ of weight $10$, and $(s, t)$ of weight $15$.\n- The MST $T$ contains edges $(s, x)$ and $(x, t)$ with total weight $20$.\n- Path $P_T$ between $s$ and $t$ is $s - x - t$ (2 edges, total weight $20$).\n- The shortest path $P_G$ between $s$ and $t$ is the direct edge $(s, t)$ (1 edge, total weight $15$).\n- Here, total weight of $P_T$ ($20$) $>$ total weight of $P_G$ ($15$), rendering (B) false.\n- $P_T$ and $P_G$ use different edges, rendering (C) false.\n- Number of edges in $P_T$ ($2$) $>$ number of edges in $P_G$ ($1$), rendering (D) false.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 48,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Programming and Data Structures",
+     "topic": "Linked lists",
+     "bloom": "Understand",
+     "text": "Consider the following C function that takes a pointer to the head of a non-empty singly linked list of integers:\\n\\n```c\\nstruct Node {\\n    int data;\\n    struct Node *next;\\n};\\n\\nint fun(struct Node *head) {\\n    if (head == NULL) return 0;\\n    if (head->next == NULL) return head->data;\\n    return head->data - fun(head->next);\\n}\\n```\\n\\nIf the linked list contains the values `1 -> 2 -> 3 -> 4 -> 5` in that order (with `head` pointing to the node containing `1`), what is the value returned by `fun(head)`?",
+     "options": [
+      "(A) 3",
+      "(B) -3",
+      "(C) 5",
+      "(D) 15"
+     ],
+     "answer": "A",
+     "explanation": "Let the nodes be N1(1), N2(2), N3(3), N4(4), N5(5).\n- fun(N5): head->next is NULL, returns 5.\n- fun(N4): returns 4 - fun(N5) = 4 - 5 = -1.\n- fun(N3): returns 3 - fun(N4) = 3 - (-1) = 4.\n- fun(N2): returns 2 - fun(N3) = 2 - 4 = -2.\n- fun(N1): returns 1 - fun(N2) = 1 - (-2) = 3.\n\nThe function computes the alternating sum: 1 - 2 + 3 - 4 + 5 = 3.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 49,
+     "marks": 2.0,
+     "qtype": "MCQ",
+     "unit": "Calculus",
+     "topic": "Limits, continuity and differentiability",
+     "bloom": "Understand",
+     "text": "The value of the limit $\\lim_{x \\to 0} \\left( \\frac{\\sin x}{x} \\right)^{\\frac{1}{x^2}}$ is",
+     "options": [
+      "(A) $e^{-1/6}$",
+      "(B) $e^{-1/3}$",
+      "(C) $e^{-1/2}$",
+      "(D) $1$"
+     ],
+     "answer": "A",
+     "explanation": "Let $L = \\lim_{x \\to 0} \\left( \\frac{\\sin x}{x} \\right)^{\\frac{1}{x^2}}$. Taking the natural logarithm on both sides yields $\\ln L = \\lim_{x \\to 0} \\frac{\\ln(\\sin x / x)}{x^2}$. Using Taylor expansion, $\\sin x = x - \\frac{x^3}{6} + O(x^5)$, so $\\frac{\\sin x}{x} = 1 - \\frac{x^2}{6} + O(x^4)$. Applying $\\ln(1 + u) = u + O(u^2)$, we get $\\ln\\left(1 - \\frac{x^2}{6} + O(x^4)\\right) = -\\frac{x^2}{6} + O(x^4)$. Dividing by $x^2$ and taking $x \\to 0$ yields $\\ln L = -\\frac{1}{6}$, which implies $L = e^{-1/6}$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 50,
+     "marks": 2.0,
+     "qtype": "MSQ",
+     "unit": "Theory of Computation",
+     "topic": "Turing machines and undecidability",
+     "bloom": "Apply",
+     "text": "Which of the following statements is/are TRUE?",
+     "options": [
+      "(A) If $L_1$ is a recursive language and $L_2$ is a recursively enumerable language, then $L_2 \\setminus L_1$ is recursively enumerable.",
+      "(B) The language $L = \\{\\langle M \\rangle \\mid L(M) \\text{ contains at least } 10 \\text{ strings}\\}$ is undecidable.",
+      "(C) If $L_1 \\cup L_2$ is a recursive language, then both $L_1$ and $L_2$ must be recursive languages.",
+      "(D) The language $L = \\{\\langle M \\rangle \\mid M \\text{ halts on the empty string } \\epsilon\\}$ is recursively enumerable."
+     ],
+     "answer": "A;B;D",
+     "explanation": "(A) TRUE: $L_2 \\setminus L_1 = L_2 \\cap \\overline{L_1}$. Since $L_1$ is recursive, its complement $\\overline{L_1}$ is also recursive (and thus RE). The intersection of two RE languages is RE, so $L_2 \\setminus L_1$ is RE. (B) TRUE: By Rice's Theorem, any non-trivial semantic property of RE languages is undecidable. 'Containing at least 10 strings' is semantic and non-trivial (satisfied by $\\Sigma^*$ but not by $\\emptyset$), hence undecidable. (C) FALSE: Counterexample: Let $L_1 = A_{TM}$ (undecidable) and $L_2 = \\overline{A_{TM}}$ (undecidable). $L_1 \\cup L_2 = \\Sigma^*$, which is recursive, but neither $L_1$ nor $L_2$ is recursive. (D) TRUE: A Universal Turing Machine can simulate $M$ on $\\epsilon$ and accept if $M$ halts. Thus, the language is RE (though undecidable).",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 51,
+     "marks": 2.0,
+     "qtype": "MSQ",
+     "unit": "Computer Networks",
+     "topic": "Application layer protocols: DNS, SMTP, HTTP, FTP, Email",
+     "bloom": "Apply",
+     "text": "Which of the following statements is/are CORRECT regarding Application Layer Protocols?",
+     "options": [
+      "(A) In DNS iterative resolution, if an intermediate DNS server has the target host's IP address stored in its cache, it can return the IP address directly without querying the remaining authoritative DNS servers.",
+      "(B) FTP uses separate TCP connections for control and data: the control connection remains open throughout the user session, while a new data connection is established and terminated for each file transfer.",
+      "(C) In HTTP/1.1 with persistent connections, HTTP pipelining allows a client to send multiple HTTP request messages back-to-back over a single TCP connection without waiting for individual responses.",
+      "(D) SMTP is a pull protocol used by an email client (user agent) to download received emails from a remote mailbox server."
+     ],
+     "answer": "A;B;C",
+     "explanation": "(A) CORRECT: DNS caching allows intermediate servers to return non-authoritative cached answers directly to speed up resolution.\n(B) CORRECT: FTP uses out-of-band control with a persistent control connection (port 21) and non-persistent data connections (port 20 in active mode) created per file/directory transfer.\n(C) CORRECT: HTTP/1.1 persistent connections with pipelining enable back-to-back requests over the same TCP connection without waiting for preceding responses.\n(D) INCORRECT: SMTP is a PUSH protocol used to upload/send messages. POP3 and IMAP are PULL protocols used by clients to retrieve email from a mail server.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 52,
+     "marks": 2.0,
+     "qtype": "MSQ",
+     "unit": "Programming and Data Structures",
+     "topic": "Programming in C and recursion",
+     "bloom": "Understand",
+     "text": "Consider the following C function definition:\\n\\n```c\\nint foo(int n) {\\n    if (n <= 0) return 0;\\n    return n + foo(n - 2);\\n}\\n```\\n\\nWhich of the following statements is/are TRUE?",
+     "options": [
+      "(A) For any positive even integer $n$, `foo(n)` returns the sum of all positive even integers less than or equal to $n$",
+      "(B) For any positive odd integer $n$, `foo(n)` returns the sum of all positive odd integers less than or equal to $n$",
+      "(C) The call `foo(5)` makes exactly 3 recursive calls",
+      "(D) For $n = -4$, the function causes stack overflow due to infinite recursion"
+     ],
+     "answer": "A;B;C",
+     "explanation": "Option A is TRUE: For even n > 0, foo(n) expands to n + (n-2) + ... + 2 + foo(0) = n + (n-2) + ... + 2 + 0, which is the sum of all positive even integers <= n.\n\nOption B is TRUE: For odd n > 0, foo(n) expands to n + (n-2) + ... + 1 + foo(-1) = n + (n-2) + ... + 1 + 0, which is the sum of all positive odd integers <= n.\n\nOption C is TRUE: Calling foo(5) invokes foo(3), which invokes foo(1), which invokes foo(-1). foo(-1) base case returns directly. The total number of recursive calls made by foo(5) is 3.\n\nOption D is FALSE: For n = -4, n <= 0 evaluates to true immediately, returning 0 without making any recursive calls.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 53,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Linear Algebra",
+     "topic": "Matrices, determinants and rank",
+     "bloom": "Understand",
+     "text": "Let $A$ and $B$ be $3 \\times 3$ real invertible matrices such that $\\det(A) = 4$ and $\\det(B) = -2$. If $C = 2 A^{-1} B^T A^2$, then the determinant of matrix $C$ is ____________.",
+     "options": [],
+     "answer": "-64",
+     "explanation": "Using determinant properties for $n \\times n$ matrices (where $n=3$):\n1) $\\det(k M) = k^n \\det(M) = 2^3 \\det(A^{-1} B^T A^2) = 8 \\det(A^{-1} B^T A^2)$\n2) $\\det(X Y Z) = \\det(X) \\det(Y) \\det(Z)$\n3) $\\det(A^{-1}) = 1 / \\det(A) = 1 / 4$\n4) $\\det(B^T) = \\det(B) = -2$\n5) $\\det(A^2) = (\\det(A))^2 = 4^2 = 16$\n\nThus, $\\det(C) = 8 \\times (1/4) \\times (-2) \\times 16 = 2 \\times (-2) \\times 16 = -64$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 54,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Operating System",
+     "topic": "System calls, processes and threads",
+     "bloom": "Understand",
+     "text": "Consider the following C code snippet executed in a Linux environment:\n```c\n#include <stdio.h>\n#include <unistd.h>\n\nint main() {\n    for (int i = 0; i < 2; i++) {\n        if (fork() == 0) {\n            printf(\"*\\n\");\n        }\n    }\n    return 0;\n}\n```\nAssuming all `fork()` system calls succeed, the total number of times `*` is printed is _________.",
+     "options": [],
+     "answer": "3",
+     "explanation": "Let the initial process be $P_0$.\n- Iteration $i = 0$:\n  $P_0$ calls `fork()`, creating child process $P_1$.\n  - For $P_1$: `fork() == 0` is true, so $P_1$ prints `*` (Count = 1).\n  - For $P_0$: `fork() == 0` is false, so no print.\n\n- Iteration $i = 1$:\n  Both $P_0$ and $P_1$ execute this loop step.\n  - $P_0$ calls `fork()`, creating child $P_2$. $P_2$ has `fork() == 0` true and prints `*` (Count = 2).\n  - $P_1$ calls `fork()`, creating child $P_3$. $P_3$ has `fork() == 0` true and prints `*` (Count = 3).\n\nTotal number of times `*` is printed = 1 + 1 + 1 = 3.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 55,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Databases",
+     "topic": "Integrity constraints and normal forms: functional dependencies, BCNF, 3NF",
+     "bloom": "Understand",
+     "text": "Consider a relation schema $R(A, B, C, D, E, F)$. If {A, B}, {B, C}, and {C, D} are the only candidate keys of relation $R$, then the total number of superkeys of relation $R$ is ______.",
+     "options": [],
+     "answer": "32",
+     "explanation": "Relation $R$ has 6 attributes: $A, B, C, D, E, F$.\nAny superkey of $R$ must contain at least one of the candidate keys: $K_1 = \\{A, B\\}$, $K_2 = \\{B, C\\}$, $K_3 = \\{C, D\\}$.\n\nFirst, count the number of subsets of $\\{A, B, C, D\\}$ that contain at least one candidate key:\n- Subsets containing $K_1$: $2^{4-2} = 4$\n- Subsets containing $K_2$: $2^{4-2} = 4$\n- Subsets containing $K_3$: $2^{4-2} = 4$\n\nUsing the Inclusion-Exclusion Principle:\n- $|K_1 \\cap K_2| = |\\{A, B, C\\}| = 2^{4-3} = 2$\n- $|K_2 \\cap K_3| = |\\{B, C, D\\}| = 2^{4-3} = 2$\n- $|K_1 \\cap K_3| = |\\{A, B, C, D\\}| = 2^{4-4} = 1$\n- $|K_1 \\cap K_2 \\cap K_3| = |\\{A, B, C, D\\}| = 1$\n\nSubsets of $\\{A, B, C, D\\}$ containing at least one candidate key:\n$= (4 + 4 + 4) - (2 + 2 + 1) + 1 = 8$.\n\nEach of these 8 subsets can be combined with any subset of $\\{E, F\\}$ ($2^2 = 4$ choices).\nTotal superkeys of $R = 8 \\times 4 = 32$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 56,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Digital Logic",
+     "topic": "Combinational circuits: multiplexers, decoders, adders",
+     "bloom": "Understand",
+     "text": "Consider a digital logic circuit with four binary inputs $A, B, C, D$. The circuit contains an active-HIGH 2-to-4 decoder with select lines $S_1 = A$ and $S_0 = B$, producing active-HIGH outputs $Y_0, Y_1, Y_2, Y_3$. The decoder outputs are connected to a 4-to-1 multiplexer with select lines $S_1 = C$ and $S_0 = D$ ($S_1$ is MSB). The inputs to the 4-to-1 multiplexer are connected as follows:\n- Input $I_0 = Y_0$\n- Input $I_1 = Y_1$\n- Input $I_2 = Y_2 \\oplus C$\n- Input $I_3 = D$\n\nOut of the 16 possible combinations of $(A, B, C, D)$, the total number of combinations that produce a multiplexer output of $1$ is ________. (Answer in integer)",
+     "options": [],
+     "answer": "9",
+     "explanation": "The decoder outputs for select inputs $(A, B)$ are:\n$Y_0 = \\bar{A}\\bar{B}, \\quad Y_1 = \\bar{A}B, \\quad Y_2 = A\\bar{B}, \\quad Y_3 = AB$\n\nThe output $Z$ of the 4:1 multiplexer with select lines $(C, D)$ is:\n$Z = \\bar{C}\\bar{D}I_0 + \\bar{C}DI_1 + C\\bar{D}I_2 + CDI_3$\n\nLet's count the combinations of $(A, B, C, D)$ yielding $Z = 1$ for each $(C, D)$ pair:\n1. $C=0, D=0 \\implies Z = I_0 = Y_0 = \\bar{A}\\bar{B}$. This is 1 when $A=0, B=0$. (1 combination)\n2. $C=0, D=1 \\implies Z = I_1 = Y_1 = \\bar{A}B$. This is 1 when $A=0, B=1$. (1 combination)\n3. $C=1, D=0 \\implies Z = I_2 = Y_2 \\oplus C = Y_2 \\oplus 1 = \\bar{Y_2} = \\overline{A\\bar{B}}$. This is 1 for all $(A,B)$ except $(1,0)$. Thus, 3 pairs of $(A,B)$: $(0,0), (0,1), (1,1)$. (3 combinations)\n4. $C=1, D=1 \\implies Z = I_3 = D = 1$. This is 1 for all 4 pairs of $(A,B)$. (4 combinations)\n\nTotal input combinations producing $Z = 1$: $1 + 1 + 3 + 4 = 9$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 57,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Theory of Computation",
+     "topic": "Context-free grammars and push-down automata",
+     "bloom": "Apply",
+     "text": "Consider a deterministic pushdown automaton $P = (Q, \\Sigma, \\Gamma, \\delta, q_0, Z_0, \\{q_f\\})$ with states $Q = \\{q_0, q_1, q_f\\}$, input alphabet $\\Sigma = \\{a, b\\}$, stack alphabet $\\Gamma = \\{Z_0, X\\}$, initial state $q_0$, initial stack symbol $Z_0$, and final state $q_f$. The transition function $\\delta$ is defined as:\n$\\delta(q_0, a, Z_0) = \\{(q_0, X Z_0)\\}$\n$\\delta(q_0, a, X) = \\{(q_0, X X)\\}$\n$\\delta(q_0, b, X) = \\{(q_1, \\epsilon)\\}$\n$\\delta(q_1, b, X) = \\{(q_1, \\epsilon)\\}$\n$\\delta(q_1, \\epsilon, Z_0) = \\{(q_f, Z_0)\\}$\nFor the input string $w = a^5 b^5$, the total number of transition steps executed by $P$ to reach state $q_f$ is ________.",
+     "options": [],
+     "answer": "11",
+     "explanation": "Trace of computation for $w = a^5 b^5$:\n1. 5 transitions for reading five 'a's: push 5 'X's onto stack, state remains $q_0$.\n2. 1 transition on first 'b': pop 1 'X', state changes to $q_1$.\n3. 4 transitions on remaining four 'b's: pop remaining 4 'X's, state remains $q_1$.\n4. 1 $\\epsilon$-transition when reading $Z_0$ at top of stack: state changes from $q_1$ to $q_f$.\nTotal transition steps = $5 + 1 + 4 + 1 = 11$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 58,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Digital Logic",
+     "topic": "Number representations and computer arithmetic: fixed and floating point",
+     "bloom": "Understand",
+     "text": "The 32-bit IEEE 754 single-precision floating-point representation of a number is given in hexadecimal format as 0xC24A0000. The decimal value of this number is ________. (Answer up to 1 decimal place)",
+     "options": [],
+     "answer": "-50.5",
+     "explanation": "Convert hexadecimal `0xC24A0000` to binary:\n1100 0010 0100 1010 0000 0000 0000 0000\n\nSplit into IEEE 754 fields:\n- Sign bit ($S$) = 1 (Negative number)\n- Biased Exponent ($E$) = $10000100_2 = 132_{10}$\n- Fraction ($F$) = $.10010100000..._2$\n\nUnbiased Exponent ($e$) = $E - 127 = 132 - 127 = 5$.\n\nSignificant value ($1 + F$) = $1.100101_2$\n$= 1 + \\frac{1}{2} + \\frac{1}{16} + \\frac{1}{64} = 1 + 0.5 + 0.0625 + 0.015625 = 1.578125$\n\nValue $= (-1)^S \\times (1 + F) \\times 2^e = -1.578125 \\times 2^5 = -50.5$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 59,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Databases",
+     "topic": "Transactions and concurrency control: serializability, locking",
+     "bloom": "Remember",
+     "text": "Consider two transactions $T_1$ and $T_2$ given below:\n$T_1: r_1(X) \\; w_1(X) \\; w_1(Y)$\n$T_2: r_2(Y) \\; w_2(Y)$\nwhere $r_i(V)$ and $w_i(V)$ denote read and write operations by transaction $T_i$ on data item $V$, respectively. The total number of conflict serializable schedules that can be formed by interleaving the operations of $T_1$ and $T_2$ is ______.",
+     "options": [],
+     "answer": "7",
+     "explanation": "Transaction $T_1$ has 3 operations and $T_2$ has 2 operations.\nTotal possible interleaved schedules = $\\frac{(3+2)!}{3! \\times 2!} = 10$.\n\nConflicting operation pairs between $T_1$ and $T_2$ exist only on variable $Y$:\n1. $(w_1(Y), r_2(Y))$\n2. $(w_1(Y), w_2(Y))$\n\nA schedule is NOT conflict serializable if and only if its precedence graph contains a cycle. A cycle occurs if $r_2(Y)$ precedes $w_1(Y)$ (giving edge $T_2 \\to T_1$) AND $w_1(Y)$ precedes $w_2(Y)$ (giving edge $T_1 \\to T_2$).\nThat is, $w_1(Y)$ is placed between $r_2(Y)$ and $w_2(Y)$.\n\nCounting non-conflict-serializable schedules:\n- Since $w_1(Y)$ is the 3rd operation of $T_1$, $r_1(X)$ and $w_1(X)$ must appear before $w_1(Y)$.\n- $w_2(Y)$ must appear after $w_1(Y)$ (so it must be in the last position).\n- $r_2(Y)$ must be placed before $w_1(Y)$, interleaved with $r_1(X)$ and $w_1(X)$ in $\\binom{3}{1} = 3$ ways.\n\nThus, exactly 3 schedules are NOT conflict serializable.\nNumber of conflict serializable schedules = $10 - 3 = 7$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 60,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Compiler Design",
+     "topic": "Intermediate code generation",
+     "bloom": "Analyze",
+     "text": "Consider the following three-address code sequence:\n\n```\nt1 = a * b\nt2 = c + d\nt3 = t1 + t2\nt4 = a * b\nt5 = t4 + t2\nt6 = t3 * t5\n```\n\nThis code segment is represented internally as a Directed Acyclic Graph (DAG). The total number of nodes (including leaf nodes and operator nodes) in the DAG is ________.",
+     "options": [],
+     "answer": "8",
+     "explanation": "Constructing the DAG for the basic block:\n1. **Leaf Nodes (Inputs):** $a, b, c, d$ (4 nodes).\n2. **Operator Nodes:**\n   - $N_1 = (*, a, b)$: computes `a * b`. Labels attached: `t1`, `t4` (since `t4 = a * b` reuses $N_1$).\n   - $N_2 = (+, c, d)$: computes `c + d`. Label attached: `t2`.\n   - $N_3 = (+, N_1, N_2)$: computes `t1 + t2`. Labels attached: `t3`, `t5` (since `t5 = t4 + t2` is identical to $N_1 + N_2$).\n   - $N_4 = (*, N_3, N_3)$: computes `t3 * t5`. Label attached: `t6`.\n\nTotal leaf nodes = 4\nTotal interior operator nodes = 4 ($N_1, N_2, N_3, N_4$)\nTotal nodes in the DAG = $4 + 4 = 8$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 61,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Programming and Data Structures",
+     "topic": "Hashing",
+     "bloom": "Analyze",
+     "text": "Consider a hash table of size $m = 11$ with slots numbered $0, 1, \\dots, 10$. The collisions are resolved using double hashing with primary hash function $h_1(k) = k \\pmod{11}$ and secondary hash function $h_2(k) = 1 + (k \\pmod 7)$. The probing sequence for a key $k$ is given by $h(k, i) = (h_1(k) + i \\cdot h_2(k)) \\pmod{11}$ for probe number $i = 0, 1, 2, \\dots$\n\nThe keys $23, 34, 45, 12, 122$ are inserted into an initially empty hash table in the given order. The slot index at which key $122$ gets stored is ________. (Answer in integer)",
+     "options": [],
+     "answer": "9",
+     "explanation": "We trace the insertion of each key into the hash table of size $m = 11$:\n\n1. Key 23:\n   $h_1(23) = 23 \\pmod{11} = 1$.\n   Probe $i = 0$: Slot 1 is empty. Key 23 is stored at index 1.\n\n2. Key 34:\n   $h_1(34) = 34 \\pmod{11} = 1$ (Collision at slot 1).\n   $h_2(34) = 1 + (34 \\pmod 7) = 1 + 6 = 7$.\n   Probe $i = 1$: $(1 + 1 \\times 7) \\pmod{11} = 8$. Slot 8 is empty. Key 34 is stored at index 8.\n\n3. Key 45:\n   $h_1(45) = 45 \\pmod{11} = 1$ (Collision at slot 1).\n   $h_2(45) = 1 + (45 \\pmod 7) = 1 + 3 = 4$.\n   Probe $i = 1$: $(1 + 1 \\times 4) \\pmod{11} = 5$. Slot 5 is empty. Key 45 is stored at index 5.\n\n4. Key 12:\n   $h_1(12) = 12 \\pmod{11} = 1$ (Collision at slot 1).\n   $h_2(12) = 1 + (12 \\pmod 7) = 1 + 5 = 6$.\n   Probe $i = 1$: $(1 + 1 \\times 6) \\pmod{11} = 7$. Slot 7 is empty. Key 12 is stored at index 7.\n\n5. Key 122:\n   $h_1(122) = 122 \\pmod{11} = 1$ (Collision at slot 1, occupied by 23).\n   $h_2(122) = 1 + (122 \\pmod 7) = 1 + 3 = 4$.\n   Probe $i = 1$: $(1 + 1 \\times 4) \\pmod{11} = 5$ (Collision at slot 5, occupied by 45).\n   Probe $i = 2$: $(1 + 2 \\times 4) \\pmod{11} = 9$. Slot 9 is empty. Key 122 is stored at index 9.\n\nHence, key 122 is stored at slot index 9.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 62,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Computer Networks",
+     "topic": "IP addressing: IPv4, CIDR, subnetting, fragmentation, ARP, DHCP, ICMP, NAT",
+     "bloom": "Apply",
+     "text": "An IPv4 datagram with a total length of $4000$ bytes (including a $20$-byte IP header) is sent from Host $S$ to Host $D$ across three routers $R_1, R_2,$ and $R_3$ connected in series ($S \\to R_1 \\to R_2 \\to R_3 \\to D$).\n\nThe Maximum Transmission Unit (MTU) values of the links are:\n- Link $S \\to R_1$: $1500$ bytes\n- Link $R_1 \\to R_2$: $1000$ bytes\n- Link $R_2 \\to R_3$: $600$ bytes\n- Link $R_3 \\to D$: $1500$ bytes\n\nAssume that all IP headers are $20$ bytes without options, and routers perform IP fragmentation when needed without reassembling fragments intermediate to the path. The total number of IP fragments that arrive at the destination Host $D$ is ________. (Answer in integer)",
+     "options": [],
+     "answer": "9",
+     "explanation": "Original datagram length = 4000 bytes (Data payload = $4000 - 20 = 3980$ bytes).\n\n1. **Link $S \\to R_1$ (MTU = 1500 bytes):**\n   Max payload per fragment = $1500 - 20 = 1480$ bytes (multiple of 8).\n   - Fragment 1: 1480 bytes payload (MF = 1)\n   - Fragment 2: 1480 bytes payload (MF = 1)\n   - Fragment 3: $3980 - 2960 = 1020$ bytes payload (MF = 0)\n   Total fragments sent by S = 3.\n\n2. **Link $R_1 \\to R_2$ (MTU = 1000 bytes):**\n   Max payload per fragment = $\\lfloor (1000-20)/8 \\rfloor \\times 8 = 122 \\times 8 = 976$ bytes.\n   - Fragment 1 (1480 bytes) splits into: 976 bytes (MF=1) and 504 bytes (MF=1). [2 frags]\n   - Fragment 2 (1480 bytes) splits into: 976 bytes (MF=1) and 504 bytes (MF=1). [2 frags]\n   - Fragment 3 (1020 bytes) splits into: 976 bytes (MF=1) and 44 bytes (MF=0). [2 frags]\n   Total fragments leaving $R_1$ = $2 + 2 + 2 = 6$.\n\n3. **Link $R_2 \\to R_3$ (MTU = 600 bytes):**\n   Max payload per fragment = $\\lfloor (600-20)/8 \\rfloor \\times 8 = 72 \\times 8 = 576$ bytes.\n   - Each 976-byte payload fragment splits into: 576 bytes (MF=1) and 400 bytes (MF=1). [2 frags each]\n   - Each 504-byte payload fragment has total size $504+20=524 \\le 600$ bytes, so no splitting needed. [1 frag each]\n   - The 44-byte payload fragment has total size $44+20=64 \\le 600$ bytes. [1 frag]\n   Total fragments leaving $R_2$ = $2(3) + 1(2) + 1(1) = 6 + 2 + 1 = 9$.\n\n4. **Link $R_3 \\to D$ (MTU = 1500 bytes):**\n   The maximum fragment size leaving $R_2$ is $576 + 20 = 596 \\le 1500$ bytes. No further fragmentation occurs.\n\nThus, exactly 9 fragments reach destination Host $D$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 63,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Theory of Computation",
+     "topic": "Regular and context-free languages, pumping lemma",
+     "bloom": "Understand",
+     "text": "Let $L_1$ be the language represented by the regular expression $a^* b a^* b a^*$ over the alphabet $\\Sigma = \\{a, b\\}$. Let $L_2 = \\{ w \\in \\Sigma^* \\mid |w| \\le 6 \\text{ and } w = w^R \\}$, where $w^R$ denotes the reversal of string $w$. The number of strings in $L_1 \\cap L_2$ is ________.",
+     "options": [],
+     "answer": "9",
+     "explanation": "The language $L_1$ consists of all strings over $\\{a, b\\}$ containing exactly two $b$'s. The language $L_2$ consists of all palindromes over $\\{a, b\\}$ of length at most 6. Thus, $L_1 \\cap L_2$ contains all palindromes of length $\\le 6$ that contain exactly two $b$'s. Since a palindrome is symmetric, the two $b$'s must appear at mirror positions. We analyze by string length $|w|$: 1) $|w| = 2$: $bb$ (1 string). 2) $|w| = 3$: $bab$ (1 string, middle character must be $a$). 3) $|w| = 4$: Palindromes of form $x_1 x_2 x_2 x_1$. One of $x_1, x_2$ is $b$ and the other is $a$. Strings are $baab, abba$ (2 strings). 4) $|w| = 5$: Palindromes of form $x_1 x_2 x_3 x_2 x_1$. $x_3$ must be $a$ (otherwise number of $b$'s would be odd). One of $x_1, x_2$ is $b$. Strings are $baaab, ababa$ (2 strings). 5) $|w| = 6$: Palindromes of form $x_1 x_2 x_3 x_3 x_2 x_1$. Exactly one of $x_1, x_2, x_3$ is $b$. Strings are $baaaab, abaaba, aabbaa$ (3 strings). Summing all cases: $1 + 1 + 2 + 2 + 3 = 9$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 64,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Programming and Data Structures",
+     "topic": "Programming in C and recursion",
+     "bloom": "Apply",
+     "text": "Consider the following program in C:\n\n#include <stdio.h>\n\nint fun(int n) {\n    static int count = 0;\n    if (n <= 0)\n        return count;\n    count += n;\n    int a = fun(n - 1);\n    int b = fun(n - 2);\n    return a + b;\n}\n\nint main() {\n    printf(\"%d\", fun(3));\n    return 0;\n}\n\nThe output of the program is ________. (Answer in integer)",
+     "options": [],
+     "answer": "32",
+     "explanation": "The static variable `count` is initialized once to 0 and maintains its value across all calls to `fun`.\n\nLet's trace `fun(3)` step by step:\n- `fun(3)`: $n=3$, `count` becomes $0 + 3 = 3$.\n  - Evaluates `a = fun(2)`:\n    - `fun(2)`: $n=2$, `count` becomes $3 + 2 = 5$.\n      - Evaluates `a1 = fun(1)`:\n        - `fun(1)`: $n=1$, `count` becomes $5 + 1 = 6$.\n          - `fun(0)` returns `count` (6).\n          - `fun(-1)` returns `count` (6).\n          - `fun(1)` returns $6 + 6 = 12$.\n      - Evaluates `b1 = fun(0)`:\n        - `fun(0)` returns `count` (6).\n      - `fun(2)` returns $12 + 6 = 18$. Thus, `a = 18` in `fun(3)`.\n  - Evaluates `b = fun(1)`:\n    - `fun(1)`: $n=1$, `count` becomes $6 + 1 = 7$.\n      - `fun(0)` returns `count` (7).\n      - `fun(-1)` returns `count` (7).\n      - `fun(1)` returns $7 + 7 = 14$. Thus, `b = 14` in `fun(3)`.\n\nFinally, `fun(3)` returns `a + b = 18 + 14 = 32`.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 65,
+     "marks": 2.0,
+     "qtype": "NAT",
+     "unit": "Programming and Data Structures",
+     "topic": "Programming in C and recursion",
+     "bloom": "Understand",
+     "text": "Consider the following recursive function written in C:\n\n#include <stdio.h>\n\nint fun(int n) {\n    if (n <= 0)\n        return 0;\n    if (n % 2 == 0)\n        return fun(n / 2) + n;\n    else\n        return fun(n - 1) + 1;\n}\n\nint main() {\n    printf(\"%d\", fun(15));\n    return 0;\n}\n\nThe output of the program is ________. (Answer in integer)",
+     "options": [],
+     "answer": "26",
+     "explanation": "We trace the recursive call stack for `fun(15)`:\n\n1. `fun(15)`: since 15 is odd, returns `fun(14) + 1`\n2. `fun(14)`: since 14 is even, returns `fun(7) + 14`\n3. `fun(7)`: since 7 is odd, returns `fun(6) + 1`\n4. `fun(6)`: since 6 is even, returns `fun(3) + 6`\n5. `fun(3)`: since 3 is odd, returns `fun(2) + 1`\n6. `fun(2)`: since 2 is even, returns `fun(1) + 2`\n7. `fun(1)`: since 1 is odd, returns `fun(0) + 1`\n8. `fun(0)`: base case, returns 0\n\nUnwinding the call stack:\n- `fun(0) = 0`\n- `fun(1) = 0 + 1 = 1`\n- `fun(2) = 1 + 2 = 3`\n- `fun(3) = 3 + 1 = 4`\n- `fun(6) = 4 + 6 = 10`\n- `fun(7) = 10 + 1 = 11`\n- `fun(14) = 11 + 14 = 25`\n- `fun(15) = 25 + 1 = 26`\n\nThe output printed by the program is 26.",
+     "source": "generated",
+     "ref": null
+    }
+   ]
+  }
+ ],
+ "validation": {
+  "questions": "65/65",
+  "marks_ok": true,
+  "attemptable_marks": 100.0,
+  "generated": 65,
+  "from_past_papers": 0,
+  "max_similarity_to_past": 0.61,
+  "too_similar": 0,
+  "unit_marks": {
+   "General Aptitude": 15.0,
+   "Theory of Computation": 10.0,
+   "Discrete Mathematics": 6.0,
+   "Algorithms": 9.0,
+   "Programming and Data Structures": 16.0,
+   "Compiler Design": 5.0,
+   "Linear Algebra": 4.0,
+   "Operating System": 7.0,
+   "Computer Networks": 5.0,
+   "Digital Logic": 9.0,
+   "Computer Organization and Architecture": 8.0,
+   "Calculus": 2.0,
+   "Databases": 4.0
+  },
+  "bloom_mix": {
+   "Remember": 9,
+   "Understand": 28,
+   "Apply": 21,
+   "Analyze": 7
+  }
+ }
+}

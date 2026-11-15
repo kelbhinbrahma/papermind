@@ -1,0 +1,192 @@
+{
+ "title": "Mid-Semester Examination \u2014 Databases",
+ "exam": "MIDSEM",
+ "area": "gate_cs",
+ "duration_min": 90,
+ "total_marks": 30.0,
+ "request": {
+  "area": "gate_cs",
+  "exam": "MIDSEM",
+  "units": [
+   "Databases"
+  ],
+  "num_questions": null,
+  "difficulty": "medium"
+ },
+ "generated_by": "gemini-3.8-flash",
+ "sections": [
+  {
+   "name": "Section A",
+   "instructions": "Answer ALL questions.",
+   "attempt": null,
+   "questions": [
+    {
+     "n": 1,
+     "marks": 2.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "Integrity constraints and normal forms: functional dependencies, BCNF, 3NF",
+     "bloom": "Remember",
+     "text": "Define Boyce-Codd Normal Form (BCNF) and Third Normal Form (3NF). State the main difference between them with respect to functional dependency constraints. (2 marks)",
+     "options": [],
+     "answer": "(a) 3NF Definition: A relation $R$ is in 3NF if for every non-trivial functional dependency $X \\rightarrow A$, either $X$ is a superkey or $A$ is a prime attribute (part of a candidate key). [0.5 mark]\n(b) BCNF Definition: A relation $R$ is in BCNF if for every non-trivial functional dependency $X \\rightarrow A$, $X$ is a superkey. [0.5 mark]\n(c) Main Difference: 3NF allows the right-hand side $A$ to be a prime attribute even if $X$ is not a superkey (which guarantees dependency preservation), whereas BCNF strictly requires the left-hand side $X$ to be a superkey for every non-trivial dependency. [1 mark]",
+     "explanation": "3NF relaxes the BCNF condition by allowing $X \\rightarrow A$ if $A$ is prime, making dependency preservation always achievable in 3NF, unlike BCNF.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 2,
+     "marks": 2.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "ER model",
+     "bloom": "Understand",
+     "text": "Explain the concept of a Weak Entity Set in an Entity-Relationship (ER) model. List two essential conditions required for a weak entity set to exist in a relational schema. (2 marks)",
+     "options": [],
+     "answer": "(a) Concept: A weak entity set is an entity set that does not possess sufficient attributes to form a primary key on its own and relies on an identifying (owner) entity set for unique identification. [1 mark]\n(b) Essential Conditions: 1. It must have total participation in the identifying relationship set with the owner entity set. [0.5 mark]\n2. It must have a partial key (discriminator) that, when combined with the primary key of the owner entity set, uniquely identifies its tuples. [0.5 mark]",
+     "explanation": "Weak entities cannot be uniquely distinguished without the primary key of their associated owner entity along with their own discriminator.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 3,
+     "marks": 2.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "Integrity constraints and normal forms: functional dependencies, BCNF, 3NF",
+     "bloom": "Analyze",
+     "text": "Consider a relation schema $R(A, B, C, D, E)$ with the functional dependency set $F = \\{A \\rightarrow BC, CD \\rightarrow E, B \\rightarrow D\\}$. Determine the highest normal form (up to BCNF) satisfied by relation $R$. Justify your answer. (2 marks)",
+     "options": [],
+     "answer": "(a) Candidate Key Identification: Computing attribute closure $(A)^+ = \\{A, B, C, D, E\\}$. Since $A$ is not on the RHS of any FD, $A$ is the unique candidate key. Non-prime attributes are $\\{B, C, D, E\\}$. [1 mark]\n(b) Normal Form Analysis: \n- $A \\rightarrow BC$: $A$ is a superkey (Satisfies BCNF and 3NF).\n- $B \\rightarrow D$: $B$ is a proper subset of candidate key $A$, and $D$ is a non-prime attribute. This is a partial dependency, violating 2NF.\nConclusion: The highest normal form satisfied by relation $R$ is 1NF. [1 mark]",
+     "explanation": "Since $A$ is the only candidate key, $B \\rightarrow D$ is a partial dependency of non-prime attribute $D$ on proper subset $B$ of key $A$, which violates 2NF. Thus $R$ is only in 1NF.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 4,
+     "marks": 2.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "Relational model: relational algebra, tuple calculus, SQL",
+     "bloom": "Understand",
+     "text": "Differentiate between Tuple Relational Calculus (TRC) and Domain Relational Calculus (DRC). Provide the general notation syntax for expressing a query in both TRC and DRC. (2 marks)",
+     "options": [],
+     "answer": "(a) Difference: TRC uses variables that range over entire tuples of a relation, whereas DRC uses variables that range over individual domain values of single attributes. [1 mark]\n(b) Syntax: \n- TRC Syntax: $\\{t \\mid P(t)\\}$, where $t$ is a tuple variable and $P(t)$ is a predicate formula. [0.5 mark]\n- DRC Syntax: $\\{\\langle x_1, x_2, \\dots, x_n \\rangle \\mid P(x_1, x_2, \\dots, x_n)\\}$, where $x_i$ represent domain variables. [0.5 mark]",
+     "explanation": "TRC operates on full tuple variables whereas DRC operates on attribute-level domain variables.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 5,
+     "marks": 2.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "Relational model: relational algebra, tuple calculus, SQL",
+     "bloom": "Apply",
+     "text": "Given two relations $R(A, B)$ and $S(B, C)$, write an equivalent Relational Algebra expression for the following SQL query:\n\n`SELECT DISTINCT A FROM R WHERE B IN (SELECT B FROM S WHERE C = 5);` (2 marks)",
+     "options": [],
+     "answer": "Correct Relational Algebra Expression: $\\pi_A (R \\bowtie \\sigma_{C = 5}(S))$ or $\\pi_A (\\sigma_{C = 5}(R \\bowtie S))$ [2 marks]\n\nMarking Breakdown:\n- Correct selection condition $\\sigma_{C=5}(S)$: [0.5 mark]\n- Correct natural join $R \\bowtie S$ on attribute $B$: [1 mark]\n- Correct projection $\\pi_A$: [0.5 mark]",
+     "explanation": "The subquery selects tuples in $S$ where $C=5$, extracts attribute $B$, joins with $R$ on $B$, and projects attribute $A$ (relational algebra projection automatically handles set deduplication).",
+     "source": "generated",
+     "ref": null
+    }
+   ]
+  },
+  {
+   "name": "Section B",
+   "instructions": "Answer any FOUR questions.",
+   "attempt": 4,
+   "questions": [
+    {
+     "n": 6,
+     "marks": 5.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "Relational model: relational algebra, tuple calculus, SQL",
+     "bloom": "Understand",
+     "text": "Consider the following relational schema:\n`Student(rollNo, name, dept)`\n`Enrollment(rollNo, courseId, grade)`\n`Course(courseId, title, credits)`\n\n(a) Write a Relational Algebra expression to retrieve the names of all students who have enrolled in the course titled 'Database Systems'. (2 marks)\n(b) Write a Tuple Relational Calculus (TRC) expression to retrieve the `rollNo` of students who have not enrolled in any course. (1.5 marks)\n(c) Write an SQL query to display the `dept` name along with the total number of students in each department, considering only those departments that have more than 5 students. (1.5 marks)",
+     "options": [],
+     "answer": "(a) Relational Algebra Expression: \n$\\pi_{\\text{name}} \\left( \\text{Student} \\bowtie \\text{Enrollment} \\bowtie \\sigma_{\\text{title} = \\text{'Database Systems'}}(\\text{Course}) \\right)$ [2 marks]\n\n(b) Tuple Relational Calculus (TRC) Expression: \n$\\{ t.rollNo \\mid t \\in \\text{Student} \\land \\neg(\\exists e \\in \\text{Enrollment}(e.rollNo = t.rollNo)) \\}$ [1.5 marks]\n\n(c) SQL Query:\n`SELECT dept, COUNT(rollNo) FROM Student GROUP BY dept HAVING COUNT(rollNo) > 5;` [1.5 marks]",
+     "explanation": "Part (a) uses selection on Course joined with Enrollment and Student before projecting names. Part (b) uses negation with existential quantification over Enrollment. Part (c) uses GROUP BY and HAVING clauses to filter aggregate counts.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 7,
+     "marks": 5.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "Relational model: relational algebra, tuple calculus, SQL",
+     "bloom": "Understand",
+     "text": "Consider a relational schema $R(A, B, C)$ and $S(C, D, E)$.\n(a) Translate the Tuple Relational Calculus (TRC) expression $E = \\{ \\langle t.A, t.B \\rangle \\mid t \\in R \\land \\exists s \\in S (s.C = t.C \\land s.D = 10) \\}$ into an equivalent Relational Algebra (RA) expression. (2 marks)\n(b) Write an equivalent SQL query for the expression $E$. (1 mark)\n(c) Express the Relational Algebra division operator $R(X, Y) \\div S(Y)$ using only fundamental relational algebra operators. (2 marks)",
+     "options": [],
+     "answer": "(a) Relational Algebra expression (2 marks):\n$\\pi_{A, B}(R \\bowtie_{R.C = S.C} (\\sigma_{D = 10}(S)))$ or $\\pi_{A, B}(\\sigma_{S.D = 10}(R \\bowtie_{R.C = S.C} S))$.\n\n(b) Equivalent SQL query (1 mark):\nSELECT R.A, R.B FROM R JOIN S ON R.C = S.C WHERE S.D = 10;\n(or equivalent using IN / EXISTS subquery).\n\n(c) Division operator expression (2 marks):\n$R(X, Y) \\div S(Y) = \\pi_X(R) - \\pi_X((\\pi_X(R) \\times S) - R)$.\n- 1 mark for setting up the universal product $\\pi_X(R) \\times S$.\n- 1 mark for subtracting existing tuples and taking difference from $\\pi_X(R)$.",
+     "explanation": "(a) The TRC expression selects attributes A and B from tuple t in R where there exists a matching tuple s in S with the same C value and D = 10. In RA, this is a selection $\\sigma_{D=10}(S)$, joined with R on attribute C, followed by projection $\\pi_{A,B}$.\n(b) The SQL query performs an inner join between R and S on C, filters where D = 10, and projects A, B.\n(c) Division $R(X,Y) \\div S(Y)$ finds X values associated with ALL Y values in S. Using fundamental operators, we find all possible combinations of X in R with all Y in S via $\\pi_X(R) \\times S$, subtract R to find missing pairs $(\\pi_X(R) \\times S) - R$, project their X values $\\pi_X(...)$, and subtract these invalid X values from $\\pi_X(R)$.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 8,
+     "marks": 5.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "Integrity constraints and normal forms: functional dependencies, BCNF, 3NF",
+     "bloom": "Create",
+     "text": "Consider a relation schema $R(A, B, C, D, E)$ with functional dependencies $F = \\{ A \\rightarrow BC, CD \\rightarrow E, B \\rightarrow D, E \\rightarrow A \\}$.\n(a) Using the standard 3NF Synthesis Algorithm, construct a dependency-preserving and lossless-join 3NF decomposition for $R$. Show all intermediate steps including canonical cover and candidate key verification. (3 marks)\n(b) Determine whether all resulting relations in the decomposition are in BCNF. Justify your answer. (2 marks)",
+     "options": [],
+     "answer": "(a) 3NF Synthesis (3 marks):\n1. Canonical Cover $F_c = \\{ A \\rightarrow B, A \\rightarrow C, CD \\rightarrow E, B \\rightarrow D, E \\rightarrow A \\}$. (1 mark)\n2. Form relation schemas for each FD set with common LHS:\n$R_1(A, B, C)$ with key $A$\n$R_2(C, D, E)$ with key $CD$\n$R_3(B, D)$ with key $B$\n$R_4(E, A)$ with key $E$ (1 mark)\n3. Candidate keys of $R$: $A, E, BC, CD$. Since $R_1$ contains key $A$ (and $R_4$ contains $E$), no additional relation for candidate key is needed. Decomposition: $\\{R_1(A,B,C), R_2(C,D,E), R_3(B,D), R_4(E,A)\\}$. (1 mark)\n\n(b) BCNF Analysis (2 marks):\n- Relation $R_2(C, D, E)$ has functional dependency $E \\rightarrow C$ (since $E \\rightarrow A \\rightarrow C$).\n- The primary key of $R_2$ is $CD$. $E$ is not a superkey of $R_2$ because $E^+ = \\{E, A, B, C, D\\}$ on $R_2$ gives only $\\{E, C\\}$ (missing $D$).\n- Since $E \\rightarrow C$ holds in $R_2$ and $E$ is not a superkey, $R_2$ violates BCNF. Hence, the decomposition is NOT entirely in BCNF. (2 marks)",
+     "explanation": "The 3NF synthesis algorithm yields relation schemas based on minimal cover FDs. In schema $R_2(C,D,E)$, the candidate key is $CD$. However, the transitive dependency $E \\rightarrow C$ (derived from $E \\rightarrow A$ and $A \\rightarrow C$) applies to $R_2$. Since $E$ does not determine $D$, $E$ is not a superkey of $R_2$. Thus $R_2$ is in 3NF (since $C$ is a prime attribute belonging to key $CD$) but NOT in BCNF.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 9,
+     "marks": 5.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "Integrity constraints and normal forms: functional dependencies, BCNF, 3NF",
+     "bloom": "Apply",
+     "text": "Consider a relation schema $R(A, B, C, D, E, F)$ with the functional dependency set $F = \\{ A \\rightarrow BC, B \\rightarrow D, D \\rightarrow E, CF \\rightarrow A \\}$.\n(a) Determine all candidate keys of $R$ showing detailed attribute closure steps. (2 marks)\n(b) Identify the highest normal form (1NF, 2NF, 3NF, or BCNF) satisfied by relation $R$. Justify your answer by testing functional dependencies against normal form definitions. (3 marks)",
+     "options": [],
+     "answer": "(a) Candidate Keys (2 marks):\n- Attribute $F$ does not appear on the RHS of any FD, so $F$ must be present in every candidate key.\n- $(AF)^+ = \\{A, F, B, C, D, E\\} = R \\implies AF$ is a candidate key. (1 mark)\n- $(CF)^+ = \\{C, F, A, B, D, E\\} = R \\implies CF$ is a candidate key. (1 mark)\n- Candidate keys are $\\{AF, CF\\}.\n\n(b) Highest Normal Form (3 marks):\n- Prime attributes: $\\{A, C, F\\}$. Non-prime attributes: $\\{B, D, E\\}$.\n- Check 2NF condition: A relation is in 2NF if no non-prime attribute is partially dependent on any candidate key.\n- Consider FD $A \\rightarrow BC$, which gives $A \\rightarrow B$. Here, $A$ is a proper subset of candidate key $AF$, and $B$ is a non-prime attribute. This is a partial dependency. (2 marks)\n- Since 2NF is violated, the highest normal form satisfied by relation $R$ is 1NF. (1 mark)",
+     "explanation": "Attribute $F$ must be in all candidate keys. Computing closures gives $(AF)^+ = R$ and $(CF)^+ = R$. Thus candidate keys are $AF$ and $CF$. Non-prime attributes are $B, D, E$. The dependency $A \\rightarrow B$ is a partial dependency because $A \\subset AF$ (proper subset of candidate key) and $B$ is non-prime. Hence $R$ fails 2NF, making 1NF the highest satisfied normal form.",
+     "source": "generated",
+     "ref": null
+    },
+    {
+     "n": 10,
+     "marks": 5.0,
+     "qtype": "DESCRIPTIVE",
+     "unit": "Databases",
+     "topic": "ER model",
+     "bloom": "Understand",
+     "text": "Answer the following questions regarding Entity-Relationship (ER) modeling:\n(a) Define a 'Weak Entity Set' and an 'Identifying Relationship'. State the mandatory participation constraint for a weak entity set in its identifying relationship. (2 marks)\n(b) Map the following ER scenario into a set of relational schemas, clearly specifying relation names, attributes, Primary Keys (PK), and Foreign Keys (FK):\n- Entity `Department`: `DeptID` (Primary Key), `DeptName`.\n- Entity `Employee`: `EmpID` (Primary Key), `EmpName`. Each employee belongs to exactly one Department.\n- Weak Entity `Dependent`: `DepName` (Discriminator/Partial Key), `Age`, identified by owner entity `Employee`. (3 marks)",
+     "options": [],
+     "answer": "(a) Definitions & Constraint (2 marks):\n- Weak Entity Set: An entity set that does not possess sufficient attributes to form a primary key on its own. (0.5 mark)\n- Identifying Relationship: The relationship connecting a weak entity set to its owner (identifying) entity set. (0.5 mark)\n- Participation Constraint: The weak entity set MUST have TOTAL participation in its identifying relationship. (1 mark)\n\n(b) Relational Schemas (3 marks):\n1. Department (DeptID, DeptName)\n   - PK: DeptID (0.5 mark)\n2. Employee (EmpID, EmpName, DeptID)\n   - PK: EmpID\n   - FK: DeptID references Department(DeptID) [NOT NULL] (1.25 marks)\n3. Dependent (EmpID, DepName, Age)\n   - PK: (EmpID, DepName)\n   - FK: EmpID references Employee(EmpID) ON DELETE CASCADE (1.25 marks)",
+     "explanation": "A weak entity set lacks a primary key and relies on its owner entity via an identifying relationship in which it must participate totally. In relational mapping: Department becomes a standard table with PK DeptID; Employee includes FK DeptID referencing Department; Dependent has composite PK (EmpID, DepName) formed by owner's PK EmpID and partial key DepName, with EmpID acting as FK.",
+     "source": "generated",
+     "ref": null
+    }
+   ]
+  }
+ ],
+ "validation": {
+  "questions": "10/10",
+  "marks_ok": true,
+  "attemptable_marks": 30.0,
+  "generated": 10,
+  "from_past_papers": 0,
+  "max_similarity_to_past": 0.43,
+  "too_similar": 0,
+  "unit_marks": {
+   "Databases": 35.0
+  },
+  "bloom_mix": {
+   "Remember": 1,
+   "Understand": 5,
+   "Apply": 2,
+   "Analyze": 1,
+   "Create": 1
+  }
+ }
+}
