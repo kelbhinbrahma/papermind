@@ -1,0 +1,118 @@
+% Front matter: printed single-sided. Title (page i, unnumbered), certificates (ii, iii), acknowledgement (iv).
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[a4paper,left=3.2cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\input{common}
+
+\begin{document}
+\pagenumbering{roman}
+
+% ---------------- Title page ----------------
+\begin{titlepage}
+\centering\setstretch{1.15}
+\vspace*{-0.4cm}
+{\LARGE\bfseries\setstretch{1.25} \ReportTitle\par}
+\vspace{0.8cm}
+{\large\itshape by\par}
+\vspace{0.3cm}
+{\large \TeamTitle\par}
+\vspace{0.7cm}
+{\large\bfseries Course Project Report\par}
+\vspace{0.2cm}
+{\large submitted in partial fulfilment of the requirements for the degree of\par}
+\vspace{0.3cm}
+{\Large\bfseries \Degree\par}
+{\large\itshape in\par}
+{\Large\bfseries \Department\par}
+\vspace{0.7cm}
+\includegraphics[width=3.4cm]{nitsikkim_logo.png}\par
+\vspace{0.7cm}
+{\large\bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\par}
+\vspace{0.15cm}
+{\Large\bfseries NATIONAL INSTITUTE OF TECHNOLOGY SIKKIM\par}
+\vfill
+{\large \SubmissionDate\par}
+\end{titlepage}
+
+\setcounter{page}{2}
+\pagestyle{plain}
+
+% ---------------- Certificate by course instructor ----------------
+\Letterhead
+\begin{center}{\Large\bfseries\underline{Certificate by Course Instructor}}\end{center}
+\vspace{0.8cm}
+\noindent This is to certify that the project report entitled \textbf{``\ReportTitle''} is being submitted by
+\textbf{\TeamInline}, students of \Institute, in partial fulfilment of the requirements for the award of the degree
+of \Degree\ (B.Tech). It is an original work carried out by them under my supervision and guidance. The results
+embodied in this report have not been submitted to any other University or Institute for the award of any degree or
+diploma.
+
+\vspace{3cm}
+\noindent\begin{tabular}{@{}l}
+\textbf{\GuideName}\\
+\GuideRole\ (\GuideDesignation)\\
+Department of \DeptShort\\
+\InstituteShort
+\end{tabular}
+\hfill
+\begin{tabular}{l@{}}
+Place: Ravangla\\
+Date: \rule{3cm}{0.4pt}
+\end{tabular}
+\clearpage
+
+% ---------------- Certificate by students ----------------
+\Letterhead
+\begin{center}{\Large\bfseries\underline{Certificate by Students}}\end{center}
+\vspace{0.8cm}
+\noindent We hereby declare that the work presented in the report entitled \textbf{``\ReportTitle''} is a
+bonafide record of the work done by us under the supervision of \textbf{\GuideName}, \GuideDesignation, Department of
+\Department, \Institute, and that no part thereof has been presented for the award of any other degree.
+\begin{itemize}[leftmargin=1.5em]
+  \item We have followed the guidelines provided by the institute in writing the report.
+  \item The report does not contain any classified information.
+  \item Whenever we have used materials from other sources, we have given due credit to those by citing them in the
+        text of the report and giving their details in the references.
+  \item Whenever we have quoted written materials from other sources, we have put them under quotation marks and given
+        due credit to the sources by citing them in the text of the report and giving their details in the references.
+  \item Past GATE question papers used as the analysis corpus are the property of the organising institutes and are
+        used here solely for academic analysis.
+\end{itemize}
+
+\vspace{1.6cm}
+\noindent\begin{tabular}{@{}p{0.47\textwidth}p{0.47\textwidth}@{}}
+\rule{4.2cm}{0.4pt} & \rule{4.2cm}{0.4pt}\\
+\textbf{Kelbhin Brahma} (B240011AI) & \textbf{Vishal Prasad} (B240028AI)\\[1.4cm]
+\rule{4.2cm}{0.4pt} & \rule{4.2cm}{0.4pt}\\
+\textbf{Aditya Prasad} (B240031CS) & \textbf{Aryaman Prasad} (B240034CS)\\
+\end{tabular}\par\vspace{0.6cm}
+\noindent \Institute, \Pin
+\clearpage
+
+% ---------------- Acknowledgement ----------------
+\begin{center}{\Large\bfseries Acknowledgement}\end{center}
+\vspace{0.6cm}
+First of all, we would like to extend our heartfelt gratitude to our course instructor, \textbf{\GuideName},
+\GuideDesignation, Department of \Department, \Institute, whose constant guidance, valuable suggestions and
+encouragement made the progress of this project possible. We are also grateful for the opportunity
+to work on a problem that sits at the meeting point of natural language processing and generative artificial
+intelligence.
+
+We are obliged to all the faculty members of the Department of \Department, \Institute, for building the foundation in
+programming, algorithms and machine learning that this work depends on. We acknowledge the organising institutes of the
+Graduate Aptitude Test in Engineering (GATE) for publicly releasing past question papers and answer keys, which form
+the corpus of this study, and the maintainers of the open-source libraries used throughout the project.
+
+Lastly, we are grateful to our families and friends for their relentless support and for patiently testing the generated
+question papers and the study assistant.
+
+\vspace{1.5cm}
+\noindent Dated: \rule{3cm}{0.4pt}\hfill
+\begin{tabular}{l@{}}
+\textbf{Kelbhin Brahma} (B240011AI)\\
+\textbf{Vishal Prasad} (B240028AI)\\
+\textbf{Aditya Prasad} (B240031CS)\\
+\textbf{Aryaman Prasad} (B240034CS)\\
+\Institute, \Pin
+\end{tabular}
+
+\end{document}

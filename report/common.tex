@@ -1,0 +1,47 @@
+% ---------- shared preamble (front.tex + main.tex) ----------
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}          % Times text + matching maths (as in the institute template)
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{amsmath}
+\usepackage{booktabs,tabularx,array,multirow,longtable}
+\usepackage{enumitem}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=period,skip=6pt}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,fit,backgrounds,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage{emptypage}                    % blank verso pages carry no header/number
+\usepackage[hidelinks]{hyperref}
+\input{details}
+
+\definecolor{nitblue}{RGB}{0,51,153}
+\definecolor{boxgray}{RGB}{245,245,242}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+\onehalfspacing
+\setlist{itemsep=2pt,topsep=4pt}
+\renewcommand{\arraystretch}{1.25}
+
+% institute letterhead used on the certificate pages
+\newcommand{\Letterhead}{%
+  \noindent
+  \begin{minipage}[c]{0.17\textwidth}\includegraphics[width=\linewidth]{nitsikkim_logo.png}\end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.8\textwidth}\centering\singlespacing
+    {\large\bfseries\color{nitblue} NATIONAL INSTITUTE OF TECHNOLOGY SIKKIM}\\[3pt]
+    {\color{nitblue}\Campus}\\[1pt]
+    {\color{nitblue}\Address}\\[1pt]
+    {\small\color{nitblue}(AN INSTITUTE OF NATIONAL IMPORTANCE, GOVT.\ OF INDIA)}
+  \end{minipage}\par\vspace{6pt}
+  \noindent\rule{\textwidth}{0.6pt}\par\vspace{1.2cm}}
+
+\lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,framerule=0.3pt,
+  backgroundcolor=\color{boxgray},columns=fullflexible,keepspaces=true,showstringspaces=false}

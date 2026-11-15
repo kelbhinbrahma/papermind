@@ -1,0 +1,83 @@
+\chapter{Literature Review}\label{ch:lit}
+PaperMind draws on four lines of work: analysis and classification of examination questions, automatic question
+generation, large language models with retrieval and tool use, and label-efficient learning. This chapter reviews each
+and identifies the gap the project addresses.
+
+\section{Related Work}
+\subsection{Representing and classifying examination questions}
+Classical information retrieval represents a text as a weighted bag of terms. Sparck Jones introduced inverse document
+frequency to down-weight common terms~\cite{sparckjones1972}, and Salton and Buckley systematised TF-IDF weighting
+schemes~\cite{salton1988}; with cosine similarity these remain strong baselines for short technical texts whose meaning
+is carried by domain vocabulary. Bloom's taxonomy, revised by Anderson and Krathwohl~\cite{anderson2001}, organises
+cognitive demand into six levels (Remember, Understand, Apply, Analyze, Evaluate, Create) and is widely used to audit
+question papers. Mohammed and Omar classified examination questions into Bloom levels using a modified TF-IDF combined
+with word2vec features~\cite{mohammed2020}, showing that lexical cues---chiefly the directive verb---carry most of the
+signal. Contextual encoders such as BERT~\cite{devlin2019} and sentence-level variants such as
+Sentence-BERT~\cite{reimers2019} and MiniLM~\cite{wang2020minilm} produce dense embeddings that enable zero-shot matching
+of a question against textual topic descriptions.
+
+\subsection{Automatic question generation}
+Early question generation was rule- and template-based: Mitkov and Ha generated multiple-choice items from
+textbooks using term extraction and distractor selection~\cite{mitkov2003}, and Heilman and Smith over-generated
+questions by syntactic transformation and ranked them statistically~\cite{heilman2010}. Du \emph{et al.}\ framed
+question generation as sequence-to-sequence learning with attention~\cite{du2017}. Kurdi \emph{et al.}\ surveyed
+93 educational question generation systems and found that most generate isolated factual questions from a text passage,
+few control difficulty or cognitive level, and evaluation of answer correctness is rare~\cite{kurdi2020}. None of these
+systems model the pattern of a whole examination.
+
+\subsection{Large language models, retrieval and tool use}
+The Transformer~\cite{vaswani2017} enabled LLMs that perform new tasks from instructions and a few
+examples~\cite{brown2020}; Google's Gemini family adds native multimodal input~\cite{gemini2023}. LLMs are, however,
+prone to hallucination---fluent but unfaithful output~\cite{ji2023}. Retrieval-augmented generation (RAG) conditions
+generation on retrieved documents to ground it~\cite{lewis2020}. Self-consistency improves reasoning accuracy by sampling
+several solutions and checking agreement~\cite{wang2023sc}, an idea that motivates the blind re-solving of answer keys
+in this project. ReAct~\cite{yao2023} and Toolformer~\cite{schick2023} showed that LLMs can decide when to call external
+tools, the basis of tool-using assistants such as the one built here.
+
+\subsection{Label-efficient learning}
+Knowledge distillation trains a small student model to imitate a larger teacher~\cite{hinton2015}. Weak supervision
+replaces hand labels with noisy programmatic sources~\cite{ratner2017}. More recently LLMs themselves have been used as
+annotators: Wang \emph{et al.}\ showed GPT-3 labels can cut labelling cost substantially~\cite{wang2021gpt3label}, and
+Gilardi \emph{et al.}\ found LLM annotations rival crowd workers on several text-classification
+tasks~\cite{gilardi2023}. PaperMind uses an LLM as teacher and a TF-IDF + logistic-regression student~\cite{pedregosa2011}
+so that the deployed system needs no deep-learning runtime.
+
+\subsection{Document digitisation}
+Optical character recognition (OCR) engines such as Tesseract~\cite{smith2007} convert scanned pages to text; modern
+platform OCR and multimodal LLMs extend this to layout-rich documents. Mathematical notation remains a known weak point
+of text-layer extraction, which this project confirms on real question papers.
+
+\begin{table}[t]
+\centering
+\caption{Summary of related work and comparison with PaperMind}
+\label{tab:related}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}Xccc@{}}
+\toprule
+\textbf{Work} & \textbf{Approach} & \textbf{Pattern} & \textbf{Key check} & \textbf{Personal}\\
+\midrule
+Mitkov \& Ha~\cite{mitkov2003} & Template MCQ generation from text & -- & -- & --\\
+Heilman \& Smith~\cite{heilman2010} & Syntactic over-generate and rank & -- & -- & --\\
+Du \emph{et al.}~\cite{du2017} & Neural seq2seq question generation & -- & -- & --\\
+Mohammed and Omar~\cite{mohammed2020} & Bloom classification (TF-IDF + word2vec) & partial & -- & --\\
+Lewis \emph{et al.}~\cite{lewis2020} & Retrieval-augmented generation & -- & -- & --\\
+Wang \emph{et al.}~\cite{wang2023sc} & Self-consistency reasoning & -- & \checkmark & --\\
+Yao \emph{et al.}~\cite{yao2023} & Tool-using LLM agents & -- & -- & --\\
+\textbf{PaperMind} & Analysis + RAG generation + distilled labels + agent & \checkmark & \checkmark & \checkmark\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Research Gap}
+Table~\ref{tab:related} summarises the landscape. Question analysis work classifies questions but does not turn the
+analysis into generation; question generation work produces individual questions from passages but ignores the
+structure of a real examination; and LLM-based generation is ungrounded and unchecked by default. No reviewed system
+(i) learns an examination's subject, topic and format distribution from its own past papers, (ii) uses that
+distribution to constrain an LLM that generates complete papers, (iii) verifies the generated answer keys, and
+(iv) closes the loop with a student's measured performance. PaperMind is designed to fill exactly this gap.
+
+\section{Chapter Summary}
+This chapter reviewed lexical and dense representations of questions, Bloom's taxonomy classification, the evolution
+of question generation from templates to LLMs, retrieval augmentation, self-consistency and tool use, and LLM-assisted
+labelling. The combination of these ideas into a single pattern-aware, verified and personalised system is the
+contribution of this work.

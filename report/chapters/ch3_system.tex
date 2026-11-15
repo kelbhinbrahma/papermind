@@ -1,0 +1,389 @@
+\chapter{System Model}\label{ch:system}
+PaperMind is organised as four layers over a single SQLite store (Figure~\ref{fig:arch}): an \emph{ingestion} layer that
+turns documents into structured questions, an \emph{NLP analysis} layer that labels questions and computes historical
+statistics, a \emph{GenAI} layer that plans, writes and verifies new papers, and an \emph{interaction} layer consisting
+of a REST API, a web interface and a tool-using study assistant.
+
+\tikzset{
+  blk/.style={draw, rounded corners=3pt, align=center, font=\small, minimum height=0.9cm, fill=white, text width=#1},
+  blk/.default=2.6cm,
+  lay/.style={draw=gray!60, rounded corners=6pt, fill=gray!8, inner sep=6pt},
+  arr/.style={-{Stealth[length=2.2mm]}, thick},
+}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=3.45cm, y=1.55cm]
+  \node[blk=2.5cm] (pdf)  at (0,0)  {Past papers\\(PDF / scan / photo)};
+  \node[blk=2.5cm] (ing)  at (1,0)  {Ingestion\\text, OCR, parsing};
+  \node[blk=2.5cm] (lab)  at (2,0)  {Labelling (LLM)\\topic, Bloom level};
+  \node[blk=2.5cm] (db)   at (3,0)  {SQLite\\corpus};
+  \node[blk=2.5cm] (ana)  at (2,-1.6) {Historical analysis\\weightage, hot topics};
+  \node[blk=2.5cm] (gen)  at (3,-1.6) {Paper generator\\plan, RAG, verify};
+  \node[blk=2.5cm] (asst) at (1,-1.6) {Study assistant\\(tool-using agent)};
+  \node[blk=2.5cm] (ui)   at (0,-1.6) {Web UI, CLI,\\REST API};
+  \node[blk=2.5cm] (stu)  at (0,-3.1) {Student};
+  \node[blk=2.5cm, fill=blue!6] (llm) at (2,-3.1) {Google Gemini\\(LLM)};
+  \draw[arr] (pdf) -- (ing); \draw[arr] (ing) -- (lab); \draw[arr] (lab) -- (db);
+  \draw[arr] (db) -- (gen); \draw[arr] (db) -- (ana);
+  \draw[arr] (ana) -- (asst);
+  \draw[arr] (gen.south) -- ++(0,-0.35) -| ([xshift=6pt]asst.south);
+  \draw[arr] (asst) -- (ui); \draw[arr, <->] (ui) -- (stu);
+  \draw[arr, <->, dashed] (llm.east) -| (gen.south east);
+  \draw[arr, <->, dashed] (llm.west) -| ([xshift=-6pt]asst.south);
+\end{tikzpicture}
+\caption{System model of PaperMind (dashed: calls to the LLM; labelling also uses it)}
+\label{fig:arch}
+\end{figure}
+
+\section{Dataset Collection}
+The primary corpus consists of GATE papers for Computer Science and Information Technology (CS) and for Data Science and
+Artificial Intelligence (DA). Table~\ref{tab:sources} lists the sources. The 2025 and 2026 papers and keys were
+downloaded from the official websites of the organising institutes (IIT Roorkee and IIT Guwahati). Papers from 2011 to
+2024 were obtained from a public mirror; its trustworthiness was established by comparing its 2025 files with the
+official ones---the DA paper was byte-identical and the CS paper and key were text-identical. The official GATE 2024 DA
+sample paper (IISc Bangalore) supplements the young DA paper~\cite{gate2025,gate2026}. A university end-semester Mathematics-II paper exercises
+the non-GATE path.
+
+\begin{table}[h]
+\centering
+\caption{Corpus sources and provenance}
+\label{tab:sources}
+\small
+\begin{tabularx}{\textwidth}{@{}lXl@{}}
+\toprule
+\textbf{Years} & \textbf{Papers} & \textbf{Source}\\
+\midrule
+2025 & CS1, CS2, DA with keys & Official (IIT Roorkee)\\
+2026 & CS1, CS2, DA with keys & Official (IIT Guwahati)\\
+2011--2024 & CS (1--3 sessions/year), DA 2024; keys from 2017 & Verified mirror\\
+2024 & DA sample paper (subject section) & Official (IISc)\\
+2025 & Mathematics-II end-semester (university) & Institute paper\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Data-quality problems were found and corrected rather than ignored: the mirror's ``2017 CS1'' key was in fact the
+Electronics (EC) key and is rejected automatically because it contains no CS rows; the 2013 PDF contained four booklet
+codes of the same paper (only one is kept); the 2014, 2015 and 2021 PDFs each bundled two or three different session
+papers, which were split into separate papers. The GATE pattern used for slot inference is summarised in
+Table~\ref{tab:pattern}.
+
+\begin{table}[h]
+\centering
+\caption{GATE paper pattern (2014 onwards)}
+\label{tab:pattern}
+\small
+\begin{tabular}{@{}llccl@{}}
+\toprule
+\textbf{Section} & \textbf{Questions} & \textbf{Marks each} & \textbf{Total} & \textbf{Types}\\
+\midrule
+General Aptitude & Q1--Q5 & 1 & 5 & MCQ\\
+General Aptitude & Q6--Q10 & 2 & 10 & MCQ\\
+Subject (CS / DA) & Q11--Q35 & 1 & 25 & MCQ, MSQ, NAT\\
+Subject (CS / DA) & Q36--Q65 & 2 & 60 & MCQ, MSQ, NAT\\
+\midrule
+\multicolumn{3}{@{}l}{\textbf{Total}: 65 questions, 3 hours} & \textbf{100} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Ingestion and Preprocessing}
+Figure~\ref{fig:ingest} shows the ingestion decision flow. A document is first read through its PDF text layer. If the
+layer is absent (scanned papers) or garbled---detected when more than a quarter of lines are one or two characters long,
+the signature of exploded equations---the page images are passed to on-device OCR (Apple Vision); boxes are re-assembled
+into lines by their vertical centres so that margin labels such as ``Q.7'' rejoin their text. Multimodal LLM
+transcription was evaluated but rejected for GATE papers: the model refuses to reproduce widely published text
+(\emph{recitation} filter), which is itself an instructive finding.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=0.55cm]
+  \node[blk=3cm] (in) {PDF / images};
+  \node[blk=3.2cm, below=of in] (tl) {Read text layer};
+  \node[draw, diamond, aspect=2.4, align=center, font=\small, inner sep=1pt, below=of tl] (ok) {usable?};
+  \node[blk=2.8cm, right=1.2cm of ok] (ocr) {On-device OCR\\line re-assembly};
+  \node[draw, diamond, aspect=2.4, align=center, font=\small, inner sep=1pt, below=of ok] (gate) {GATE layout\\clean?};
+  \node[blk=3cm, left=1.1cm of gate] (rx) {Rule parser +\\official key join};
+  \node[blk=3cm, right=1.1cm of gate] (llm) {LLM structuring\\(new formats)};
+  \node[blk=3.2cm, below=1.3cm of gate] (lab) {Label: topic, Bloom\\$\rightarrow$ store};
+  \draw[arr] (in) -- (tl); \draw[arr] (tl) -- (ok);
+  \draw[arr] (ok) -- node[above, font=\scriptsize]{no} (ocr);
+  \draw[arr] (ocr) |- (gate);
+  \draw[arr] (ok) -- node[right, font=\scriptsize]{yes} (gate);
+  \draw[arr] (gate) -- node[above, font=\scriptsize]{yes} (rx);
+  \draw[arr] (gate) -- node[above, font=\scriptsize]{no} (llm);
+  \draw[arr] (rx) |- (lab); \draw[arr] (llm) |- (lab);
+\end{tikzpicture}
+\caption{Ingestion flow for a new paper}
+\label{fig:ingest}
+\end{figure}
+
+\subsection{GATE paper parsing and key join}
+GATE papers are parsed with layout rules (Algorithm~\ref{alg:parse}). Header, footer and section-banner lines are removed
+by a noise pattern. A question begins at a line matching \texttt{Q.\,$n$}; the online-test layout of 2017--2021
+(``Question Number : $n$'') and the 2020 variant (``Q.NO.\,$n$'') are normalised to the same form. Options \texttt{(A)}--%
+\texttt{(D)} are collected, including options printed inline on one line. Older papers restart numbering after the
+aptitude section, so numbers are mapped to a global sequence, and OCR misreadings (``Q.28'' read as ``88'') are repaired
+by enforcing monotonic increase. The official key PDF supplies each question's type, section, marks and answer; three
+key layouts (2017--2026) are supported, and a key is rejected if it contains no subject rows.
+
+\begin{algorithm}[t]
+\caption{GATE paper parsing and answer-key join}
+\label{alg:parse}
+\begin{algorithmic}[1]
+\Require page texts $T$, optional key pages $K$, paper year $y$
+\State $L \gets$ normalise each line of $T$; drop lines matching the noise pattern
+\State $Q \gets [\,]$
+\For{each line $\ell \in L$}
+  \If{$\ell$ matches \texttt{Q.}$n$} \State append new question $(n, \text{stem}=[\,], \text{options}=\{\})$ to $Q$
+  \ElsIf{$\ell$ matches \texttt{(A)}--\texttt{(D)}} \State start option on the current question
+  \Else \State append $\ell$ to the open option or to the stem
+  \EndIf
+\EndFor
+\State renumber $Q$ to a global $1..65$ sequence; repair non-monotonic numbers
+\State $\kappa \gets$ \Call{ParseKey}{$K$}; \textbf{if} $\kappa$ has no CS/DA rows \textbf{then} $\kappa \gets \emptyset$
+\For{each $q \in Q$}
+  \State $(q.\text{type}, q.\text{section}, q.\text{marks}, q.\text{answer}) \gets \kappa[q.n]$ or the default layout for year $y$
+\EndFor
+\State \Return $Q$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Pattern-agnostic structuring of new papers}
+When a paper does not fit the GATE layout---a university paper or a future GATE paper with a changed pattern---its text
+is split into chunks and an LLM returns structured questions (number, text in LaTeX, options, marks, section) together
+with the list of question formats it observed, so that new formats such as match-the-following or assertion--reason are
+captured rather than lost. Offline, a heuristic segmenter recognises question numbers, sub-parts and
+``($a\times b$)'' marks headers.
+
+\section{NLP Analysis Layer}
+\subsection{Bloom's taxonomy classification}
+Each question is assigned a Bloom level by transparent lexical rules, following the finding that directive verbs carry
+most of the signal~\cite{mohammed2020}. Cue patterns are checked from the highest level down and the first match wins
+(Table~\ref{tab:bloom}); questions with no cue default to \emph{Understand}.
+
+\begin{table}[h]
+\centering
+\caption{Bloom's taxonomy cue patterns (highest level checked first)}
+\label{tab:bloom}
+\small
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+\textbf{Level} & \textbf{Example cues}\\
+\midrule
+Create & design, devise, formulate, construct an algorithm/grammar/automaton, write a program/query\\
+Evaluate & justify, evaluate, which is best/most appropriate, assess, recommend\\
+Analyze & prove, derive, analyse, compare, time complexity, worst case, which of the following is TRUE/FALSE\\
+Apply & calculate, compute, find, determine, solve, number of, value of, output of, probability\\
+Understand & explain, describe, discuss, illustrate, interpret\\
+Remember & define, state, list, name, what is\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Topic labelling by distillation}
+Each syllabus (official GATE CS and DA syllabi, and the university syllabus) is a list of units, each with topics. A
+question must be mapped to one (unit, topic) pair. Labelling proceeds in three stages (Figure~\ref{fig:distill}):
+\begin{enumerate}
+  \item \textbf{LLM teacher.} Batches of 33 questions are sent to Gemini together with the syllabus; the model returns a
+        unit and topic per question, which are snapped to the closest valid syllabus string by sequence similarity.
+  \item \textbf{Zero-shot fallback.} Questions the teacher could not label are matched to topic descriptions by cosine
+        similarity of MiniLM sentence embeddings~\cite{reimers2019,wang2020minilm}.
+  \item \textbf{Student model.} A TF-IDF (word uni- and bi-grams, sublinear tf) + logistic-regression classifier is
+        trained on the teacher's labels; the latest year is held out for evaluation. This 7\,MB model labels papers
+        uploaded to the deployed server without an LLM call or a deep-learning runtime.
+\end{enumerate}
+To prevent the student learning from its own predictions, corpus ingestion always uses the teacher, never the student.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=0.5cm and 0.9cm]
+  \node[blk=2.3cm] (q) {Corpus\\questions};
+  \node[blk=2.6cm, right=of q, fill=blue!6] (t) {LLM teacher\\(+ zero-shot)};
+  \node[blk=2.3cm, right=of t] (l) {Labelled\\corpus};
+  \node[blk=2.6cm, right=of l] (s) {TF-IDF + LR\\student};
+  \node[blk=2.6cm, below=0.8cm of s] (n) {New uploads\\(server)};
+  \node[blk=2.3cm, below=0.8cm of l] (e) {Held-out year\\evaluation};
+  \draw[arr] (q) -- (t); \draw[arr] (t) -- (l); \draw[arr] (l) -- node[above,font=\scriptsize]{train} (s);
+  \draw[arr] (s) -- (n); \draw[arr] (s) -- (e);
+\end{tikzpicture}
+\caption{Teacher--student labelling scheme}
+\label{fig:distill}
+\end{figure}
+
+\subsection{Text representation and similarity}
+For similarity, each question $q$ (stem plus options; stems alone are often generic, e.g.\ ``Which of the following
+statements is FALSE?'') is represented by a TF-IDF vector over character 3--5-grams, which is robust to OCR noise and
+inflection:
+\begin{equation}
+  w_{t,q} = \bigl(1+\log \mathrm{tf}(t,q)\bigr)\cdot \mathrm{idf}(t), \qquad
+  \mathrm{idf}(t)=\log\frac{1+|\mathcal{C}|}{1+\mathrm{df}(t)}+1 ,
+  \label{eq:tfidf}
+\end{equation}
+\begin{equation}
+  \mathrm{sim}(a,b)=\frac{\mathbf{v}_a\cdot\mathbf{v}_b}{\lVert\mathbf{v}_a\rVert\,\lVert\mathbf{v}_b\rVert}.
+  \label{eq:cos}
+\end{equation}
+
+\subsection{Historical statistics}
+For each unit $u$ the average marks per paper and the share of total marks are computed. The trend is the least-squares
+slope $\beta$ of per-paper marks against year index; $\beta>0.5$ is labelled rising, $\beta<-0.5$ falling, otherwise
+stable. Topic importance combines marks, frequency and recency in a \emph{hot score}:
+\begin{equation}
+  h(\tau)=\sum_{q\in\tau}\frac{m_q\,\lambda^{\,Y-y_q}}{n_{y_q}}, \qquad
+  H(\tau)=100\cdot\frac{h(\tau)}{\max_{\tau'}h(\tau')},
+  \label{eq:hot}
+\end{equation}
+where $\lambda=0.8$ discounts older papers and division by $n_{y}$ prevents years with several sessions from dominating.
+Recurring concepts are pairs of questions from different years with $\mathrm{sim}\ge 0.55$.
+
+\section{Generative Question Paper Pipeline}
+Figure~\ref{fig:genpipe} shows the generation pipeline.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=0.45cm]
+  \node[blk=4.6cm] (r) {Student request (free text)};
+  \node[blk=4.6cm, below=of r] (p) {Parse $\rightarrow$ exam, area, units, topics};
+  \node[blk=4.6cm, below=of p] (b) {Blueprint: slots (section, marks, type)};
+  \node[blk=4.6cm, below=of b] (pl) {Plan: sample topic per slot by $H(\tau)$};
+  \node[blk=4.6cm, below=of pl] (rag) {Retrieve past questions on topic};
+  \node[blk=4.6cm, below=of rag, fill=blue!6] (g) {Gemini writes questions + keys};
+  \node[blk=4.6cm, below=of g] (v) {Validate format $\cdot$ novelty};
+  \node[blk=4.6cm, below=of v] (k) {Blind re-solve of answer keys};
+  \node[blk=4.6cm, below=of k] (o) {Paper + validation report};
+  \foreach \a/\b in {r/p,p/b,b/pl,pl/rag,rag/g,g/v,v/k,k/o} \draw[arr] (\a) -- (\b);
+  \node[blk=3.2cm, right=1.2cm of v] (re) {Regenerate once};
+  \node[blk=3.2cm, right=1.2cm of k] (py) {Fallback: real PYQ\\with official key};
+  \draw[arr] (v.east) -- node[above,font=\scriptsize]{too similar} (re.west);
+  \draw[arr] (k.east) -- node[above,font=\scriptsize]{mismatch} (py.west);
+  \draw[arr] (re.north) |- (g.east);
+\end{tikzpicture}
+\caption{Generative question paper pipeline}
+\label{fig:genpipe}
+\end{figure}
+
+\subsection{Request understanding}
+The request is parsed into a structured \texttt{ExamRequest}---area (\texttt{gate\_cs}, \texttt{gate\_da}, a university
+syllabus), exam type (full GATE mock, short practice set, mid-semester or end-semester), focus units, focus topics,
+number of questions and difficulty. The LLM receives the full syllabus catalogue and must copy names exactly; outputs
+are validated against the syllabus. A regular-expression parser with subject aliases (``OS'', ``DBMS'', ``TOC'') serves
+offline. University subjects map onto the GATE syllabus unit of the same name, so a ``mid-sem paper for Operating
+Systems'' is grounded in sixteen years of GATE operating-systems questions.
+
+\subsection{Blueprint inference}
+A full GATE mock reproduces the slot layout of Table~\ref{tab:pattern}; the split of each marks band between MCQ, MSQ and
+NAT is the historical average from the answer keys, rounded with the largest-remainder method so that counts sum to 25
+and 30. A mid-semester paper has 5 two-mark questions (all compulsory) and 5 five-mark questions (any four), 30 marks
+in 90 minutes, restricted to the first half of each focus unit's topics; an end-semester paper has three sections
+totalling 100 marks.
+
+\subsection{History-weighted topic planning}
+Each slot is assigned a topic by sampling in proportion to historical importance (Algorithm~\ref{alg:plan}):
+\begin{equation}
+  P(\tau)\propto H(\tau)+10 ,
+  \label{eq:sample}
+\end{equation}
+where the constant keeps never-asked syllabus topics possible. After a topic is chosen its weight is halved to spread
+coverage. Bloom levels are sampled from the corpus distribution, biased towards higher levels for long questions.
+
+\begin{algorithm}[t]
+\caption{History-weighted planning of a paper}
+\label{alg:plan}
+\begin{algorithmic}[1]
+\Require slots $S$ from the blueprint, topics in scope $\mathcal{T}$, hot scores $H$, Bloom distribution $B$
+\State $w_\tau \gets H(\tau)+10$ for all $\tau\in\mathcal{T}$
+\For{each slot $s\in S$}
+  \If{$s$ is a General Aptitude slot} \State $s.\tau \gets$ uniform choice of an aptitude topic
+  \Else
+    \State $s.\tau \gets$ sample $\tau$ with probability $w_\tau/\sum w$; \quad $w_{s.\tau}\gets w_{s.\tau}/2$
+  \EndIf
+  \State $s.\text{bloom} \gets$ sample from $B$ (higher levels for long questions)
+\EndFor
+\State \Return $S$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Retrieval-augmented generation}
+Slots are grouped by unit into batches of six and generated in parallel. For each slot the prompt contains its type,
+marks, unit, topic, Bloom level and difficulty, followed by up to three past questions on the same topic (preferring the
+same type and recent years) retrieved from the corpus~\cite{lewis2020}. The system prompt casts the model as a senior
+paper-setter, forbids copying references and requires a single verifiable answer with a worked explanation. Output is
+constrained to a JSON schema; mathematics is written in LaTeX.
+
+\subsection{Validation and answer-key verification}
+Each question is checked for its format (exactly four options for MCQ/MSQ, option letters as the key, a numeric key or
+range for NAT). Novelty is measured as the maximum similarity (Eq.~\ref{eq:cos}) to any corpus question; drafts with
+$\mathrm{sim}\ge\theta=0.8$ are regenerated with the offending drafts shown as negative examples. Because LLM answer
+keys can be wrong~\cite{ji2023}, every objective question is then solved again by an independent call that does not see
+the key and may flag the question as ill-posed (Algorithm~\ref{alg:verify}), in the spirit of
+self-consistency~\cite{wang2023sc}. A question whose key disagrees is regenerated once and re-verified; if it still fails
+it is replaced by a real past question with an official key. Finally the marks of the attemptable questions are summed
+and compared with the paper's total.
+
+\begin{algorithm}[t]
+\caption{Blind answer-key verification}
+\label{alg:verify}
+\begin{algorithmic}[1]
+\Require generated objective questions $G$ with keys
+\State $\hat{a} \gets$ \Call{LLMSolve}{$G$ without keys} \Comment{returns answer and well-posed flag per question}
+\State $F \gets \{q\in G : \neg\,\text{wellposed}(q) \lor \neg\,\text{match}(\hat{a}_q, \text{key}_q)\}$
+\Comment{NAT: within the key range $\pm1\%$}
+\State $G' \gets$ \Call{Regenerate}{$F$}; \quad $F' \gets$ \Call{Verify}{$G'$}
+\For{each $q\in F$}
+  \If{$q'\in G'\setminus F'$} \State replace $q$ by $q'$ \Else \State replace $q$ by the best-matching real PYQ \EndIf
+\EndFor
+\State \Return $G$, $|F|$
+\end{algorithmic}
+\end{algorithm}
+
+\section{Personal Study Assistant}
+The assistant is a Gemini chat agent whose tools are PaperMind's own functions (Figure~\ref{fig:agent}):
+\texttt{syllabus\_overview}, \texttt{hot\_topics}, \texttt{search\_past\_questions}, \texttt{create\_practice\_set},
+\texttt{get\_answer}, \texttt{record\_result} and \texttt{my\_progress}. The model decides when to call a tool, in the
+manner of ReAct~\cite{yao2023}; tool schemas are derived from Python type hints and docstrings. Its instructions require
+claims about the examination to be grounded in tool output, questions to be asked one at a time, the official key to be
+fetched only after the student answers, and every graded attempt to be recorded. Conversation history, including tool
+calls, is persisted per student.
+
+For a student, the smoothed accuracy on topic $\tau$ after $c$ correct answers out of $n$ attempts and the resulting
+study priority are
+\begin{equation}
+  a_\tau=\frac{c+1}{n+2}, \qquad \rho_\tau=(1-a_\tau)\,\bigl(H(\tau)+10\bigr),
+  \label{eq:priority}
+\end{equation}
+so a topic is urgent when it is both weak for the student and heavily examined. Laplace smoothing stops a single wrong
+answer from marking a topic as completely unknown.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=0.5cm and 1.1cm]
+  \node[blk=2.4cm] (s) {Student};
+  \node[blk=2.8cm, right=of s, fill=blue!6] (m) {Gemini agent\\(chat + history)};
+  \node[blk=3.3cm, right=of m, text width=3.3cm, align=left, font=\scriptsize] (t) {%
+    \texttt{syllabus\_overview}\\\texttt{hot\_topics}\\\texttt{search\_past\_questions}\\\texttt{create\_practice\_set}\\
+    \texttt{get\_answer}\\\texttt{record\_result}\\\texttt{my\_progress}};
+  \node[blk=2.8cm, below=0.8cm of t] (d) {Corpus, generator,\\progress tables};
+  \draw[arr, <->] (s) -- node[above,font=\scriptsize]{message} (m);
+  \draw[arr, <->] (m) -- node[above,font=\scriptsize]{calls} (t);
+  \draw[arr, <->] (t) -- (d);
+\end{tikzpicture}
+\caption{Tool-using study assistant}
+\label{fig:agent}
+\end{figure}
+
+\section{Deployment Architecture}
+The application is a FastAPI service that serves the REST API and a single-page web interface from one process, packaged
+as a Docker image. Only run-time dependencies are installed in the image: the prebuilt corpus database and the 7\,MB
+student classifier ship inside it, while heavy ingest-time components (sentence-embedding model, on-device OCR) stay on
+the developer machine. Gemini's free tier caps requests per model per day, so two ordered model chains are configured---a
+\emph{bulk} chain of lightweight models for structuring and labelling and a \emph{generation} chain led by the strongest
+model---and a model whose daily quota is exhausted or which is temporarily overloaded is skipped automatically. The image
+runs on a free cloud web-service tier (512\,MB RAM) and redeploys automatically on every push to the repository.
+
+\section{Chapter Summary}
+This chapter described the corpus and its provenance, the ingestion pipeline for digital, scanned and unfamiliar papers,
+the NLP layer (Bloom rules, teacher--student topic labelling, TF-IDF similarity and historical statistics), the
+generation pipeline with blueprint inference, history-weighted planning, retrieval-augmented prompting and blind answer
+verification, the tool-using assistant and its priority model, and the deployment architecture.

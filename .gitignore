@@ -8,3 +8,6 @@ data/gate/samples/
 data/*.log
 .pytest_cache/
 .DS_Store
+B210021CS__Proj_Report_final__April_.pdf
+report/*.log
+report/*.aux

@@ -376,8 +376,15 @@ window.addEventListener("load", async () => {
   $("#llm").textContent = h.llm ? "Gemini connected" : "Offline mode: papers built from past questions";
   const opts = h.areas.map((a) => `<option value="${a}">${esc(areaName(a))}</option>`).join("");
   $("#ins-area").innerHTML = opts; $("#up-area").innerHTML = opts;
-  const t = store.get("tab");
+  // deep links: #insights, ?paper=12 (&answers=1), ?student=name
+  const qs = new URLSearchParams(location.search);
+  if (qs.get("student")) $("#student").value = qs.get("student");
+  const t = location.hash.slice(1) || (qs.get("paper") ? "generate" : store.get("tab"));
   if (t) document.querySelector(`nav button[data-tab="${t}"]`)?.click();
+  if (qs.get("paper")) {
+    renderPaper(await api("/api/generated/" + encodeURIComponent(qs.get("paper"))));
+    if (qs.get("answers")) $("#toggle-ans").click();
+  }
 });
 </script>
 </body>

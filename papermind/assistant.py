@@ -134,6 +134,8 @@ def chat(con, student: str, message: str) -> str:
             if "per day" in str(e) or "PerDay" in str(e) or "429" in str(e):
                 llm._exhausted.add(model)
                 continue
+            if "503" in str(e) or "UNAVAILABLE" in str(e):  # model overloaded right now: try the next one
+                continue
             raise
     else:
         raise llm.LLMUnavailable(f"No model available: {last}")

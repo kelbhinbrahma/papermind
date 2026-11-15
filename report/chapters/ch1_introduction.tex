@@ -1,0 +1,93 @@
+\chapter{Introduction}
+Examinations in Indian engineering education follow strong, repeatable patterns. University mid-semester and
+end-semester papers draw on a fixed syllabus with a familiar section structure, and the Graduate Aptitude Test in
+Engineering (GATE)---taken by several lakh candidates every year for postgraduate admission and public-sector
+recruitment---has used a stable 65-question, 100-mark format for more than a decade, mixing multiple choice (MCQ),
+multiple select (MSQ) and numerical answer type (NAT) questions. Because the pattern is stable, previous year questions
+(PYQs) are the single most used preparation resource: students solve them to learn what is asked, how often, and in
+what form.
+
+Using PYQs well is nevertheless laborious. A student who wants to know which subjects of the GATE Computer Science
+syllabus carry the most marks, which topics have appeared every year, or whether numerical questions are becoming more
+common must read and tally hundreds of questions across many papers. Once the pattern is understood, a second problem
+appears: the supply of fresh practice papers that follow the same pattern is limited, and re-solving the same PYQs
+quickly loses value because answers are remembered.
+
+Natural Language Processing (NLP) offers tools for the first problem---segmenting documents, representing questions as
+vectors, classifying them into syllabus topics and cognitive levels, and measuring similarity across years. Generative
+Artificial Intelligence (GenAI), in particular large language models (LLMs) such as Google Gemini, offers a route to the
+second: writing new questions on demand. This project, \textbf{PaperMind}, combines the two. It analyses a corpus of past
+papers to learn the examination pattern and then uses that learned pattern to steer an LLM that writes new papers,
+validated and checked, for whichever examination and subject a student asks for. A conversational study assistant ties
+both together and personalises preparation using each student's measured performance.
+
+\section{Challenges}
+\begin{itemize}
+  \item \textbf{Heterogeneous source documents.} Past papers arrive as digital PDFs, scanned images and photographs. Their
+        layouts changed over the years (offline booklets with four codes before 2014, online computer-based tests later),
+        equations are often destroyed by PDF text extraction, and several papers bundle more than one session.
+  \item \textbf{No labelled data.} Questions are not annotated with syllabus topics or cognitive levels, so supervised
+        classification has no ready training set.
+  \item \textbf{Faithfulness to the pattern.} A useful generated paper must match the real distribution of subjects,
+        marks and question types, not merely be on-topic.
+  \item \textbf{Correctness of generated answers.} LLMs produce fluent but occasionally wrong questions and answer keys; a
+        practice paper with a wrong key actively misleads a student.
+  \item \textbf{Novelty.} Generated questions must not simply reproduce past questions, yet they should be grounded in
+        them.
+  \item \textbf{Cost and deployment.} Free LLM tiers allow only a small number of requests per day, and free hosting
+        offers little memory and CPU, which rules out heavy deep-learning models at run time.
+\end{itemize}
+
+\section{Motivation}
+Coaching material that summarises ``important topics'' is usually compiled by hand, is rarely transparent about how it
+was derived, and is not tailored to an individual. At the same time, general-purpose chatbots will happily produce
+``GATE-style questions'' but have no grounding in what GATE actually asks and no check on their answers. A system that
+derives the pattern from the papers themselves, explains it with numbers, generates practice material constrained by
+that pattern, and verifies what it generates would make PYQ-based preparation faster, more objective and available to
+any student with a browser.
+
+\section{Problem Statement}
+Given a collection of past examination papers in arbitrary formats, design and implement a system that (i) extracts and
+structures every question, (ii) labels each question with its syllabus subject, topic and Bloom's taxonomy level,
+(iii) derives the historical pattern of the examination---subject weightage, topic importance, trends, question-type
+mix and recurring concepts---and (iv) generates, from a student's natural-language request, a new question paper or
+practice set that follows this pattern, carries correct answer keys and is novel with respect to the past papers;
+and finally (v) provides a personal assistant that uses these capabilities to guide an individual student's preparation.
+
+\section{Objectives}
+\begin{enumerate}
+  \item To build a robust ingestion pipeline for digital PDFs, scanned PDFs and page photographs, including joining GATE
+        papers with their official answer keys.
+  \item To assemble a corpus of GATE CS (2011--2026) and GATE DA (2024--2026) papers with documented provenance.
+  \item To label questions with syllabus topics without manual annotation, by distilling LLM labels into a lightweight
+        classifier, and to evaluate it on a held-out year.
+  \item To compute interpretable historical statistics: weightage, recency-weighted hot topics, trends and recurrence.
+  \item To generate pattern-faithful papers with an LLM using retrieval of past questions as exemplars, and to validate
+        format, marks, novelty and answer-key correctness.
+  \item To build a tool-using conversational study assistant with per-student progress tracking.
+  \item To deploy the complete system as a web application at zero hosting cost.
+\end{enumerate}
+
+\section{Contributions}
+\begin{itemize}
+  \item A documented, cleaned corpus of 31 papers (1,971 questions) with official keys where available, including
+        detection and correction of mislabelled source files.
+  \item A teacher--student labelling scheme in which an LLM labels the corpus and a TF-IDF + logistic-regression model
+        learns from it, reaching 77.7\% topic and 88.5\% subject accuracy on unseen 2026 GATE CS papers.
+  \item A history-weighted generation pipeline combining blueprint inference, importance-proportional topic sampling,
+        retrieval-augmented prompting and blind re-solving of answer keys.
+  \item A personal assistant that grounds its advice in corpus statistics and prioritises topics by
+        exam weight $\times$ measured weakness.
+\end{itemize}
+
+\section{Organisation of the Report}
+Chapter~\ref{ch:lit} reviews related work on question analysis, question generation and LLM-based systems.
+Chapter~\ref{ch:system} describes the system model: data collection, ingestion, the NLP analysis layer, the generation
+pipeline, the assistant and deployment. Chapter~\ref{ch:results} presents the implementation, the corpus analysis, the
+classifier evaluation and the generation results. Chapter~\ref{ch:conc} concludes and outlines future work. The appendix
+collects the complete analysis reports and sample outputs of the system.
+
+\section{Chapter Summary}
+This chapter introduced the role of previous year papers in examination preparation, the twin problems of pattern
+discovery and practice-paper scarcity, and the challenges that make automation non-trivial. It stated the problem,
+the objectives and the contributions of PaperMind.

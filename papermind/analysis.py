@@ -89,7 +89,7 @@ def repeated(rows: list[dict], threshold: float = 0.55, top: int = 15) -> list[d
     rows = [r for r in rows if r.get("section") != "GA" and len(r["text"]) > 40]
     if len(rows) < 2:
         return []
-    texts = [r["text"] for r in rows]
+    texts = [f"{r['text']} {' '.join(r.get('options') or [])}" for r in rows]  # stems alone are often generic
     S = similarity(texts, texts)
     pairs = []
     for i, j in zip(*np.where(np.triu(S, 1) >= threshold)):

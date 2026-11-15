@@ -1,0 +1,48 @@
+\chapter{Conclusion and Future Scope}\label{ch:conc}
+
+\section{Conclusion}
+This project built PaperMind, an end-to-end system that learns the pattern of an examination from its own past papers and
+uses that pattern to generate new, verified practice papers and to coach individual students. The NLP side ingests
+digital, scanned and unfamiliar papers; segments and joins GATE questions with their official keys; labels every
+question with a syllabus topic through an LLM teacher distilled into a lightweight classifier; assigns Bloom's levels;
+and reports subject weightage, recency-weighted hot topics, trends, question-type mix and concept recurrence. On a
+documented corpus of 31 papers and 1,971 questions, the distilled classifier reached 77.7\% topic accuracy across 58
+topics and 88.5\% subject accuracy on unseen 2026 GATE CS papers, outperforming a zero-shot embedding baseline while
+running without any neural network.
+
+The GenAI side turns a one-line request into a structured specification, infers a blueprint from history, samples
+topics in proportion to their importance, retrieves past questions as exemplars and lets Gemini write the paper. Every
+paper is validated for structure, marks and novelty, and every objective answer key is re-solved independently and
+replaced if it fails---a safeguard motivated by a real incorrect key found during testing. A complete GATE CS mock is
+produced in about three minutes, matches the historical subject distribution with $r=0.81$, and contains no question
+closer than 0.61 to any past question. A tool-using assistant grounds its advice in the corpus, quizzes students and
+prioritises topics by examination weight and measured weakness. The whole system is deployed as a web application at no
+cost.
+
+Beyond the artefact, the project yielded practical findings: text-layer extraction destroys mathematical notation;
+multimodal LLMs refuse to transcribe widely published papers; public mirrors can mislabel files (an Electronics key filed
+as Computer Science); LLM-written answer keys must be checked; and free LLM tiers impose request budgets that shape the
+architecture.
+
+\section{Future Work}
+\begin{itemize}
+  \item \textbf{More subjects and exams.} Extend the corpus to other GATE papers (EC, EE, ME, MA) and to university
+        papers of each course, which the pattern-agnostic ingestion already supports.
+  \item \textbf{Human-validated labels.} Annotate a sample of questions to measure true labelling accuracy and to
+        fine-tune the student model.
+  \item \textbf{Stronger verification.} Execute code-based questions, solve numerical questions symbolically or with
+        program-aided reasoning, and use several solver samples to estimate confidence.
+  \item \textbf{Figures and diagrams.} Extract diagrams from past papers and generate questions with figures (circuits,
+        automata, trees) using a drawing language such as TikZ or Graphviz.
+  \item \textbf{Difficulty calibration.} Estimate question difficulty from student responses (item response theory)
+        and generate papers at a target difficulty.
+  \item \textbf{Persistent, multi-user deployment.} Add accounts and a managed database so that progress survives
+        restarts, and adaptive spaced-repetition schedules in the assistant.
+  \item \textbf{Mobile and offline use.} Package practice sets for offline use in low-connectivity regions.
+\end{itemize}
+
+\section{Chapter Summary}
+PaperMind meets its objectives: it analyses past papers objectively, generates pattern-faithful and verified practice
+papers on demand, and personalises preparation through an assistant, all deployable for free. The limitations
+identified---verification that is strong but not absolute, the absence of figures, and labels measured against an LLM
+teacher---define a clear path for future work.

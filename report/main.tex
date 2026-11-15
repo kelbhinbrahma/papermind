@@ -1,0 +1,160 @@
+% Main body: printed double-sided. Continues roman numbering after front.tex (i-iv), so Contents starts on v (a recto page).
+\documentclass[12pt,a4paper,twoside,openright]{report}
+\usepackage[a4paper,inner=3.2cm,outer=2.5cm,top=2.7cm,bottom=2.5cm,headheight=15pt]{geometry}
+\input{common}
+
+% ---------- chapter / section headings ----------
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}
+  {\Large\MakeUppercase{\chaptertitlename}~\thechapter}
+  {6pt}
+  {\Huge}
+  [\vspace{6pt}{\titlerule[0.8pt]}]
+\titlespacing*{\chapter}{0pt}{40pt}{28pt}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\itshape}{\thesubsubsection}{0.8em}{}
+\titlespacing*{\section}{0pt}{16pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{6pt}
+
+% ---------- running headers ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhead[LE]{\small\itshape\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\itshape\nouppercase{\rightmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+\usepackage{tocloft}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftdotsep}{2}
+\setlength{\cftbeforechapskip}{6pt}
+\renewcommand{\listalgorithmname}{List of Algorithms}
+
+\newcommand{\frontchapter}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}\markboth{#1}{#1}}
+
+\begin{document}
+\makeatletter\@openrightfalse\makeatother   % front lists: no forced recto, fewer blank pages
+\pagenumbering{roman}
+\setcounter{page}{5}
+
+\tableofcontents
+\clearpage
+\phantomsection\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\clearpage
+\phantomsection\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\clearpage
+\phantomsection\addcontentsline{toc}{chapter}{List of Algorithms}
+\listofalgorithms
+\clearpage
+
+\frontchapter{List of Acronyms}
+\begingroup\setstretch{1.05}
+\begin{longtable}{@{}p{3cm}p{11cm}@{}}
+API & Application Programming Interface\\
+CLI & Command Line Interface\\
+CS & Computer Science and Information Technology (GATE paper code)\\
+DA & Data Science and Artificial Intelligence (GATE paper code)\\
+GA & General Aptitude\\
+GATE & Graduate Aptitude Test in Engineering\\
+GenAI & Generative Artificial Intelligence\\
+IDF & Inverse Document Frequency\\
+JSON & JavaScript Object Notation\\
+LLM & Large Language Model\\
+LR & Logistic Regression\\
+MCQ & Multiple Choice Question (one correct option)\\
+MSQ & Multiple Select Question (one or more correct options)\\
+NAT & Numerical Answer Type\\
+NLP & Natural Language Processing\\
+OCR & Optical Character Recognition\\
+PDF & Portable Document Format\\
+PYQ & Previous Year Question\\
+RAG & Retrieval-Augmented Generation\\
+REST & Representational State Transfer\\
+SQL & Structured Query Language\\
+TF & Term Frequency\\
+TF-IDF & Term Frequency--Inverse Document Frequency\\
+UI & User Interface\\
+\end{longtable}
+\endgroup
+\clearpage
+
+\frontchapter{Notations}\begingroup\setstretch{1.05}
+\begin{longtable}{@{}p{3cm}p{11cm}@{}}
+$q$ & A question (stem together with its options)\\
+$\mathcal{C}$ & Corpus of past questions\\
+$\mathrm{tf}(t,q)$ & Frequency of term $t$ in question $q$\\
+$\mathrm{idf}(t)$ & Inverse document frequency of term $t$ over $\mathcal{C}$\\
+$\mathbf{v}_q$ & TF-IDF vector of question $q$\\
+$\mathrm{sim}(a,b)$ & Cosine similarity between two questions\\
+$m_q$ & Marks carried by question $q$\\
+$y_q$ & Year of the paper containing $q$\\
+$Y$ & Latest year in the corpus\\
+$n_y$ & Number of papers in year $y$\\
+$\lambda$ & Recency decay factor (0.8)\\
+$H(\tau)$ & Hot score of topic $\tau$ (0--100)\\
+$\beta$ & Trend slope (marks per paper per year)\\
+$P(\tau)$ & Probability of choosing topic $\tau$ for a question slot\\
+$a_\tau$ & A student's smoothed accuracy on topic $\tau$\\
+$\rho_\tau$ & Study priority of topic $\tau$ for a student\\
+$\theta$ & Novelty threshold for generated questions (0.8)\\
+\end{longtable}\endgroup
+\clearpage
+
+\frontchapter{Abstract}
+\begingroup\setstretch{1.2}
+Students preparing for university examinations and for the Graduate Aptitude Test in Engineering (GATE) rely heavily on
+previous year question papers, yet extracting the pattern behind them---which subjects carry the most marks, which
+topics recur, how the question formats are shifting---is slow manual work, and fresh practice papers that follow the
+same pattern are scarce. This project presents \textbf{PaperMind}, a system that couples a Natural Language Processing
+(NLP) pipeline for analysing past question papers with a Generative AI (GenAI) pipeline that writes new,
+pattern-faithful practice papers on request, and a personal study assistant built on top of both.
+
+A corpus of 31 papers and 1,971 questions was assembled: GATE Computer Science papers from 2011 to 2026, GATE Data
+Science and Artificial Intelligence papers from 2024 to 2026, and a university end-semester paper. Digital PDFs are
+segmented with layout-aware rules and joined with official answer keys; scanned papers are read with on-device optical
+character recognition, and papers in unfamiliar layouts are structured by a large language model. Every question is
+labelled with its syllabus subject and topic, using a large language model as a teacher whose labels are distilled into
+a lightweight TF-IDF and logistic-regression classifier, and with its Bloom's taxonomy level. On the held-out 2026
+papers the distilled classifier reaches 77.7\% topic accuracy across 58 topics and 88.5\% subject accuracy for GATE CS,
+outperforming a zero-shot sentence-embedding baseline while needing no deep-learning runtime. Historical analysis then
+produces subject weightage, recency-weighted ``hot'' topics, trends and recurring concepts.
+
+For generation, a student's free-text request (for example, ``mid-sem paper for DBMS'') is parsed into a structured
+specification, a blueprint is inferred from the historical pattern, topics are sampled in proportion to their
+historical importance, and Google Gemini writes each question with retrieved past questions on the same topic as
+exemplars. Generated papers are validated for format, marks and novelty, and every objective answer key is re-solved
+independently and replaced when it fails. A complete 65-question GATE CS mock test is produced in about three minutes
+with exactly 100 marks and a maximum similarity of 0.61 to any past question. A tool-using conversational assistant
+answers questions from the corpus statistics, quizzes the student and tracks per-topic progress to recommend what to
+study next. The system is deployed as a web application on a free cloud tier.
+
+\vspace{0.4cm}
+\noindent\textbf{Keywords:} question paper analysis, question generation, large language models, retrieval-augmented
+generation, Bloom's taxonomy, knowledge distillation, GATE.
+\endgroup
+\cleardoublepage
+\makeatletter\@openrighttrue\makeatother   % chapters start on a recto page
+\pagenumbering{arabic}
+\input{chapters/ch1_introduction}
+\input{chapters/ch2_literature}
+\input{chapters/ch3_system}
+\input{chapters/ch4_results}
+\input{chapters/ch5_conclusion}
+
+\cleardoublepage
+\phantomsection\addcontentsline{toc}{chapter}{References}
+\markboth{References}{References}
+\input{chapters/references}
+
+\appendix
+\input{chapters/appendix}
+
+\end{document}
